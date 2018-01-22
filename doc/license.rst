@@ -31,5 +31,5 @@ License FAQ
 License Text
 ============
 
-.. literalinclude:: ../../COPYING.txt
+.. literalinclude:: ../COPYING.txt
 

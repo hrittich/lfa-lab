@@ -15,7 +15,7 @@ For the beginning we start with the Jacobi method applied to the Poisson
 equation (see :ref:`poisson_equation`). The following example uses LFA Lab to
 compute spectral radius of the error propagator of the method.
 
-.. literalinclude:: ../../demo/tutorial01-poisson.py
+.. literalinclude:: ../demo/tutorial01-poisson.py
 
 Let us walk through this example step by step.  To make any analysis, we first
 have to define a grid, i.e., create an instance of
@@ -62,7 +62,7 @@ impove out understanding of the corresponding operator.
 The following code plots the Fourer symbol of the error propagator of the
 Jacobi method for the discrete Poisson equation.
 
-.. literalinclude:: ../../demo/tutorial02-plot.py
+.. literalinclude:: ../demo/tutorial02-plot.py
 
 This code is just a modification to the example from the previous section. To
 plot the symbol, we import the :ref:`matplotlib` library. To plot the symbol
@@ -109,7 +109,7 @@ computing the spectral radius
 
 The following code performs this computation.
 
-.. literalinclude:: ../../demo/tutorial03-smoothing.py
+.. literalinclude:: ../demo/tutorial03-smoothing.py
 
 
 .. _tutorial_two_grids:
@@ -143,7 +143,7 @@ The following code computes the required operators, then the error propagator
 of the coarse grid correction, and then the error propagator of the entire
 two-grid method.
 
-.. literalinclude:: ../../demo/tutorial04-twogrid.py
+.. literalinclude:: ../demo/tutorial04-twogrid.py
 
 
 .. _defining_stencil_operators:
@@ -235,7 +235,7 @@ For example to construct the linear interpolation with standard coarsening in
 
 We give below a complete example for user defined stencils.
 
-.. literalinclude:: ../../demo/tutorial05-stencils.py
+.. literalinclude:: ../demo/tutorial05-stencils.py
 
 
 Multigrid Method
@@ -247,6 +247,6 @@ To define the error propagation operator of a multigrid method, we use the
 gives the error propagator of the coarse grid solver. Hence, we can write a
 recursive function that computes the error propagator of the multigrid method.
 
-.. literalinclude:: ../../demo/tutorial06-multigrid.py
+.. literalinclude:: ../demo/tutorial06-multigrid.py
 
 

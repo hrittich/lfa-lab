@@ -5,16 +5,10 @@ Homepage of LFA Lab
 Introduction
 ============
 
-Local Fourier analysis uses the discrete Time Fourier transform. The transform
-represents grid functions using the integral
+Flexible Local Fourier analysis library.
 
-.. math::
-
-   f(x) =
-   \int_{\Theta_\mathbf{h}} \hat{f}(\theta) e^{\mathrm{i} \langle \mathbf{x},
-    \theta \rangle} \,\mathrm{d}\theta
-
-where :math:`\Theta_\mathbf{h} := [ 0, \tfrac{2\pi}{h_1} ) \times \cdots \times [ 0, \tfrac{2\pi}{h_d} )`.
+For getting started with LFA Lab see :doc:`install` and then
+:doc:`tutorial`.
 
 Sponsors
 ========

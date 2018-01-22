@@ -93,10 +93,7 @@ where
 - :math:`P` is the interpolation operator,
 - :math:`R` is the restriction operator
 - :math:`E_c` is the error propagator of the method that solves the coarse
-  grid equation.
-In case of a two-grid method, :math:`E_c = 0`.
-
-
+  grid equation. In case of a two-grid method, :math:`E_c = 0`.
 
 Software
 ========

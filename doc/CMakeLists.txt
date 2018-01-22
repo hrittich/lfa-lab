@@ -16,8 +16,8 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 configure_file("conf.py.in" "conf.py")
-set(ENV{PYTHONPATH} "${CMAKE_BINARY_DIR}:$ENV{PYTHONPATH}")
 add_custom_target(sphinx-doc
+  ${CMAKE_COMMAND} -E env PYTHONPATH=${CMAKE_BINARY_DIR}
   ${PYTHON_EXECUTABLE} -m sphinx
   -c ${CMAKE_CURRENT_BINARY_DIR}
   ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}/html)

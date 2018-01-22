@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Installation &#8212; LFA Lab 0.3.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="LFA Lab 0.3.0 documentation" href="index.html" />
+    <link rel="next" title="Tutorial" href="tutorial.html" />
+    <link rel="prev" title="Homepage of LFA Lab" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="installation">
+<span id="id1"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="prepare-your-system">
+<h2>Prepare your System<a class="headerlink" href="#prepare-your-system" title="Permalink to this headline">¶</a></h2>
+<p>LFA Lab depends on the following packages:</p>
+<ul class="simple">
+<li>C++ compiler</li>
+<li><a class="reference external" href="http://www.cmake.org/">CMake</a></li>
+<li><a class="reference external" href="http://eigen.tuxfamily.org/">Eigen3</a></li>
+<li><a class="reference external" href="http://www.python.org/">Python2</a></li>
+<li><a class="reference external" href="http://swig.org/">Swig</a></li>
+<li><a class="reference external" href="http://www.numpy.org/">NumPy</a></li>
+<li>Only for pre C++11 compilers: <a class="reference external" href="http://www.boost.org/">Boost</a></li>
+</ul>
+<p>Furthermore, the following packages provide extra functionality, but are
+<em>optional</em>:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://www.doxygen.org/">Doxygen</a></li>
+<li><a class="reference external" href="http://www.sphinx-doc.org/">Sphinx</a></li>
+<li><a class="reference external" href="http://www.netlib.org/lapack/">LAPACK</a></li>
+<li><a class="reference external" href="http://github.com/opencollab/arpack-ng/">ARPACK</a></li>
+<li><a class="reference external" href="http://code.google.com/p/googletest/">googletest</a></li>
+<li><a class="reference external" href="https://pip.pypa.io/en/stable/">PIP</a></li>
+</ul>
+<p>You can find the commands to install the dependencies for different operating
+systems below.</p>
+<div class="section" id="debian">
+<h3>Debian<a class="headerlink" href="#debian" title="Permalink to this headline">¶</a></h3>
+<p>To install the dependencies on Debian, run the following command:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> \
+    <span class="n">g</span><span class="o">++</span> <span class="n">cmake</span> <span class="n">python</span><span class="o">-</span><span class="n">dev</span> <span class="n">python</span><span class="o">-</span><span class="n">numpy</span><span class="o">-</span><span class="n">dev</span> <span class="n">swig</span> \
+    <span class="n">libeigen3</span><span class="o">-</span><span class="n">dev</span> <span class="n">liblapack</span><span class="o">-</span><span class="n">dev</span> <span class="n">python</span><span class="o">-</span><span class="n">matplotlib</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="fedora">
+<h3>Fedora<a class="headerlink" href="#fedora" title="Permalink to this headline">¶</a></h3>
+<p>To install the dependencies on Fedora, run the following command:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">dnf</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> \
+    <span class="n">gcc</span><span class="o">-</span><span class="n">c</span><span class="o">++</span> <span class="n">cmake</span> <span class="n">python2</span><span class="o">-</span><span class="n">devel</span> <span class="n">python2</span><span class="o">-</span><span class="n">numpy</span> <span class="n">swig</span> \
+    <span class="n">eigen3</span><span class="o">-</span><span class="n">devel</span> <span class="n">lapack</span><span class="o">-</span><span class="n">devel</span> <span class="n">python2</span><span class="o">-</span><span class="n">matplotlib</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="build-lfa-lab">
+<h2>Build LFA Lab<a class="headerlink" href="#build-lfa-lab" title="Permalink to this headline">¶</a></h2>
+<p>First, download (see <a class="reference internal" href="download.html"><span class="doc">Download</span></a>) LFA Lab and unpack it when necessary.
+Then, execute the following commands in the source directory:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cmake</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="o">.</span>
+<span class="n">make</span>
+</pre></div>
+</div>
+<p>(Do not forget the dot at the end.)</p>
+<p>In case the build fails or you want to tweak your installation you can use the
+following options.</p>
+<div class="section" id="options">
+<h3>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h3>
+<p>Turns the compiler optimization on:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">DCMAKE_BUILD_TYPE</span><span class="o">=</span><span class="n">Release</span>
+</pre></div>
+</div>
+<p>Choose to use LAPACK for certain operations. If a good LAPACK/BLAS
+implementation is available, this will speed up the program essentially:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">DWITH_LAPACK</span><span class="o">=</span><span class="p">[</span><span class="n">ON</span><span class="o">|</span><span class="n">OFF</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Choose to use ARPACK. This will speed up the program if large spectra
+need to be analyzed:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">DWITH_ARPACK</span><span class="o">=</span><span class="p">[</span><span class="n">ON</span><span class="o">|</span><span class="n">OFF</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Set other prefices wich will be searched. For example if you installed
+some of the libraries in $HOME/.local run:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">DCMAKE_PREFIX_PATH</span><span class="o">=/</span><span class="n">other</span><span class="o">/</span><span class="n">prefix1</span><span class="p">;</span><span class="o">/</span><span class="n">other</span><span class="o">/</span><span class="n">prefix2</span>
+</pre></div>
+</div>
+<p>For example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>cmake -DCMAKE_PREFIX_PATH=$HOME/.local [OTHER OPTIONS] .
+</pre></div>
+</div>
+</div>
+<div class="section" id="documentation">
+<h3>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h3>
+<p>To build the documentation you can run:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">sphinx</span><span class="o">-</span><span class="n">doc</span>
+</pre></div>
+</div>
+<p>This command requires <a class="reference external" href="http://www.sphinx-doc.org/">Sphinx</a>.</p>
+<p>The C++-Core modules can be documented using:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">doxygen</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>Installation<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>To install LFA Lab just run:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">make</span> <span class="n">install</span>
+</pre></div>
+</div>
+<p>If you just want to use the software without installation, you can run:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">setup</span><span class="o">-</span><span class="n">env</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>instead. This command will setup the current shell session such that you can
+use LFA Lab.</p>
+<p>You can now use LFA Lab. Take a look at the <a class="reference internal" href="tutorial.html"><span class="doc">Tutorial</span></a> page to find out
+how to use it.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/lfa_lab_logo.png" alt="Logo"/>
+            </a></p>
+<h3><a href="index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prepare-your-system">Prepare your System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build-lfa-lab">Build LFA Lab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Publications &amp; Citations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="download.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Hannah Rittich.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

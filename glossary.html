@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Glossary &#8212; LFA Lab 0.3.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.3.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="top" title="LFA Lab 0.3.0 documentation" href="index.html" />
+    <link rel="prev" title="License" href="license.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="glossary">
+<h1>Glossary<a class="headerlink" href="#glossary" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="equations">
+<h2>Equations<a class="headerlink" href="#equations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="poisson-equation">
+<span id="id1"></span><h3>Poisson Equation<a class="headerlink" href="#poisson-equation" title="Permalink to this headline">¶</a></h3>
+<p>Let the operator <span class="math">\(\Delta\)</span> be given by</p>
+<div class="math">
+\[\Delta u =
+  \frac{\partial^2 u}{\partial x_1^2} + \cdots
+  + \frac{\partial^2 u}{\partial x_d^2}
+  \,,\]</div>
+<p>where <span class="math">\(u\)</span> is a sufficiently smooth function.
+The <em>Poisson equation</em> is</p>
+<div class="math">
+\[-\Delta u = f \,,\]</div>
+<p>where <span class="math">\(f\)</span> is a function.</p>
+</div>
+</div>
+<div class="section" id="injection-operators">
+<h2>Injection Operators<a class="headerlink" href="#injection-operators" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="injection-restriction">
+<span id="id2"></span><h3>Injection Restriction<a class="headerlink" href="#injection-restriction" title="Permalink to this headline">¶</a></h3>
+<p>Assume we have a fine grid <span class="math">\(\mathcal{G}_\mathbf{h}\)</span> and a coarse grid
+<span class="math">\(\mathcal{G}_{\mathbf{h}'}\)</span> which is a subset of the fine grid.
+The <em>injection restriction operator</em>
+<span class="math">\(R_\mathrm{inj}: \ell_2(\mathcal{G}_\mathbf{h}) \to \ell_2(\mathcal{G}_{\mathbf{h}'})\)</span>
+is defined by</p>
+<div class="math">
+\[[R_\mathrm{inj} u](x) = u(x)
+\quad \text{for all} \quad
+x \in \mathcal{G}_{\mathbf{h}'}
+\,.\]</div>
+</div>
+<div class="section" id="injection-interpolation">
+<span id="id3"></span><h3>Injection Interpolation<a class="headerlink" href="#injection-interpolation" title="Permalink to this headline">¶</a></h3>
+<p>Assume we have a fine grid <span class="math">\(\mathcal{G}_\mathbf{h}\)</span> and a coarse grid
+<span class="math">\(\mathcal{G}_{\mathbf{h}'}\)</span> which is a subset of the fine grid.
+The <em>injection interpolation operator</em>
+<span class="math">\(P_\mathrm{inj}: \ell_2(\mathcal{G}_{\mathbf{h}'}) \to \ell_2(\mathcal{G}_\mathbf{h})\)</span>
+is defined by</p>
+<div class="math">
+\[\begin{split}[P_\mathrm{inj} u](x) =
+\begin{cases}
+  u(x) &amp; \text{for } x \in \mathcal{G}_{\mathbf{h}'} \\
+  0    &amp; \text{otherwise}
+\end{cases}
+\quad \text{for all} \quad
+x \in \mathcal{G}_{\mathbf{h}}
+\,.\end{split}\]</div>
+</div>
+</div>
+<div class="section" id="error-propagation-operators">
+<h2>Error Propagation Operators<a class="headerlink" href="#error-propagation-operators" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="coarse-grid-correction">
+<span id="error-coarse-grid-correction"></span><h3>Coarse Grid Correction<a class="headerlink" href="#coarse-grid-correction" title="Permalink to this headline">¶</a></h3>
+<p>The error propagator of the <em>coarse grid correction</em> is defined by</p>
+<div class="math">
+\[E = I - P (I - E_c) L_c^{-1} R L
+\,,\]</div>
+<p>where</p>
+<ul class="simple">
+<li><span class="math">\(L\)</span> is the linear system operator on the fine grid,</li>
+<li><span class="math">\(L_c\)</span> is the linear system operator on the coarse grid,</li>
+<li><span class="math">\(P\)</span> is the interpolation operator,</li>
+<li><span class="math">\(R\)</span> is the restriction operator</li>
+<li><span class="math">\(E_c\)</span> is the error propagator of the method that solves the coarse
+grid equation. In case of a two-grid method, <span class="math">\(E_c = 0\)</span>.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="software">
+<h2>Software<a class="headerlink" href="#software" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="matplotlib">
+<span id="id4"></span><h3>Matplotlib<a class="headerlink" href="#matplotlib" title="Permalink to this headline">¶</a></h3>
+<p>Matplotlib is a Python library for visualizing mathematical functions and
+data.</p>
+<ul class="simple">
+<li>Homepage: <a class="reference external" href="https://matplotlib.org/">https://matplotlib.org/</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/lfa_lab_logo.png" alt="Logo"/>
+            </a></p>
+<h3><a href="index.html">Table Of Contents</a></h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citation.html">Publications &amp; Citations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="download.html">Download</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Glossary</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#equations">Equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#injection-operators">Injection Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#error-propagation-operators">Error Propagation Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#software">Software</a></li>
+</ul>
+</li>
+</ul>
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Hannah Rittich.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.9</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

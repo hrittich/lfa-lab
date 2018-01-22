@@ -1,0 +1,21 @@
+
+Doxyfile
+Makefile
+cmake_install.cmake
+CMakeFiles/
+CMakeCache.txt
+html/
+latex/
+tags
+
+# binaries
+build
+
+# VIM swap files
+*.swp
+# callgrind output
+callgrind.out.*
+
+# Compiled python files
+*.pyc
+

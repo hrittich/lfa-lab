@@ -35,7 +35,6 @@ if(CMAKE_COMPILER_IS_GNUCXX)
   set(CMAKE_CXX_FLAGS "-Wall ${CMAKE_CXX_FLAGS}")
 endif()
 
-set(LIBS "")
 
 # ===== Check C++ 11 Features ======
 include(CheckCXXSourceCompiles)
@@ -56,6 +55,12 @@ void* p = nullptr;
 int main() { return 0; }
 " HAVE_NULLPTR)
 
+
+# ===== Check System Features =====
+
+include(CheckSymbolExists)
+check_symbol_exists(feenableexcept "fenv.h" HAVE_FEENABLEEXCEPT)
+
 # ===== PkgConfig =====
 find_package(PkgConfig)
 
@@ -71,7 +76,7 @@ find_package(LAPACK)
 # ${LAPACK_FOUND}
 option(WITH_LAPACK "Use LAPACK Library" OFF)
 if(WITH_LAPACK)
-    set(LIBS ${LIBS} ${LAPACK_LIBRARIES})
+    list(APPEND LIBS ${LAPACK_LIBRARIES})
 endif()
 
 # ====== ARPACK ======
@@ -84,7 +89,7 @@ endif()
 
 option(WITH_ARPACK "Use ARPACK Library" ${ARPACK_FOUND})
 if(WITH_ARPACK)
-    set(LIBS ${LIBS} ${ARPACK_LIBRARIES})
+    list(APPEND LIBS ${ARPACK_LIBRARIES})
 endif()
 
 # ====== Boost ======
@@ -98,7 +103,7 @@ if(NOT HAVE_STD_SHARED_PTR)
   find_package(Boost 1.40.0 REQUIRED)
 
   include_directories(${Boost_INCLUDE_DIR})
-  set(LIBS ${LIBS} ${Boost_LIBRARIES})
+  list(APPEND LIBS ${Boost_LIBRARIES})
 endif()
 
 
@@ -169,7 +174,7 @@ if(NOT PYTHON_CONFIG EQUAL 0)
     message(SEND_ERROR "Python configuration failed.")
 endif()
 
-SET(PYTHON_INSTALL_DIR "${PYTHON_DEFAULT_INSTALL_DIR}" CACHE PATH "Installation directory of python packages")
+set(PYTHON_INSTALL_DIR "${PYTHON_DEFAULT_INSTALL_DIR}" CACHE PATH "Installation directory of python packages")
 
 include_directories(${NUMPY_INCLUDES})
 include_directories(${PYTHON_INCLUDE_DIRS})
@@ -210,7 +215,6 @@ message("
 # Write configuration
 configure_file(Config.h.in Config.h)
 include_directories(BEFORE ${CMAKE_BINARY_DIR})
-include_directories(BEFORE lfa_lab/core)
 
 add_subdirectory(lfa_lab)
 add_subdirectory(doc)

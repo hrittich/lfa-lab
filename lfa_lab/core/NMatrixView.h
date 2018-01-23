@@ -20,7 +20,7 @@
 #ifndef LFA_N_MATRIX_VIEW
 #define LFA_N_MATRIX_VIEW
 
-#include <Common.h>
+#include "Common.h"
 #include "VectorizedIndex.h"
 
 namespace lfa {

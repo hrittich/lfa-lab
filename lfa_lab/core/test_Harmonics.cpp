@@ -23,7 +23,7 @@
 #include "HarmonicClusters.h"
 #include "NdRange.h"
 #include "Symbol.h"
-#include "Math.h"
+#include "MathUtil.h"
 
 using namespace lfa;
 

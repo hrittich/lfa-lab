@@ -19,7 +19,7 @@
 add_library(lfa STATIC
   ../../Config.h
   Common.cpp Common.h
-  Math.h Math.cpp
+  MathUtil.h MathUtil.cpp
   EigenSolver.cpp EigenSolver.h
   DenseStencil.cpp DenseStencil.h
   Stencil2d.cpp Stencil2d.h
@@ -72,8 +72,7 @@ if(WITH_TESTS)
         test_NdArray.cpp
         test_SparseStencil.cpp
         test_FoProperties.cpp)
-    target_link_libraries(lfa_test lfa
-        ${LIBS} ${GTEST_BOTH_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
+    target_link_libraries(lfa_test lfa ${LIBS} ${GTEST_BOTH_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
 endif()
 
 # Create wrapper using Swig
@@ -95,6 +94,12 @@ target_link_libraries(extension lfa ${LIBS})
 set_target_properties(extension
   PROPERTIES LIBRARY_OUTPUT_NAME "_extension"
   PREFIX "")
+
+if(APPLE)
+  set_target_properties(extension
+    PROPERTIES LINK_FLAGS "-undefined dynamic_lookup"
+               SUFFIX ".so")
+endif()
 
 install(TARGETS extension DESTINATION ${PYTHON_INSTALL_DIR}/lfa_lab/core)
 add_python(lfa_lab_core_py lfa_lab/core

@@ -20,10 +20,10 @@
 #ifndef LFA_BLOCK_STENCIL_H
 #define LFA_BLOCK_STENCIL_H
 
-#include <Common.h>
+#include "Common.h"
 #include "DenseStencil.h"
 #include "MultiArray.h"
-#include "Math.h"
+#include "MathUtil.h"
 
 namespace lfa {
 

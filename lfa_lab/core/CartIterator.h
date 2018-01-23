@@ -20,7 +20,7 @@
 #ifndef LFA_CART_ITERATOR_H
 #define LFA_CART_ITERATOR_H
 
-#include <Common.h>
+#include "Common.h"
 #include <iterator>
 
 /** Cartesian iterator. Iterates over all combinations of the first and the

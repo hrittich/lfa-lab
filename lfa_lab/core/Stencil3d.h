@@ -20,7 +20,7 @@
 #ifndef LFA_STENCIL_3D_H
 #define LFA_STENCIL_3D_H
 
-#include <Common.h>
+#include "Common.h"
 #include "DenseStencil.h"
 
 namespace lfa {

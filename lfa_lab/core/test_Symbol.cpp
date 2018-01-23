@@ -22,12 +22,12 @@
 #include <gtest/gtest.h>
 
 #include <Eigen/Dense>
-#include <DenseStencil.h>
-#include <FoStencil2.h>
-#include <Symbol.h>
-#include <Math.h>
-#include <StencilGallery.h>
-#include <BlockSb.h>
+#include "DenseStencil.h"
+#include "FoStencil2.h"
+#include "Symbol.h"
+#include "MathUtil.h"
+#include "StencilGallery.h"
+#include "BlockSb.h"
 
 using namespace lfa;
 

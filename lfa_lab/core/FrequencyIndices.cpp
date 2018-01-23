@@ -18,7 +18,7 @@
 */
 
 #include "FrequencyIndices.h"
-#include "Math.h"
+#include "MathUtil.h"
 #include "HarmonicClusters.h"
 #include "HarmonicIndices.h"
 

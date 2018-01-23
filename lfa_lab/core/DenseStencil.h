@@ -20,7 +20,7 @@
 #ifndef LFA_DENSE_STENCIL_H
 #define LFA_DENSE_STENCIL_H
 
-#include <Common.h>
+#include "Common.h"
 #include "MultiArray.h"
 #include "StencilElement.h"
 

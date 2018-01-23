@@ -20,7 +20,7 @@
 #ifndef LFA_STENCIL_GALLERY_H
 #define LFA_STENCIL_GALLERY_H
 
-#include <Common.h>
+#include "Common.h"
 #include <map>
 #include "SystemStencil.h"
 #include "BlockStencil.h"

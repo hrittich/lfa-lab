@@ -20,7 +20,7 @@
 #ifndef LFA_BLOCK_MATRIX_H
 #define LFA_BLOCK_MATRIX_H
 
-#include <Common.h>
+#include "Common.h"
 
 namespace lfa {
 

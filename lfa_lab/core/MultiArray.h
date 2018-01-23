@@ -20,7 +20,7 @@
 #ifndef LFA_MULTI_ARRAY_H
 #define LFA_MULTI_ARRAY_H
 
-#include <Common.h>
+#include "Common.h"
 #include "VectorizedIndex.h"
 
 namespace lfa {

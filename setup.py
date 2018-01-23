@@ -83,5 +83,8 @@ setup(
         install_cmake=install_cmake,
         build=custom_build,
         install=custom_install,
-        )
+        ),
+    install_requires=[
+        'numpy'
+    ]
     )

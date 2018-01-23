@@ -18,7 +18,7 @@
 */
 
 #include "Grid.h"
-#include "Math.h"
+#include "MathUtil.h"
 
 namespace lfa {
 

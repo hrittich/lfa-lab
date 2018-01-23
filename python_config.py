@@ -1,4 +1,9 @@
 import numpy.distutils
+import distutils.sysconfig as sc
+import os
+
+#from pprint import pprint
+#pprint(sc.get_config_vars())
 
 def cmake_list(l):
     return ';'.join(l)
@@ -14,8 +19,6 @@ cmake_set_var('NUMPY_INCLUDES', cmake_list(ds), 'STRING',
 cmake_set_var('NUMPY_FOUND', 'ON', 'BOOL', 'NumPy found')
 
 
-import distutils.sysconfig as sc
-import os
 
 cmake_set_var('PYTHON_INCLUDE_DIRS', sc.get_python_inc(), 'STRING',
               'Python includes')

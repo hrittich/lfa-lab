@@ -20,8 +20,8 @@
 #ifndef LFA_ND_ARRAY_H
 #define LFA_ND_ARRAY_H
 
-#include <Common.h>
-#include <NdRange.h>
+#include "Common.h"
+#include "NdRange.h"
 
 namespace lfa {
 

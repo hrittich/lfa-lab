@@ -20,7 +20,7 @@
 #ifndef LFA_MULTIGRID_RANDOM_H
 #define LFA_MULTIGRID_RANDOM_H
 
-#include <Common.h>
+#include "Common.h"
 
 namespace lfa {
 

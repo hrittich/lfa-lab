@@ -19,7 +19,7 @@
 
 #include "HpFilterSb.h"
 
-#include "Math.h"
+#include "MathUtil.h"
 #include "DiscreteDomain.h"
 
 

@@ -21,7 +21,7 @@
 
 #include <iomanip>
 #include <algorithm>
-#include "Math.h"
+#include "MathUtil.h"
 
 namespace lfa {
 

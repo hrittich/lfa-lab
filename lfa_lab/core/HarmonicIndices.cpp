@@ -20,7 +20,7 @@
 #include "HarmonicIndices.h"
 #include "FrequencyIndices.h"
 
-#include "Math.h"
+#include "MathUtil.h"
 
 namespace lfa {
 

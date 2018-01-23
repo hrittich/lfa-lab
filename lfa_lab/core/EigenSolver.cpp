@@ -20,7 +20,7 @@
 #include "EigenSolver.h"
 
 #include "Config.h"
-#include "Math.h"
+#include "MathUtil.h"
 
 #include <iostream>
 #include <stdexcept>

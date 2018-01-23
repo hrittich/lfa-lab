@@ -20,7 +20,7 @@
 #ifndef LFA_EX_EIGEN_SOLVER_H
 #define LFA_EX_EIGEN_SOLVER_H
 
-#include <Common.h>
+#include "Common.h"
 
 #include <complex>
 

@@ -17,15 +17,18 @@
   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. 
 */
 
+#include <complex>
+
 #include "Common.h"
-
-#include "HarmonicIndices.h"
-
 #include <fenv.h>
 
 namespace lfa {
     void enable_fpe() {
+        #ifdef HAVE_FEENABLEEXCEPT
         feenableexcept(FE_DIVBYZERO | FE_INVALID | FE_OVERFLOW);
+        #else
+        cerr << "Warning: System does not support floating points exceptions." << endl;
+        #endif
     }
 }
 

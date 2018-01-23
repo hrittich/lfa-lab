@@ -19,7 +19,7 @@
 
 #include <gtest/gtest.h>
 
-#include "Math.h"
+#include "MathUtil.h"
 #include "NdRange.h"
 
 using namespace lfa;

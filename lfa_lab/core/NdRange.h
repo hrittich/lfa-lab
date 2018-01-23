@@ -17,11 +17,13 @@
   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. 
 */
 
-#ifndef LFA_GRID_H
-#define LFA_GRID_H
+#ifndef LFA_NDRANGE_H
+#define LFA_NDRANGE_H
 
 #include "Common.h"
 #include <iterator>
+
+#include <Eigen/Core>
 
 namespace lfa {
 

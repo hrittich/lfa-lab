@@ -27,5 +27,6 @@
 #cmakedefine WITH_LAPACK
 #cmakedefine WITH_ARPACK
 #cmakedefine WITH_OPENMP
+#cmakedefine HAVE_FEENABLEEXCEPT
 
 #endif

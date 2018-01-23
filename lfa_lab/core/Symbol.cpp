@@ -20,7 +20,7 @@
 #include "Symbol.h"
 
 #include "FrequencyIndices.h"
-#include "Math.h"
+#include "MathUtil.h"
 #include "SplitFrequencyDomain.h"
 #include "DiscreteDomain.h"
 

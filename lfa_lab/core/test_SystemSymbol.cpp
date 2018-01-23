@@ -19,7 +19,7 @@
 
 #include <gtest/gtest.h>
 
-#include <lfa.h>
+#include <lfa_lab/core/lfa.h>
 
 using namespace lfa;
 

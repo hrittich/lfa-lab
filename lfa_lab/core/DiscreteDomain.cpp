@@ -18,7 +18,7 @@
 */
 
 #include "DiscreteDomain.h"
-#include "Math.h"
+#include "MathUtil.h"
 
 namespace lfa {
 

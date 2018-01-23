@@ -19,7 +19,7 @@
 
 #include <gtest/gtest.h>
 
-#include <NdArray.h>
+#include "NdArray.h"
 
 using namespace lfa;
 

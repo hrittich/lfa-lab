@@ -20,14 +20,14 @@
 #ifndef LFA_H
 #define LFA_H
 
-#include <Common.h>
-#include <SparseStencil.h>
-#include <StencilGallery.h>
-#include <SystemSymbol.h>
-#include <FoProperties.h>
-#include <BlockSb.h>
-#include <FoStencil2.h>
-#include <ConstantSb.h>
-#include <HpFilterSb.h>
+#include <lfa_lab/core/Common.h>
+#include <lfa_lab/core/SparseStencil.h>
+#include <lfa_lab/core/StencilGallery.h>
+#include <lfa_lab/core/SystemSymbol.h>
+#include <lfa_lab/core/FoProperties.h>
+#include <lfa_lab/core/BlockSb.h>
+#include <lfa_lab/core/FoStencil2.h>
+#include <lfa_lab/core/ConstantSb.h>
+#include <lfa_lab/core/HpFilterSb.h>
 
 #endif

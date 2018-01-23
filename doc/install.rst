@@ -49,6 +49,21 @@ To install the dependencies on Fedora, run the following command::
       gcc-c++ cmake python2-devel python2-numpy swig \
       eigen3-devel lapack-devel python2-matplotlib
 
+Mac OS X
+--------
+
+- http://brew.sh
+
+::
+
+  brew bundle
+  easy_install --user pip
+  python -mpip install --user --upgrade -r requirements.txt
+  python -mpip install --user .
+
+- https://matplotlib.org/users/installing.html
+- https://matplotlib.org/faq/osx_framework.html#osxframework-faq
+
 Build LFA Lab
 =============
 

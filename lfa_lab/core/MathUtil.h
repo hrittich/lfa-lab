@@ -20,8 +20,8 @@
 #ifndef LFA_MATH_HELPER_H
 #define LFA_MATH_HELPER_H
 
-#include <Common.h>
-#include <NdArray.h>
+#include <lfa_lab/core/Common.h>
+#include <lfa_lab/core/NdArray.h>
 
 /** @addtogroup Math
  * @{

@@ -22,7 +22,7 @@
 
 %{
 #define SWIG_FILE_WITH_INIT
-#include <lfa.h>
+#include <lfa_lab/core/lfa.h>
 #include <sstream>
 
 using namespace lfa;

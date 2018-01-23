@@ -1,0 +1,30 @@
+language: cpp
+os: linux
+
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - g++-6
+    - cmake
+    - python-dev
+    - python-numpy-dev
+    - swig
+    - libeigen3-dev
+    - liblapack-dev
+    - python-matplotlib
+
+matrix:
+  include:
+    # In source build
+    - script:
+      - cmake -DCMAKE_CXX_COMPILER=g++-6 .
+      - make
+    # Out of source build
+    - script:
+      - mkdir build
+      - cd build
+      - cmake -DCMAKE_CXX_COMPILER=g++-6 ../
+      - make
+

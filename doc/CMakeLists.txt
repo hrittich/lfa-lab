@@ -15,6 +15,9 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
+# Target to build all documentation.
+add_custom_target(doc)
+
 configure_file("conf.py.in" "conf.py")
 add_custom_target(sphinx-doc
   ${CMAKE_COMMAND} -E env PYTHONPATH=${CMAKE_BINARY_DIR}
@@ -22,17 +25,17 @@ add_custom_target(sphinx-doc
   -c ${CMAKE_CURRENT_BINARY_DIR}
   ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}/html)
 add_dependencies(sphinx-doc lfa_lab_py extension)
+add_dependencies(doc sphinx-doc)
 
 configure_file("Doxyfile.in" "Doxyfile")
 if(DOXYGEN_FOUND)
-    add_custom_target(doxygen-doc
-      #COMMAND
-      #  ${CMAKE_COMMAND} -E make_directory "${CMAKE_CURRENT_BINARY_DIR}/html"
-      COMMAND
-        ${DOXYGEN_EXECUTABLE} Doxyfile)
-endif()
+  add_custom_target(doxygen-doc
+    #COMMAND
+    #  ${CMAKE_COMMAND} -E make_directory "${CMAKE_CURRENT_BINARY_DIR}/html"
+    COMMAND
+      ${DOXYGEN_EXECUTABLE} Doxyfile)
 
-add_custom_target(doc)
-add_dependencies(doc sphinx-doc doxygen-doc)
+  add_dependencies(doc doxygen-doc)
+endif()
 
 

@@ -4,6 +4,11 @@
 Installation
 ############
 
+Download
+========
+
+Go to the :doc:`download` page. Download LFA Lab from this page and unpack it
+when necessary.
 
 Prepare your System
 ===================
@@ -52,23 +57,42 @@ To install the dependencies on Fedora, run the following command::
 Mac OS X
 --------
 
-- http://brew.sh
-
-::
+An easy way to install the required (non-python) dependencies of LFA Lab is
+the `Homebrew package manager <http://brew.sh>`_ for Mac. Make sure you have
+Homebrew installed. Then, change into the source directory of LFA Lab and
+execute the following command::
 
   brew bundle
+
+Then, you can use `PIP`_ to install the remaining
+(python) dependencies::
+
   easy_install --user pip
   python -mpip install --user --upgrade -r requirements.txt
+
+*Warning*: You might have multiple Python versions on your machine. You have
+to make sure that all dependencies and LFA Lab are installed with the same
+version.
+
+Furthermore, ff you want to use Matplotlib you need to make sure that you are
+using a
+`Framework build of Python <https://docs.python.org/2/using/mac.html>`_.
+See also `here <https://matplotlib.org/users/installing.html>`__ and
+`here <https://matplotlib.org/faq/osx_framework.html#osxframework-faq>`__.
+
+If you want you can build and install LFA Lab using pip::
+
   python -mpip install --user .
 
-- https://matplotlib.org/users/installing.html
-- https://matplotlib.org/faq/osx_framework.html#osxframework-faq
+If you want to customize the installation of in case the build fails, see the
+manual installation below.
+
+.. _build_lfa_lab:
 
 Build LFA Lab
 =============
 
-First, download (see :doc:`download`) LFA Lab and unpack it when necessary.
-Then, execute the following commands in the source directory::
+Execute the following commands in the source directory of LFA Lab::
 
     cmake [OPTIONS] .
     make
@@ -81,6 +105,10 @@ following options.
 Options
 -------
 
+Install into a per-user directory::
+
+    -DUSER_INSTALL=ON
+
 Turns the compiler optimization on::
 
     -DCMAKE_BUILD_TYPE=Release
@@ -91,7 +119,8 @@ implementation is available, this will speed up the program essentially::
     -DWITH_LAPACK=[ON|OFF]
 
 Choose to use ARPACK. This will speed up the program if large spectra
-need to be analyzed::
+need to be analyzed. Arpack, however, might not be able to compute the spectra
+for certain tricky problems::
 
     -DWITH_ARPACK=[ON|OFF]
 

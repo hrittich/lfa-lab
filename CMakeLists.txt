@@ -74,7 +74,7 @@ include_directories(SYSTEM ${EIGEN_INCLUDE_DIRS})
 # ====== LAPACK ======
 find_package(LAPACK)
 # ${LAPACK_FOUND}
-option(WITH_LAPACK "Use LAPACK Library" OFF)
+option(WITH_LAPACK "Use LAPACK Library" ${LAPACK_FOUND})
 if(WITH_LAPACK)
     list(APPEND LIBS ${LAPACK_LIBRARIES})
 endif()
@@ -87,7 +87,7 @@ else()
     set(ARPACK_FOUND OFF)
 endif()
 
-option(WITH_ARPACK "Use ARPACK Library" ${ARPACK_FOUND})
+option(WITH_ARPACK "Use ARPACK Library" OFF)
 if(WITH_ARPACK)
     list(APPEND LIBS ${ARPACK_LIBRARIES})
 endif()
@@ -174,7 +174,18 @@ if(NOT PYTHON_CONFIG EQUAL 0)
     message(SEND_ERROR "Python configuration failed.")
 endif()
 
-set(PYTHON_INSTALL_DIR "${PYTHON_DEFAULT_INSTALL_DIR}" CACHE PATH "Installation directory of python packages")
+option(USER_INSTALL "Install into per user directory")
+if(NOT USER_INSTALL STREQUAL USER_INSTALL_OLD)
+  message("USER INSTALL SETTING CHANGED")
+  if(USER_INSTALL)
+    set(NEW_PYTHON_INSTALL_DIR ${PYTHON_USER_INSTALL_DIR})
+  else()
+    set(NEW_PYTHON_INSTALL_DIR ${PYTHON_GLOBAL_INSTALL_DIR})
+  endif()
+  set(PYTHON_INSTALL_DIR "${NEW_PYTHON_INSTALL_DIR}" CACHE PATH
+    "Installation directory of python packages" FORCE)
+  set(USER_INSTALL_OLD ${USER_INSTALL} CACHE INTERNAL "Internal")
+endif()
 
 include_directories(${NUMPY_INCLUDES})
 include_directories(${PYTHON_INCLUDE_DIRS})
@@ -209,6 +220,8 @@ message("
  Python     ${PYTHON_VERSION}
  Tests      ${WITH_TESTS}
 ----------------------------------------
+
+Install to ${PYTHON_INSTALL_DIR}
 ")
 
 

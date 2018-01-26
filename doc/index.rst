@@ -5,7 +5,7 @@ Homepage of LFA Lab
 Introduction
 ============
 
-Flexible Local Fourier analysis library.
+Flexible local Fourier analysis library.
 
 For getting started with LFA Lab see :doc:`install` and then
 :doc:`tutorial`.

@@ -77,7 +77,7 @@ class custom_install(install):
 
 setup(
     name='lfa-lab',
-    version='0.3',
+    version='0.4.0',
     cmdclass=dict(
         build_cmake=build_cmake,
         install_cmake=install_cmake,

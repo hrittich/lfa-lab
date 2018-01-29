@@ -17,9 +17,15 @@
 
 cmake_minimum_required(VERSION 3.0)
 project("LFA Lab"
-  VERSION 0.3.0
+  VERSION 0.4.0
   LANGUAGES CXX)
+# project status is one of: alpha, beta, rc, stable
+set(PROJECT_STATUS "alpha")
 # project(LFA CXX C Fortran)
+
+if(NOT PROJECT_STATUS STREQUAL "stable")
+  set(PROJECT_VERSION "${PROJECT_VERSION}-${PROJECT_STATUS}")
+endif()
 
 # Do not include RPATH into executable. Otherwise build fails on MacOS
 set(CMAKE_SKIP_RPATH ON)

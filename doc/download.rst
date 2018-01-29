@@ -5,7 +5,7 @@ Download
 Releases
 ========
 
-No releases, yet.
+- `lfa-lab-0.3.0.tar.gz <releases/lfa-lab-0.3.0.tar.gz>`_ (2018-01-29)
 
 Git Repository
 ==============

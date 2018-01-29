@@ -239,7 +239,7 @@ configure_file("setup-env.sh.in" "setup-env.sh")
 # Tags
 add_custom_target(tags COMMAND ctags *.cpp *.h)
 
-# Dist
+# Create distribution directory.
 set(DIST_DIR "lfa-lab-${PROJECT_VERSION}")
 add_custom_target(dist
   COMMAND git clone ${CMAKE_SOURCE_DIR} ${DIST_DIR}

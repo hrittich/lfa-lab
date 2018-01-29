@@ -5,5 +5,6 @@ WORKDIR=lfa-lab
 rsync -rv --delete \
   --exclude='lfa-lab' \
   --exclude='update.sh' \
+  --exclude='releases' \
   --exclude='.*' \
   $WORKDIR/doc/html/ .

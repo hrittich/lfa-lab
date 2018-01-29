@@ -45,6 +45,11 @@
             
   <div class="section" id="installation">
 <span id="id1"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="download">
+<h2>Download<a class="headerlink" href="#download" title="Permalink to this headline">¶</a></h2>
+<p>Go to the <a class="reference internal" href="download.html"><span class="doc">Download</span></a> page. Download LFA Lab from this page and unpack it
+when necessary.</p>
+</div>
 <div class="section" id="prepare-your-system">
 <h2>Prepare your System<a class="headerlink" href="#prepare-your-system" title="Permalink to this headline">¶</a></h2>
 <p>LFA Lab depends on the following packages:</p>
@@ -87,11 +92,40 @@ systems below.</p>
 </pre></div>
 </div>
 </div>
+<div class="section" id="mac-os-x">
+<h3>Mac OS X<a class="headerlink" href="#mac-os-x" title="Permalink to this headline">¶</a></h3>
+<p>An easy way to install the required (non-python) dependencies of LFA Lab is
+the <a class="reference external" href="http://brew.sh">Homebrew package manager</a> for Mac. Make sure you have
+Homebrew installed. Then, change into the source directory of LFA Lab and
+execute the following command:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">bundle</span>
+</pre></div>
+</div>
+<p>Then, you can use <a class="reference external" href="https://pip.pypa.io/en/stable/">PIP</a> to install the remaining
+(python) dependencies:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">easy_install</span> <span class="o">--</span><span class="n">user</span> <span class="n">pip</span>
+<span class="n">python</span> <span class="o">-</span><span class="n">mpip</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="o">--</span><span class="n">upgrade</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p><em>Warning</em>: You might have multiple Python versions on your machine. You have
+to make sure that all dependencies and LFA Lab are installed with the same
+version.</p>
+<p>Furthermore, ff you want to use Matplotlib you need to make sure that you are
+using a
+<a class="reference external" href="https://docs.python.org/2/using/mac.html">Framework build of Python</a>.
+See also <a class="reference external" href="https://matplotlib.org/users/installing.html">here</a> and
+<a class="reference external" href="https://matplotlib.org/faq/osx_framework.html#osxframework-faq">here</a>.</p>
+<p>If you want you can build and install LFA Lab using pip:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">mpip</span> <span class="n">install</span> <span class="o">--</span><span class="n">user</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>If you want to customize the installation of in case the build fails, see the
+manual installation below.</p>
+</div>
 </div>
 <div class="section" id="build-lfa-lab">
-<h2>Build LFA Lab<a class="headerlink" href="#build-lfa-lab" title="Permalink to this headline">¶</a></h2>
-<p>First, download (see <a class="reference internal" href="download.html"><span class="doc">Download</span></a>) LFA Lab and unpack it when necessary.
-Then, execute the following commands in the source directory:</p>
+<span id="id2"></span><h2>Build LFA Lab<a class="headerlink" href="#build-lfa-lab" title="Permalink to this headline">¶</a></h2>
+<p>Execute the following commands in the source directory of LFA Lab:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cmake</span> <span class="p">[</span><span class="n">OPTIONS</span><span class="p">]</span> <span class="o">.</span>
 <span class="n">make</span>
 </pre></div>
@@ -101,6 +135,10 @@ Then, execute the following commands in the source directory:</p>
 following options.</p>
 <div class="section" id="options">
 <h3>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h3>
+<p>Install into a per-user directory:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">DUSER_INSTALL</span><span class="o">=</span><span class="n">ON</span>
+</pre></div>
+</div>
 <p>Turns the compiler optimization on:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">DCMAKE_BUILD_TYPE</span><span class="o">=</span><span class="n">Release</span>
 </pre></div>
@@ -111,7 +149,8 @@ implementation is available, this will speed up the program essentially:</p>
 </pre></div>
 </div>
 <p>Choose to use ARPACK. This will speed up the program if large spectra
-need to be analyzed:</p>
+need to be analyzed. Arpack, however, might not be able to compute the spectra
+for certain tricky problems:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">DWITH_ARPACK</span><span class="o">=</span><span class="p">[</span><span class="n">ON</span><span class="o">|</span><span class="n">OFF</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -138,8 +177,8 @@ some of the libraries in $HOME/.local run:</p>
 </div>
 </div>
 </div>
-<div class="section" id="id2">
-<h2>Installation<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h2>Installation<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>To install LFA Lab just run:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">make</span> <span class="n">install</span>
 </pre></div>
@@ -166,12 +205,7 @@ how to use it.</p>
             </a></p>
 <h3><a href="index.html">Table Of Contents</a></h3>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#prepare-your-system">Prepare your System</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#build-lfa-lab">Build LFA Lab</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id2">Installation</a></li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="citation.html">Publications &amp; Citations</a></li>

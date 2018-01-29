@@ -5,10 +5,24 @@ Homepage of LFA Lab
 Introduction
 ============
 
-Flexible Local Fourier analysis library.
+Flexible local Fourier analysis library.
 
 For getting started with LFA Lab see :doc:`install` and then
 :doc:`tutorial`.
+
+Contents
+========
+
+.. toctree::
+  :maxdepth: 1
+
+  install
+  tutorial
+  api
+  citation
+  download
+  license
+  glossary
 
 Sponsors
 ========
@@ -29,21 +43,6 @@ The development of LFA Lab was partly supported by the following institutions.
    :target: http://www.exastencils.org/
    :alt: ExaStencils, Advances Stencil-Code Engineering
    :height: 2.5em
-
-
-Contents
-========
-
-.. toctree::
-  :maxdepth: 2
-
-  install
-  tutorial
-  api
-  citation
-  download
-  license
-  glossary
 
 Indices and tables
 ==================

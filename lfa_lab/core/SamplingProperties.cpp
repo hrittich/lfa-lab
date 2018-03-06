@@ -14,7 +14,7 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. 
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
 #include "SamplingProperties.h"
@@ -22,22 +22,21 @@
 
 namespace lfa {
 
-SamplingProperties::SamplingProperties(ArrayFi finest_resolution, Grid grid)
-  : m_finest_resolution(finest_resolution)
-{
+  SamplingProperties::SamplingProperties(ArrayFi finest_resolution, Grid grid)
+    : m_finest_resolution(finest_resolution)
+  {
     // compute the default base frequency
     m_base_frequency =
-            (2.0 * pi / (grid.finestStepSize()
-                         * m_finest_resolution.cast<double>())) / 2.0;
-}
+      (2.0 * pi / (grid.finestStepSize()
+                   * m_finest_resolution.cast<double>())) / 2.0;
+  }
 
-SamplingProperties::SamplingProperties(ArrayFi finest_resolution, ArrayFd base_frequency)
-  : m_finest_resolution(finest_resolution),
+  SamplingProperties::SamplingProperties(ArrayFi finest_resolution, ArrayFd base_frequency)
+    : m_finest_resolution(finest_resolution),
     m_base_frequency(base_frequency)
-{
+  {
 
-}
-
+  }
 
 }
 

@@ -24,8 +24,8 @@
 
 namespace lfa {
 
-/** Computes the eigenvalues of a matrix. */
-VectorXcd eigenvalues(const Eigen::MatrixXcd& A);
+  /** Computes the eigenvalues of a matrix. */
+  VectorXcd eigenvalues(const Eigen::MatrixXcd& A);
 
 }
 

@@ -14,7 +14,7 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. 
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
 #ifndef LFA_HARMONIC_INDICES_H
@@ -24,37 +24,39 @@
 
 namespace lfa {
 
-class HarmonicIndices
-{
+  class HarmonicIndices
+  {
     public:
-        HarmonicIndices(ArrayFi freq_per_dim = ArrayFi::Zero(0),
-                               ArrayFi multiplier = ArrayFi::Zero(0),
-                               ArrayFi shift = ArrayFi::Zero(0));
+      HarmonicIndices(ArrayFi freq_per_dim = ArrayFi::Zero(0),
+                      ArrayFi multiplier = ArrayFi::Zero(0),
+                      ArrayFi shift = ArrayFi::Zero(0));
 
-        /** Return the elements of the set as a vector. */
-        vector<ArrayFi> elements() const;
+      /** Return the elements of the set as a vector. */
+      vector<ArrayFi> elements() const;
 
-        /** Return the indices of the elements in this set. (With respect to
-         * the super set.)
-         */
-        vector<int> indices() const;
+      /** Return the indices of the elements in this set. (With respect to
+       * the super set.)
+       */
+      vector<int> indices() const;
 
-        /** Give the base frequency for this subset when given the base
-         * frequency for the superset. */
-        ArrayFd baseFrequency(ArrayFd base, ArrayFd step_size) const;
+      /** Give the base frequency for this subset when given the base
+       * frequency for the superset. */
+      ArrayFd baseFrequency(ArrayFd base, ArrayFd step_size) const;
 
-        bool operator== (const HarmonicIndices& other) const;
-        bool operator!= (const HarmonicIndices& other) const { return ! ((*this) == other); }
+      bool operator== (const HarmonicIndices& other) const;
+      bool operator!= (const HarmonicIndices& other) const {
+        return ! ((*this) == other);
+      }
     private:
-        // number of frequencies in this set
-        ArrayFi m_freq_per_dim;
+      // number of frequencies in this set
+      ArrayFi m_freq_per_dim;
 
-        // number of subsets in the original set
-        ArrayFi m_multiplier;
+      // number of subsets in the original set
+      ArrayFi m_multiplier;
 
-        // which subset is this?
-        ArrayFi m_shift;
-};
+      // which subset is this?
+      ArrayFi m_shift;
+  };
 
 }
 

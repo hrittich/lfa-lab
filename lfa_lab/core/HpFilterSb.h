@@ -14,7 +14,7 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. 
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
 #ifndef LFA_HP_FILTER_SB_H
@@ -25,17 +25,17 @@
 
 namespace lfa {
 
-/** High-pass filter symbol builder. */
-class HpFilterSb : public SymbolBuilder {
+  /** High-pass filter symbol builder. */
+  class HpFilterSb : public SymbolBuilder {
     public:
-        HpFilterSb(Grid fine_grid, Grid coarse_grid);
+      HpFilterSb(Grid fine_grid, Grid coarse_grid);
 
-        virtual FoProperties properties();
-        virtual Symbol generate(const SamplingProperties& conf);
+      virtual FoProperties properties();
+      virtual Symbol generate(const SamplingProperties& conf);
     private:
-        Grid m_grid;
-        ArrayFi m_coarsing_factor;
-};
+      Grid m_grid;
+      ArrayFi m_coarsing_factor;
+  };
 
 }
 

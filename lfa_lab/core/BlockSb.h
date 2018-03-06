@@ -14,7 +14,7 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. 
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
 #ifndef BLOCK_SB_H
@@ -26,33 +26,33 @@
 
 namespace lfa {
 
-/** Block symbol builder. Combines periodic scalar symbols into a matrix
- * symbol.
- */
-class BlockSb : public SymbolBuilder {
+  /** Block symbol builder. Combines periodic scalar symbols into a matrix
+   * symbol.
+   */
+  class BlockSb : public SymbolBuilder {
     public:
-        BlockSb(Grid grid, ArrayFi period);
+      BlockSb(Grid grid, ArrayFi period);
 
-        /** Set the scalar symbols that should be combined. */
-        void scalarSymbols(NdArray<Symbol> scalars);
+      /** Set the scalar symbols that should be combined. */
+      void scalarSymbols(NdArray<Symbol> scalars);
 
-        /** The properties of the whole operator. */
-        FoProperties properties();
+      /** The properties of the whole operator. */
+      FoProperties properties();
 
-        /** The input and output domain of the scalar operators. */
-        SplitFrequencyDomain scalar_domain();
+      /** The input and output domain of the scalar operators. */
+      SplitFrequencyDomain scalar_domain();
 
-        /** The properties of the scalar operator. */
-        FoProperties scalar_properties();
+      /** The properties of the scalar operator. */
+      FoProperties scalar_properties();
 
-        Symbol generate(const SamplingProperties& conf);
+      Symbol generate(const SamplingProperties& conf);
 
-        int dimension() { return m_grid.dimension(); }
+      int dimension() { return m_grid.dimension(); }
     private:
-        Grid m_grid;
-        ArrayFi m_period;
-        NdArray<Symbol> m_scalars;
-};
+      Grid m_grid;
+      ArrayFi m_period;
+      NdArray<Symbol> m_scalars;
+  };
 
 
 }

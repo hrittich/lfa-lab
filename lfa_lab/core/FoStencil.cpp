@@ -14,37 +14,37 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. 
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
-#include "FoStencil2.h"
+#include "FoStencil.h"
 
 #include "SplitFrequencyDomain.h"
 #include "DiscreteDomain.h"
 
 namespace lfa {
 
-FoStencil2::FoStencil2(const SparseStencil& stencil, Grid grid)
-  : m_stencil(stencil),
+  FoStencil::FoStencil(const SparseStencil& stencil, Grid grid)
+    : m_stencil(stencil),
     m_grid(grid)
-{
+  {
 
-}
+  }
 
-FoProperties FoStencil2::properties()
-{
+  FoProperties FoStencil::properties()
+  {
     SplitFrequencyDomain domain(
-            m_grid,
-            ArrayFi::Ones(m_grid.dimension()));
+        m_grid,
+        ArrayFi::Ones(m_grid.dimension()));
 
     return FoProperties(domain, domain);
-}
+  }
 
-Symbol FoStencil2::generate(const SamplingProperties& conf)
-{
+  Symbol FoStencil::generate(const SamplingProperties& conf)
+  {
     SplitFrequencyDomain cont_domain(
-            m_grid,
-            ArrayFi::Ones(m_grid.dimension()));
+        m_grid,
+        ArrayFi::Ones(m_grid.dimension()));
 
     DiscreteDomain domain(cont_domain, conf);
 
@@ -54,35 +54,34 @@ Symbol FoStencil2::generate(const SamplingProperties& conf)
     NdRange bases = clusters.baseIndices();
     for (NdRange::iterator b = bases.begin(); b != bases.end(); ++b)
     {
-        SymbolClusterRef cluster(sym, *b);
-        fill(cluster, *b, domain);
+      SymbolClusterRef cluster(sym, *b);
+      fill(cluster, *b, domain);
     }
 
     return sym;
-}
+  }
 
-
-void FoStencil2::fill(SymbolClusterRef cluster, ArrayFi base_index, const DiscreteDomain& domain)
-{
+  void FoStencil::fill(SymbolClusterRef cluster,
+                       ArrayFi base_index,
+                       const DiscreteDomain& domain)
+  {
     ArrayFi zero = ArrayFi::Zero(dimension());
     VectorFd frequency = domain.frequency(base_index, zero);
     cluster(zero, zero) = symbolAt(frequency);
-}
+  }
 
-
-complex<double> FoStencil2::symbolAt(VectorFd frequency)
-{
-
+  complex<double> FoStencil::symbolAt(VectorFd frequency)
+  {
     complex<double> m = 0;
     for (SparseStencil::iterator it = m_stencil.begin();
-            it != m_stencil.end(); ++it) {
-        VectorFd pos = it->offset.cast<double>() * m_grid.step_size();
+        it != m_stencil.end(); ++it) {
+      VectorFd pos = it->offset.cast<double>() * m_grid.step_size();
 
-        m += it->value * exp(complex<double>(0, frequency.dot(pos) ));
+      m += it->value * exp(complex<double>(0, frequency.dot(pos) ));
     }
 
     return m;
-}
+  }
 
 }
 

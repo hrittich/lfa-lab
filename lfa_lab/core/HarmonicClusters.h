@@ -14,7 +14,7 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. 
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
 #ifndef LFA_HARMONIC_CLUSTERS_H
@@ -27,63 +27,63 @@
 
 namespace lfa {
 
-/** Indexing for the harmonics. */
-class HarmonicClusters {
+  /** Indexing for the harmonics. */
+  class HarmonicClusters {
     public:
-        explicit HarmonicClusters(ArrayFi base_shape = ArrayFi::Zero(0),
-                                  ArrayFi cluster_shape = ArrayFi::Zero(0));
+      explicit HarmonicClusters(ArrayFi base_shape = ArrayFi::Zero(0),
+                                ArrayFi cluster_shape = ArrayFi::Zero(0));
 
-        bool operator== (const HarmonicClusters& other) const;
-        bool operator!= (const HarmonicClusters& other) const {
-            return !((*this) == other);
-        }
+      bool operator== (const HarmonicClusters& other) const;
+      bool operator!= (const HarmonicClusters& other) const {
+        return !((*this) == other);
+      }
 
-        /** Shape of the global(!) index space.
-         * In most cases this is NOT what you want!
-         */
-        ArrayFi shape() const;
+      /** Shape of the global(!) index space.
+       * In most cases this is NOT what you want!
+       */
+      ArrayFi shape() const;
 
-        /** Merge clusters into larger ones. */
-        HarmonicClusters mergeCluster(ArrayFi factor) const;
+      /** Merge clusters into larger ones. */
+      HarmonicClusters mergeCluster(ArrayFi factor) const;
 
-        NdRange baseIndices() const { return NdRange(m_base_shape); }
-        NdRange clusterIndices() const { return NdRange(m_cluster_shape); }
-        NdRange globalIndices() const { return NdRange(shape()); }
+      NdRange baseIndices() const { return NdRange(m_base_shape); }
+      NdRange clusterIndices() const { return NdRange(m_cluster_shape); }
+      NdRange globalIndices() const { return NdRange(shape()); }
 
-        int clusterSize() const;
-        int baseSize() const;
-        int size() const;
+      int clusterSize() const;
+      int baseSize() const;
+      int size() const;
 
-        /** Two harmonic clusters are compatible if they have the same base
-         * shape. */
-        bool isCompatibleTo(const HarmonicClusters& other) const;
+      /** Two harmonic clusters are compatible if they have the same base
+       * shape. */
+      bool isCompatibleTo(const HarmonicClusters& other) const;
 
-        int dimension() const { return m_base_shape.rows(); }
+      int dimension() const { return m_base_shape.rows(); }
 
-        ArrayFi globalIndex(ArrayFi base_index, ArrayFi cluster_index) const;
+      ArrayFi globalIndex(ArrayFi base_index, ArrayFi cluster_index) const;
 
-        ArrayFi baseIndex(ArrayFi global_index) const;
-        ArrayFi clusterIndex(ArrayFi global_index) const;
+      ArrayFi baseIndex(ArrayFi global_index) const;
+      ArrayFi clusterIndex(ArrayFi global_index) const;
 
-        /** Convert a coordinate in this coordinate system to a coordinate in
-         * the result_clusters coordinate system. */
-        void convert(ArrayFi& result_base_index,
-                     ArrayFi& result_cluster_index,
-                     HarmonicClusters result_clusters,
-                     ArrayFi base_index,
-                     ArrayFi cluster_index) const;
+      /** Convert a coordinate in this coordinate system to a coordinate in
+       * the result_clusters coordinate system. */
+      void convert(ArrayFi& result_base_index,
+                   ArrayFi& result_cluster_index,
+                   HarmonicClusters result_clusters,
+                   ArrayFi base_index,
+                   ArrayFi cluster_index) const;
 
-        /** HarmonicClusters with smallest possible cluster shape that is a
-         * multiple of this and other. */
-        HarmonicClusters minContainer(const HarmonicClusters& other) const;
+      /** HarmonicClusters with smallest possible cluster shape that is a
+       * multiple of this and other. */
+      HarmonicClusters minContainer(const HarmonicClusters& other) const;
 
-        ArrayFi expansionFactor(HarmonicClusters& expanded) const;
+      ArrayFi expansionFactor(HarmonicClusters& expanded) const;
 
-        ArrayFi clusterShape() const { return m_cluster_shape; }
+      ArrayFi clusterShape() const { return m_cluster_shape; }
     private:
-        ArrayFi m_base_shape;
-        ArrayFi m_cluster_shape;
-};
+      ArrayFi m_base_shape;
+      ArrayFi m_cluster_shape;
+  };
 
 }
 

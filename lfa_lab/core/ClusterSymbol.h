@@ -14,7 +14,7 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. 
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
 #ifndef LFA_CLUSTER_SYMBOL_H
@@ -25,32 +25,34 @@
 
 namespace lfa {
 
-class ClusterSymbol {
+  /** The matrix representing the coupling of a set of harmonic frequencies.
+   */
+  class ClusterSymbol {
     public:
-        ClusterSymbol(ArrayFi output_shape = ArrayFi::Zero(0),
-                      ArrayFi input_shape = ArrayFi::Zero(0));
+      ClusterSymbol(ArrayFi output_shape = ArrayFi::Zero(0),
+                    ArrayFi input_shape = ArrayFi::Zero(0));
 
-        complex<double>& operator() (ArrayFi row, ArrayFi col);
-        complex<double> operator() (ArrayFi row, ArrayFi col) const {
-            return (*const_cast<ClusterSymbol*>(this))(row, col);
-        }
+      complex<double>& operator() (ArrayFi row, ArrayFi col);
+      complex<double> operator() (ArrayFi row, ArrayFi col) const {
+        return (*const_cast<ClusterSymbol*>(this))(row, col);
+      }
 
-        MatrixXcd toMatrix() const { return m_store; }
-        void setMatrix(MatrixXcd m);
+      MatrixXcd toMatrix() const { return m_store; }
+      void setMatrix(MatrixXcd m);
 
-        ArrayFi outputShape() const { return m_output_indices.shape(); }
-        ArrayFi inputShape() const { return m_input_indices.shape(); }
+      ArrayFi outputShape() const { return m_output_indices.shape(); }
+      ArrayFi inputShape() const { return m_input_indices.shape(); }
 
-        ArrayFi rowShape() const { return rowIndices().shape(); }
-        ArrayFi colShape() const { return colIndices().shape(); }
+      ArrayFi rowShape() const { return rowIndices().shape(); }
+      ArrayFi colShape() const { return colIndices().shape(); }
 
-        NdRange rowIndices() const { return m_output_indices; }
-        NdRange colIndices() const { return m_input_indices; }
+      NdRange rowIndices() const { return m_output_indices; }
+      NdRange colIndices() const { return m_input_indices; }
     private:
-        NdRange m_output_indices;
-        NdRange m_input_indices;
-        MatrixXcd m_store;
-};
+      NdRange m_output_indices;
+      NdRange m_input_indices;
+      MatrixXcd m_store;
+  };
 
 };
 

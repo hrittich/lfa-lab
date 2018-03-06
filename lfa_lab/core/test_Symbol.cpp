@@ -23,7 +23,7 @@
 
 #include <Eigen/Dense>
 #include "DenseStencil.h"
-#include "FoStencil2.h"
+#include "FoStencil.h"
 #include "Symbol.h"
 #include "MathUtil.h"
 #include "StencilGallery.h"

@@ -14,7 +14,7 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. 
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
 #include "SplitFrequencyDomain.h"
@@ -22,72 +22,72 @@
 
 namespace lfa {
 
-SplitFrequencyDomain::SplitFrequencyDomain(Grid grid, ArrayFi cluster_shape)
-  : m_grid(grid), m_cluster_shape(cluster_shape)
-{
+  SplitFrequencyDomain::SplitFrequencyDomain(Grid grid, ArrayFi cluster_shape)
+    : m_grid(grid), m_cluster_shape(cluster_shape)
+  {
     if (m_cluster_shape.rows() == 0) {
-        m_cluster_shape = ArrayFi::Ones(m_grid.dimension());
+      m_cluster_shape = ArrayFi::Ones(m_grid.dimension());
     }
-}
+  }
 
-HarmonicClusters SplitFrequencyDomain::harmonics(ArrayFi resolution) const
-{
+  HarmonicClusters SplitFrequencyDomain::harmonics(ArrayFi resolution) const
+  {
     ArrayFi zero = ArrayFi::Zero(resolution.rows());
 
     if ((resolution.binaryExpr(m_cluster_shape, std::modulus<int>())
-            != zero).any())
+          != zero).any())
     {
-        stringstream msg;
-        msg << "You requested a resolution of " << ListFmt(resolution)
-            << " however it has to be a multiple of " << ListFmt(m_cluster_shape)
-            << ".";
-        throw logic_error(msg.str());
+      stringstream msg;
+      msg << "You requested a resolution of " << ListFmt(resolution)
+        << " however it has to be a multiple of " << ListFmt(m_cluster_shape)
+        << ".";
+      throw logic_error(msg.str());
     }
 
     return HarmonicClusters(
-            resolution / m_cluster_shape,
-            m_cluster_shape);
-}
+        resolution / m_cluster_shape,
+        m_cluster_shape);
+  }
 
-ArrayFi SplitFrequencyDomain::resolution(ArrayFi finest_resolution) const
-{
+  ArrayFi SplitFrequencyDomain::resolution(ArrayFi finest_resolution) const
+  {
     assert( (finest_resolution.binaryExpr(m_grid.spacing(), std::modulus<int>())
-            == ArrayFi::Zero(dimension())).all() );
+          == ArrayFi::Zero(dimension())).all() );
 
     return  finest_resolution / m_grid.spacing();
 
-}
+  }
 
-bool SplitFrequencyDomain::isValid()
-{
+  bool SplitFrequencyDomain::isValid()
+  {
     return
-        ((m_cluster_shape > ArrayFi::Zero(m_cluster_shape.rows())).all()
-         && m_cluster_shape.rows() > 0);
-}
+      ((m_cluster_shape > ArrayFi::Zero(m_cluster_shape.rows())).all()
+       && m_cluster_shape.rows() > 0);
+  }
 
-bool SplitFrequencyDomain::isCompatibleTo(const SplitFrequencyDomain& other)
-{
+  bool SplitFrequencyDomain::isCompatibleTo(const SplitFrequencyDomain& other)
+  {
     return (m_grid.spacing() * m_cluster_shape ==
         other.m_grid.spacing() * other.m_cluster_shape).all();
-}
+  }
 
-SplitFrequencyDomain SplitFrequencyDomain::expand(ArrayFi factor) const
-{
+  SplitFrequencyDomain SplitFrequencyDomain::expand(ArrayFi factor) const
+  {
     return SplitFrequencyDomain(m_grid, m_cluster_shape * factor);
-}
+  }
 
-ArrayFi SplitFrequencyDomain::lcc(const SplitFrequencyDomain& other)
-{
+  ArrayFi SplitFrequencyDomain::lcc(const SplitFrequencyDomain& other)
+  {
     return lcm(m_cluster_shape, other.m_cluster_shape);
-}
+  }
 
-ostream& operator<< (ostream& os, const SplitFrequencyDomain& domain) {
+  ostream& operator<< (ostream& os, const SplitFrequencyDomain& domain) {
     os << "SplitFrequencyDomain("
-       << "grid = " << domain.grid() << ", "
-       << "cluster_shape = " << ListFmt(domain.clusterShape()) << ")";
+      << "grid = " << domain.grid() << ", "
+      << "cluster_shape = " << ListFmt(domain.clusterShape()) << ")";
 
     return os;
-}
+  }
 
 
 

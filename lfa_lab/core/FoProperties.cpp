@@ -21,100 +21,99 @@
 
 namespace lfa {
 
-FoProperties::FoProperties(
-                SplitFrequencyDomain output_domain,
-                SplitFrequencyDomain input_domain)
-  : m_output_domain(output_domain),
+  FoProperties::FoProperties(
+      SplitFrequencyDomain output_domain,
+      SplitFrequencyDomain input_domain)
+    : m_output_domain(output_domain),
     m_input_domain(input_domain)
-{
+  {
 
-}
+  }
 
-FoProperties FoProperties::operator+ (const FoProperties& other)
-{
+  FoProperties FoProperties::operator+ (const FoProperties& other)
+  {
     ArrayFi lcc = m_input_domain.lcc(other.m_input_domain);
     FoProperties this_ex = this->expandInputTo(lcc);
     FoProperties other_ex = other.expandInputTo(lcc);
 
     if (this_ex.m_output_domain != other_ex.m_output_domain
-            || this_ex.m_input_domain != other_ex.m_input_domain) {
-        throw logic_error("Incompatible addition");
+        || this_ex.m_input_domain != other_ex.m_input_domain) {
+      throw logic_error("Incompatible addition");
     }
 
     return this_ex;
-}
+  }
 
-FoProperties FoProperties::operator* (const FoProperties& other)
-{
+  FoProperties FoProperties::operator* (const FoProperties& other)
+  {
     // ToDo simplify this
     ArrayFi lcc = m_input_domain.lcc(other.m_output_domain);
     FoProperties this_ex = this->expandInputTo(lcc);
     FoProperties other_ex = other.expandOutputTo(lcc);
 
     if (this_ex.m_input_domain != other_ex.m_output_domain) {
-        stringstream msg;
-        msg << "Incompatible contraction dimension. "
-            << "The following domains mismatch. " << endl
-            << "First input:   " << this_ex.m_input_domain << endl
-            << "Second output: " << other_ex.m_output_domain;
+      stringstream msg;
+      msg << "Incompatible contraction dimension. "
+        << "The following domains mismatch. " << endl
+        << "First input:   " << this_ex.m_input_domain << endl
+        << "Second output: " << other_ex.m_output_domain;
 
-        throw logic_error(msg.str());
+      throw logic_error(msg.str());
     }
 
     return FoProperties(this_ex.m_output_domain, other_ex.m_input_domain);
-}
+  }
 
-FoProperties FoProperties::inverse()
-{
+  FoProperties FoProperties::inverse()
+  {
     return FoProperties(m_input_domain, m_output_domain);
-}
+  }
 
-FoProperties FoProperties::adjoint()
-{
+  FoProperties FoProperties::adjoint()
+  {
     return FoProperties(m_input_domain, m_output_domain);
-}
+  }
 
-ArrayFi FoProperties::adjustResolution(ArrayFi desired_resolution)
-{
+  ArrayFi FoProperties::adjustResolution(ArrayFi desired_resolution)
+  {
     ArrayFi factor =
-        m_output_domain.grid().spacing() * m_output_domain.clusterShape();
+      m_output_domain.grid().spacing() * m_output_domain.clusterShape();
 
     ArrayFi rem =
-        desired_resolution.binaryExpr(factor, std::modulus<int>());
+      desired_resolution.binaryExpr(factor, std::modulus<int>());
 
     if ( (rem == ArrayFi::Zero(factor.rows())).all() ) {
-        return desired_resolution;
+      return desired_resolution;
     } else {
-        return desired_resolution + factor - rem;
+      return desired_resolution + factor - rem;
     }
-}
+  }
 
 
-FoProperties FoProperties::expand(ArrayFi factor) const
-{
+  FoProperties FoProperties::expand(ArrayFi factor) const
+  {
     return FoProperties(m_output_domain.expand(factor),
-                        m_input_domain.expand(factor));
-}
+        m_input_domain.expand(factor));
+  }
 
-FoProperties FoProperties::expandOutputTo(ArrayFi cluster_shape) const
-{
+  FoProperties FoProperties::expandOutputTo(ArrayFi cluster_shape) const
+  {
     assert( (cluster_shape.binaryExpr(m_output_domain.clusterShape(),
-                std::modulus<int>())).isZero() );
+            std::modulus<int>())).isZero() );
 
     ArrayFi factor = cluster_shape / m_output_domain.clusterShape();
     return expand(factor);
-}
+  }
 
-FoProperties FoProperties::expandInputTo(ArrayFi cluster_shape) const
-{
+  FoProperties FoProperties::expandInputTo(ArrayFi cluster_shape) const
+  {
     assert( (cluster_shape.binaryExpr(m_input_domain.clusterShape(),
-                std::modulus<int>())).isZero() );
+            std::modulus<int>())).isZero() );
 
     ArrayFi factor = cluster_shape / m_input_domain.clusterShape();
     return expand(factor);
 
-}
-
-
+  }
 
 }
+

@@ -14,7 +14,7 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. 
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
 #ifndef LFA_FO_PROPERTIES_H
@@ -25,56 +25,56 @@
 
 namespace lfa {
 
-class FoProperties {
+  class FoProperties {
     public:
-        FoProperties(
-                SplitFrequencyDomain output_domain,
-                SplitFrequencyDomain input_domain);
+      FoProperties(
+          SplitFrequencyDomain output_domain,
+          SplitFrequencyDomain input_domain);
 
-        FoProperties operator+ (const FoProperties& other);
-        FoProperties operator- (const FoProperties& other) {
-            return (*this) + other;
-        }
+      FoProperties operator+ (const FoProperties& other);
+      FoProperties operator- (const FoProperties& other) {
+        return (*this) + other;
+      }
 
-        friend FoProperties operator* (
-                complex<double> scalar,
-                const FoProperties& self)
-        {
-            return self;
-        }
+      friend FoProperties operator* (
+          complex<double> scalar,
+          const FoProperties& self)
+      {
+        return self;
+      }
 
-        FoProperties operator* (const FoProperties& other);
+      FoProperties operator* (const FoProperties& other);
 
-        FoProperties inverse();
-        FoProperties adjoint();
+      FoProperties inverse();
+      FoProperties adjoint();
 
-        Grid outputGrid() { return m_output_domain.grid(); }
-        Grid inputGrid() { return m_input_domain.grid(); }
+      Grid outputGrid() { return m_output_domain.grid(); }
+      Grid inputGrid() { return m_input_domain.grid(); }
 
-        /** Compute the smallest fine grid resolution larger than
-         * desired_resolution that can sample the operator.
-         */
-        ArrayFi adjustResolution(ArrayFi desired_resolution);
+      /** Compute the smallest fine grid resolution larger than
+       * desired_resolution that can sample the operator.
+       */
+      ArrayFi adjustResolution(ArrayFi desired_resolution);
 
-        /** The output domain. */
-        SplitFrequencyDomain output() const { return m_output_domain; }
-        /** The input domain. */
-        SplitFrequencyDomain input() const { return m_input_domain; }
+      /** The output domain. */
+      SplitFrequencyDomain output() const { return m_output_domain; }
+      /** The input domain. */
+      SplitFrequencyDomain input() const { return m_input_domain; }
 
-        int dimension() const { return m_output_domain.dimension(); }
+      int dimension() const { return m_output_domain.dimension(); }
 
-        /** Are the diagonal block of the block matrix representation
-         * rectangular? */
-        bool rectangular() const { return output() == input(); }
+      /** Are the diagonal block of the block matrix representation
+       * rectangular? */
+      bool rectangular() const { return output() == input(); }
 
-        FoProperties expand(ArrayFi factor) const;
+      FoProperties expand(ArrayFi factor) const;
 
-        FoProperties expandOutputTo(ArrayFi cluster_shape) const;
-        FoProperties expandInputTo(ArrayFi cluster_shape) const;
+      FoProperties expandOutputTo(ArrayFi cluster_shape) const;
+      FoProperties expandInputTo(ArrayFi cluster_shape) const;
     private:
-        SplitFrequencyDomain m_output_domain;
-        SplitFrequencyDomain m_input_domain;
-};
+      SplitFrequencyDomain m_output_domain;
+      SplitFrequencyDomain m_input_domain;
+  };
 
 }
 

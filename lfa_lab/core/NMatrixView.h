@@ -14,7 +14,7 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. 
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
 #ifndef LFA_N_MATRIX_VIEW
@@ -25,40 +25,40 @@
 
 namespace lfa {
 
-/** Matrix view with n-dimensional indexing. */
-template <typename T>
-class NMatrixView
-{
-    public:
+  /** Matrix view with n-dimensional indexing. */
+  template <typename T>
+    class NMatrixView
+    {
+      public:
         NMatrixView(T& matrix, ArrayFi shape, bool initToZero = false)
-        : matrix(matrix),
-          idx(ArrayFi::Zero(shape.rows()),
-              shape - ArrayFi::Ones(shape.rows()))
-    {
+          : matrix(matrix),
+            idx(ArrayFi::Zero(shape.rows()),
+                shape - ArrayFi::Ones(shape.rows()))
+      {
         if (initToZero) {
-            matrix = T::Zero(idx.elements(), idx.elements());
+          matrix = T::Zero(idx.elements(), idx.elements());
         } else {
-            assert(idx.elements() == matrix.rows());
-            assert(idx.elements() == matrix.cols());
+          assert(idx.elements() == matrix.rows());
+          assert(idx.elements() == matrix.cols());
         }
-    }
+      }
 
-    typename T::Scalar& operator() (const ArrayFi& pos_i, const ArrayFi& pos_j)
-    {
-        return matrix(idx(pos_i), idx(pos_j));
-    }
+        typename T::Scalar& operator() (const ArrayFi& pos_i, const ArrayFi& pos_j)
+        {
+          return matrix(idx(pos_i), idx(pos_j));
+        }
 
-    typename T::Scalar operator() (const ArrayFi& pos_i, const ArrayFi& pos_j) const
-    {
-        return matrix(idx(pos_i), idx(pos_j));
-    }
+        typename T::Scalar operator() (const ArrayFi& pos_i, const ArrayFi& pos_j) const
+        {
+          return matrix(idx(pos_i), idx(pos_j));
+        }
 
-    const VectorizedIndex& indices() { return idx; }
+        const VectorizedIndex& indices() { return idx; }
 
-    private:
+      private:
         T& matrix;
         VectorizedIndex idx;
-};
+    };
 
 }
 

@@ -14,7 +14,7 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. 
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
 #include "HpFilterSb.h"
@@ -25,30 +25,30 @@
 
 namespace lfa {
 
-HpFilterSb::HpFilterSb(Grid fine_grid, Grid coarse_grid)
- :  m_grid(fine_grid),
+  HpFilterSb::HpFilterSb(Grid fine_grid, Grid coarse_grid)
+    :  m_grid(fine_grid),
     m_coarsing_factor(fine_grid.coarsening_factor(coarse_grid))
-{ }
+  { }
 
-FoProperties HpFilterSb::properties()
-{
+  FoProperties HpFilterSb::properties()
+  {
     SplitFrequencyDomain coupling(m_grid, ArrayFi::Ones(m_grid.dimension()));
     return FoProperties(coupling, coupling);
-}
+  }
 
-Symbol HpFilterSb::generate(const SamplingProperties& conf)
-{
+  Symbol HpFilterSb::generate(const SamplingProperties& conf)
+  {
     /*
-        x = low frequency
+       x = low frequency
 
-        --------
-        |x    x|
-        |      |
-        |      |
-        |x    x|
-        --------
-        0       2\pi/h
-    */
+       --------
+       |x    x|
+       |      |
+       |      |
+       |x    x|
+       --------
+       0       2\pi/h
+       */
 
     int d = m_grid.dimension();
 
@@ -57,7 +57,7 @@ Symbol HpFilterSb::generate(const SamplingProperties& conf)
 
     ArrayFd lower_bound = block_size;
     ArrayFd upper_bound = (2 * m_coarsing_factor.cast<double>()
-                           - ArrayFd::Ones(d)) * block_size;
+        - ArrayFd::Ones(d)) * block_size;
 
 
     ArrayFi zero = ArrayFi::Zero(d);
@@ -69,15 +69,15 @@ Symbol HpFilterSb::generate(const SamplingProperties& conf)
     NdRange bases = cluster.baseIndices();
     for (NdRange::iterator b = bases.begin(); b != bases.end(); ++b)
     {
-        ArrayFd freq = domain.frequency(*b, zero);
+      ArrayFd freq = domain.frequency(*b, zero);
 
-        bool is_high = (freq > lower_bound && freq <= upper_bound).any();
+      bool is_high = (freq > lower_bound && freq <= upper_bound).any();
 
-        result.ref(*b, zero, zero) = (is_high ? 1 : 0);
+      result.ref(*b, zero, zero) = (is_high ? 1 : 0);
     }
 
     return result;
-}
+  }
 
 
 }

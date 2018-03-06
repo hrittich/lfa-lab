@@ -223,7 +223,7 @@ class StencilNode(GeneratorNode):
     :ivar grid: The grid of the operator.
     """
     def __init__(self, stencil, grid):
-        gen = FoStencil2(stencil, grid)
+        gen = FoStencil(stencil, grid)
         self.stencil = stencil
         self.grid = grid
 

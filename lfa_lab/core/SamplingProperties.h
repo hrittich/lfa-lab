@@ -25,21 +25,21 @@
 
 namespace lfa {
 
-class SamplingProperties {
+  class SamplingProperties {
     public:
-        /** Set finest_resolution and compute the default base_frequency.
-         * @param grid Is an arbitrary grid from the grid hierarchy.
-         */
-        SamplingProperties(ArrayFi finest_resolution, Grid grid);
-        SamplingProperties(ArrayFi finest_resolution, ArrayFd base_frequency);
+      /** Set finest_resolution and compute the default base_frequency.
+       * @param grid Is an arbitrary grid from the grid hierarchy.
+       */
+      SamplingProperties(ArrayFi finest_resolution, Grid grid);
+      SamplingProperties(ArrayFi finest_resolution, ArrayFd base_frequency);
 
-        /** Resolution on the finest grid. */
-        const ArrayFi& finest_resolution() const { return m_finest_resolution; }
-        const ArrayFd& base_frequency() const { return m_base_frequency; }
+      /** Resolution on the finest grid. */
+      const ArrayFi& finest_resolution() const { return m_finest_resolution; }
+      const ArrayFd& base_frequency() const { return m_base_frequency; }
     private:
-        ArrayFi m_finest_resolution; /// < The resolution on the finest grid.
-        ArrayFd m_base_frequency;
-};
+      ArrayFi m_finest_resolution; /// < The resolution on the finest grid.
+      ArrayFd m_base_frequency;
+  };
 
 }
 

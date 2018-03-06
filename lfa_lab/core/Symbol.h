@@ -14,7 +14,7 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. 
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
 #ifndef LFA_SYMBOL_H
@@ -66,9 +66,15 @@ class Symbol {
         Symbol inverse() const;
         Symbol adjoint() const;
 
-        complex<double>& ref(ArrayFi base, ArrayFi cluster_row, ArrayFi cluster_col);
-        complex<double> ref(ArrayFi base, ArrayFi cluster_row, ArrayFi cluster_col) const {
-            return const_cast<Symbol*>(this)->ref(base, cluster_row, cluster_col);
+        complex<double>& ref(ArrayFi base,
+                             ArrayFi cluster_row,
+                             ArrayFi cluster_col);
+        complex<double> ref(ArrayFi base,
+                            ArrayFi cluster_row,
+                            ArrayFi cluster_col) const {
+            return const_cast<Symbol*>(this)->ref(base,
+                                                  cluster_row,
+                                                  cluster_col);
         }
 
         NdRange baseIndices() const { return m_output_clusters.baseIndices(); }
@@ -89,11 +95,11 @@ class Symbol {
         double norm() const;
         double squaredNorm() const;
 
-	NdArray<double> row_norms() const;
-	NdArray<double> col_norms() const;
+        NdArray<double> row_norms() const;
+        NdArray<double> col_norms() const;
 
-	VectorXcd row_norms_1d() const;
-	VectorXcd col_norms_1d() const;
+        VectorXcd row_norms_1d() const;
+        VectorXcd col_norms_1d() const;
         MatrixXcd row_norms_2d() const;
         MatrixXcd col_norms_2d() const;
         double spectral_radius() const;

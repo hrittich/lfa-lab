@@ -32,12 +32,10 @@ add_library(lfa STATIC
   BlockStencil.cpp BlockStencil.h
   NMatrixView.h
   BlockStencil.cpp BlockStencil.h
-  FrequencySpace.h
   FoContext.cpp FoContext.h
-  FoStencil2.cpp FoStencil2.h
+  FoStencil.cpp FoStencil.h
   SystemSymbol.cpp SystemSymbol.h
   SystemClusterSymbol.cpp SystemClusterSymbol.h
-  BlockMatrix.cpp BlockMatrix.h
   FrequencyIndices.cpp FrequencyIndices.h
   HarmonicClusters.cpp HarmonicClusters.h
   HarmonicIndices.cpp HarmonicIndices.h

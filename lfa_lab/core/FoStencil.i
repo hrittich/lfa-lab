@@ -14,21 +14,21 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. 
-*/
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-// vim: set filetype=cpp:
+  vim: set filetype=cpp:
+*/
 
 %include "SymbolBuilder.i"
 
-%nodefaultctor FoStencil2;
-class FoStencil2 : public SymbolBuilder {
-    public:
-        FoStencil2(const SparseStencil& stencil, Grid grid);
+%nodefaultctor FoStencil;
+class FoStencil : public SymbolBuilder {
+  public:
+    FoStencil(const SparseStencil& stencil, Grid grid);
 
-        FoProperties properties();
-        Symbol generate(const SamplingProperties& conf);
+    FoProperties properties();
+    Symbol generate(const SamplingProperties& conf);
 
-        int dimension();
+    int dimension();
 };
 

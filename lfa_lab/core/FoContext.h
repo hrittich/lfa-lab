@@ -14,7 +14,7 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. 
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
 #ifndef LFA_FO_CONTEXT_H
@@ -24,23 +24,23 @@
 
 namespace lfa {
 
-/** The context of the frequency analysis, i.e., resolution, step-size, and
- * sampling base frequency. */
-class FoContext {
+  /** The context of the frequency analysis, i.e., resolution, step-size, and
+   * sampling base frequency. */
+  class FoContext {
     public:
-        FoContext(int dimension,
-                  ArrayFd step_size = ArrayFd::Zero(0));
+      FoContext(int dimension,
+                ArrayFd step_size = ArrayFd::Zero(0));
 
-        const ArrayFd& step_size() const { return m_step_size; }
+      const ArrayFd& step_size() const { return m_step_size; }
 
-        int dimension() const { return m_dimension; }
+      int dimension() const { return m_dimension; }
 
     private:
-        int m_dimension;
+      int m_dimension;
 
-        /** Step size of the finest grid. */
-        ArrayFd m_step_size;
-};
+      /** Step size of the finest grid. */
+      ArrayFd m_step_size;
+  };
 
 }
 

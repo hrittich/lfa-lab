@@ -14,7 +14,7 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. 
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
 #ifndef LFA_DISCRETE_DOMAIN_H
@@ -27,34 +27,34 @@
 
 namespace lfa {
 
-/** Discrete subset of a SplitFrequencyDomain.
- * This is used for sampling frequency operators.
- */
-class DiscreteDomain
-{
+  /** Discrete subset of a SplitFrequencyDomain.
+   * This is used for sampling frequency operators.
+   */
+  class DiscreteDomain
+  {
     public:
-        DiscreteDomain(
-                const SplitFrequencyDomain& domain,
-                const SamplingProperties& conf);
+      DiscreteDomain(
+          const SplitFrequencyDomain& domain,
+          const SamplingProperties& conf);
 
-        HarmonicClusters harmonics() const;
+      HarmonicClusters harmonics() const;
 
-        ArrayFd frequency(ArrayFi base_index, ArrayFi cluster_index) const;
-        ArrayFd frequency(ArrayFi global_index) const;
+      ArrayFd frequency(ArrayFi base_index, ArrayFi cluster_index) const;
+      ArrayFd frequency(ArrayFi global_index) const;
 
-        int dimension() const { return m_domain.dimension(); }
+      int dimension() const { return m_domain.dimension(); }
 
-        /** The resolution on the current grid. */
-        ArrayFi resolution() const;
-        /** Step size of the current grid. */
-        ArrayFd step_size() const;
+      /** The resolution on the current grid. */
+      ArrayFi resolution() const;
+      /** Step size of the current grid. */
+      ArrayFd step_size() const;
 
-        Grid grid() const { return m_domain.grid(); }
+      Grid grid() const { return m_domain.grid(); }
     private:
-        SplitFrequencyDomain m_domain;
-        SamplingProperties m_conf;
+      SplitFrequencyDomain m_domain;
+      SamplingProperties m_conf;
 
-};
+  };
 
 }
 

@@ -14,7 +14,7 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. 
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
 #ifndef LFA_FO_GRID_H
@@ -25,45 +25,44 @@
 
 namespace lfa {
 
-class Grid {
+  class Grid {
     public:
-        explicit Grid(int dimension = 0,
-                      ArrayFd step_size = ArrayFd::Zero(0));
-        explicit Grid(shared_ptr<FoContext> ctx);
-        explicit Grid(ArrayFi spacing, ArrayFd step_size = ArrayFd::Zero(0));
-        explicit Grid(ArrayFi spacing, shared_ptr<FoContext> ctx);
+      explicit Grid(int dimension = 0,
+                    ArrayFd step_size = ArrayFd::Zero(0));
+      explicit Grid(shared_ptr<FoContext> ctx);
+      explicit Grid(ArrayFi spacing, ArrayFd step_size = ArrayFd::Zero(0));
+      explicit Grid(ArrayFi spacing, shared_ptr<FoContext> ctx);
 
-        Grid coarse(ArrayFi factor);
+      Grid coarse(ArrayFi factor);
 
-        /** The step size of the grid. */
-        ArrayFd step_size() const;
+      /** The step size of the grid. */
+      ArrayFd step_size() const;
 
-        const ArrayFi& spacing() const { return m_spacing; }
+      const ArrayFi& spacing() const { return m_spacing; }
 
-        /** The coarsing factor to the other grid.
-         *
-         * Warning: Other has to be the coarser grid, i.e.,
-         *   other.m_spacing >= this->m_spacing
-         */
-        ArrayFi coarsening_factor(const Grid& other);
+      /** The coarsing factor to the other grid.
+       *
+       * Warning: Other has to be the coarser grid, i.e.,
+       *   other.m_spacing >= this->m_spacing
+       */
+      ArrayFi coarsening_factor(const Grid& other);
 
-        int dimension() const { return m_spacing.rows(); }
+      int dimension() const { return m_spacing.rows(); }
 
-        bool operator== (const Grid& other) const {
-            return (m_spacing == other.m_spacing).all();
-        }
+      bool operator== (const Grid& other) const {
+        return (m_spacing == other.m_spacing).all();
+      }
 
-        ArrayFd finestStepSize() const;
+      ArrayFd finestStepSize() const;
 
-        shared_ptr<FoContext> context() { return m_ctx; }
-        shared_ptr<const FoContext> context() const { return m_ctx; }
+      shared_ptr<FoContext> context() { return m_ctx; }
+      shared_ptr<const FoContext> context() const { return m_ctx; }
     private:
-        ArrayFi m_spacing;
-        shared_ptr<FoContext> m_ctx;
-};
+      ArrayFi m_spacing;
+      shared_ptr<FoContext> m_ctx;
+  };
 
-ostream& operator<< (ostream& os, const Grid& grid);
-
+  ostream& operator<< (ostream& os, const Grid& grid);
 }
 
 #endif

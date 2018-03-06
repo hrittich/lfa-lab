@@ -54,7 +54,7 @@ using namespace lfa;
 %include "Eigen.i"
 %include "Symbol.i"
 %include "shared_ptr.i"
-%include "FoStencil2.i"
+%include "FoStencil.i"
 %include "FoProperties.i"
 %include "SamplingProperties.i"
 %include "SplitFrequencyDomain.i"

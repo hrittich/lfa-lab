@@ -14,7 +14,7 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. 
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
 #ifndef LFA_BLOCK_STENCIL_H
@@ -27,75 +27,75 @@
 
 namespace lfa {
 
-class BlockStencil : public MultiArray<DenseStencil>
-{
+  class BlockStencil : public MultiArray<DenseStencil>
+  {
     public:
-        BlockStencil(const BlockStencil& rhs)
-          : MultiArray<DenseStencil>(rhs)
-        { }
+      BlockStencil(const BlockStencil& rhs)
+        : MultiArray<DenseStencil>(rhs)
+      { }
 
-        BlockStencil(ArrayFi shape = ArrayFi::Ones(1)) :
-            MultiArray(
-                    ArrayFi::Zero(shape.rows()),
-                    shape - ArrayFi::Ones(shape.rows()))
-        {
+      BlockStencil(ArrayFi shape = ArrayFi::Ones(1))
+        : MultiArray(
+            ArrayFi::Zero(shape.rows()),
+            shape - ArrayFi::Ones(shape.rows()))
+      {
+      }
+
+      void reshape(ArrayFi shape) {
+        resize(ArrayFi::Zero(shape.rows()),
+            shape - ArrayFi::Ones(shape.rows()));
+      }
+
+      ArrayFi shape() const {
+        return ArrayFi(endIndex() - startIndex() +
+            ArrayFi::Ones(startIndex().rows()));
+      }
+
+      /** Same number of entries per dimension. */
+      inline bool isSquare() const {
+        ArrayFi sh = shape();
+        for (int d = 0; d < dimension()-1; ++d) {
+          if (sh(d) != sh(d+1))
+            return false;
         }
+        return true;
+      }
 
-        void reshape(ArrayFi shape) {
-            resize(ArrayFi::Zero(shape.rows()),
-                   shape - ArrayFi::Ones(shape.rows()));
-        }
+      inline int frequencyRange() const {
+        assert(isSquare());
+        assert(isPow2( shape()(0) ));
 
-        ArrayFi shape() const {
-            return ArrayFi(endIndex() - startIndex() +
-                    ArrayFi::Ones(startIndex().rows()));
-        }
+        return log2_rn( shape()(0) );
+      }
 
-        /** Same number of entries per dimension. */
-        inline bool isSquare() const {
-            ArrayFi sh = shape();
-            for (int d = 0; d < dimension()-1; ++d) {
-                if (sh(d) != sh(d+1))
-                    return false;
-            }
-            return true;
-        }
+      BlockStencil upper() const;
 
-        inline int frequencyRange() const {
-            assert(isSquare());
-            assert(isPow2( shape()(0) ));
+      /** The substencil representing the diagonal elements only. */
+      BlockStencil diag() const;
 
-            return log2_rn( shape()(0) );
-        }
+      /** The substencil representing the sub diagonal elements. */
+      BlockStencil lower() const;
 
-        BlockStencil upper() const;
+      /** Return the stencil for the adjoint of this operator. */
+      BlockStencil adjoint();
 
-        /** The substencil representing the diagonal elements only. */
-        BlockStencil diag() const;
+      /** Compute a coarse representation .*/
+      BlockStencil coarse();
 
-        /** The substencil representing the sub diagonal elements. */
-        BlockStencil lower() const;
+      /** Multiply this blockstencil to the right hand side of a stencil.
+       *
+       * @param a The stencil on the left.
+       * @param a_offset The position where the stencil a is positioned in
+       *                 the block stencil.
+       */
+      DenseStencil multiplyRight(const DenseStencil& a, ArrayFi a_offset) const;
 
-        /** Return the stencil for the adjoint of this operator. */
-        BlockStencil adjoint();
+  };
 
-        /** Compute a coarse representation .*/
-        BlockStencil coarse();
+  BlockStencil operator* (const BlockStencil& A, const BlockStencil& B);
+  std::ostream& operator<< (std::ostream& os, const BlockStencil& A);
 
-        /** Multiply this blockstencil to the right hand side of a stencil.
-         *
-         * @param a The stencil on the left.
-         * @param a_offset The position where the stencil a is positioned in
-         *                 the block stencil.
-         */
-        DenseStencil multiplyRight(const DenseStencil& a, ArrayFi a_offset) const;
-
-};
-
-BlockStencil operator* (const BlockStencil& A, const BlockStencil& B);
-std::ostream& operator<< (std::ostream& os, const BlockStencil& A);
-
-BlockStencil operator* (double s, const BlockStencil& A);
+  BlockStencil operator* (double s, const BlockStencil& A);
 
 }
 

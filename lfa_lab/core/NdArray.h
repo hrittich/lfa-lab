@@ -14,7 +14,7 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. 
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
 #ifndef LFA_ND_ARRAY_H
@@ -25,41 +25,41 @@
 
 namespace lfa {
 
-template<typename T>
-class NdArray
-{
+  template<typename T>
+  class NdArray
+  {
     public:
-        NdArray(ArrayFi shape = ArrayFi::Zero(0))
-          : m_grid(shape)
-        {
-            m_elements.resize(m_grid.size());
-        }
+      NdArray(ArrayFi shape = ArrayFi::Zero(0))
+        : m_grid(shape)
+      {
+        m_elements.resize(m_grid.size());
+      }
 
-        ArrayFi shape() const { return m_grid.shape(); }
+      ArrayFi shape() const { return m_grid.shape(); }
 
-        T& operator() (const ArrayFi& pos) {
-            return m_elements[m_grid.indexOf(pos)];
-        }
-        const T& operator() (const ArrayFi& pos) const {
-            return m_elements[m_grid.indexOf(pos)];
-        }
+      T& operator() (const ArrayFi& pos) {
+        return m_elements[m_grid.indexOf(pos)];
+      }
+      const T& operator() (const ArrayFi& pos) const {
+        return m_elements[m_grid.indexOf(pos)];
+      }
 
-        bool index_in_range(const ArrayFi& pos) const {
-            return m_grid.inRange(pos);
-        }
+      bool index_in_range(const ArrayFi& pos) const {
+        return m_grid.inRange(pos);
+      }
 
-        NdRange indices() const {
-            return m_grid;
-        }
+      NdRange indices() const {
+        return m_grid;
+      }
 
-        int dimension() const {
-            return m_grid.dimension();
-        }
+      int dimension() const {
+        return m_grid.dimension();
+      }
 
     private:
-        NdRange m_grid;
-        vector<T> m_elements;
-};
+      NdRange m_grid;
+      vector<T> m_elements;
+  };
 
 
 };

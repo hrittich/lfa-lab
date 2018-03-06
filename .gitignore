@@ -19,3 +19,6 @@ callgrind.out.*
 # Compiled python files
 *.pyc
 
+# Vim-Clang config
+.clang
+

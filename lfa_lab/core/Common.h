@@ -14,7 +14,7 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. 
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
 #ifndef LFA_COMMON_H
@@ -58,56 +58,56 @@
 
 namespace lfa {
 
-    const size_t MAX_DIMENSION = 5;
+  const size_t MAX_DIMENSION = 5;
 
-    using std::stringstream;
-    using std::ostream;
-    using std::istream;
-    using std::complex;
-    using std::cout;
-    using std::cerr;
-    using std::endl;
-    using std::logic_error;
-    using std::runtime_error;
-    using std::out_of_range;
-    using std::pair;
+  using std::stringstream;
+  using std::ostream;
+  using std::istream;
+  using std::complex;
+  using std::cout;
+  using std::cerr;
+  using std::endl;
+  using std::logic_error;
+  using std::runtime_error;
+  using std::out_of_range;
+  using std::pair;
 
 #ifdef GCC_BOUND_CHECKS
-    using __gnu_debug::vector;
-    using __gnu_debug::string;
+  using __gnu_debug::vector;
+  using __gnu_debug::string;
 #else
-    using std::vector;
-    using std::string;
+  using std::vector;
+  using std::string;
 #endif
 
 #ifdef HAVE_STD_SHARED_PTR
-    using std::shared_ptr;
+  using std::shared_ptr;
 #else
-    using boost::shared_ptr;
+  using boost::shared_ptr;
 #endif
 
-    using namespace Eigen;
+  using namespace Eigen;
 
-    /* Fixed Matrix sizes. */
-    typedef Matrix<int, Dynamic, 1, ColMajor|AutoAlign, MAX_DIMENSION, 1> VectorFi;
-    typedef Matrix<double, Dynamic, 1, ColMajor|AutoAlign, MAX_DIMENSION, 1> VectorFd;
-    typedef Matrix< std::complex<double>, Dynamic, 1, ColMajor|AutoAlign, MAX_DIMENSION, 1> VectorFcd;
-    typedef Array<int, Dynamic, 1, ColMajor|AutoAlign, MAX_DIMENSION, 1> ArrayFi;
-    typedef Array<double, Dynamic, 1, ColMajor|AutoAlign, MAX_DIMENSION, 1> ArrayFd;
+  /* Fixed Matrix sizes. */
+  typedef Matrix<int, Dynamic, 1, ColMajor|AutoAlign, MAX_DIMENSION, 1> VectorFi;
+  typedef Matrix<double, Dynamic, 1, ColMajor|AutoAlign, MAX_DIMENSION, 1> VectorFd;
+  typedef Matrix< std::complex<double>, Dynamic, 1, ColMajor|AutoAlign, MAX_DIMENSION, 1> VectorFcd;
+  typedef Array<int, Dynamic, 1, ColMajor|AutoAlign, MAX_DIMENSION, 1> ArrayFi;
+  typedef Array<double, Dynamic, 1, ColMajor|AutoAlign, MAX_DIMENSION, 1> ArrayFd;
 
-    class HarmonicIndices;
+  class HarmonicIndices;
 
-    typedef ArrayFd Frequency;
+  typedef ArrayFd Frequency;
 
-    /** Enable floating point exception. */
-    void enable_fpe();
+  /** Enable floating point exception. */
+  void enable_fpe();
 }
 
 namespace std {
-    extern template class vector<lfa::ArrayFi>;
-    extern template class vector<lfa::ArrayFd>;
-    extern template class vector<int>;
-    extern template class vector<double>;
+  extern template class vector<lfa::ArrayFi>;
+  extern template class vector<lfa::ArrayFd>;
+  extern template class vector<int>;
+  extern template class vector<double>;
 }
 
 #endif

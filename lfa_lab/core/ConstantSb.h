@@ -14,7 +14,7 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. 
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
 #ifndef LFA_CONSTANT_SB_H
@@ -26,27 +26,25 @@
 
 namespace lfa {
 
-class ConstantSb : public SymbolBuilder
-{
+  class ConstantSb : public SymbolBuilder
+  {
     public:
-        ConstantSb();
-        ConstantSb(ClusterSymbol symbol, Grid output_grid, Grid input_grid);
+      ConstantSb();
+      ConstantSb(ClusterSymbol symbol, Grid output_grid, Grid input_grid);
 
-        FoProperties properties();
-        Symbol generate(const SamplingProperties& conf);
+      FoProperties properties();
+      Symbol generate(const SamplingProperties& conf);
     private:
-        ClusterSymbol m_symbol;
-        Grid m_output_grid;
-        Grid m_input_grid;
-};
+      ClusterSymbol m_symbol;
+      Grid m_output_grid;
+      Grid m_input_grid;
+  };
 
-ClusterSymbol flat_restriction_cluster_symbol(Grid output_grid, Grid input_grid);
-ConstantSb flat_restriction_sb(Grid output_grid, Grid input_grid);
+  ClusterSymbol flat_restriction_cluster_symbol(Grid output_grid, Grid input_grid);
+  ConstantSb flat_restriction_sb(Grid output_grid, Grid input_grid);
 
-ClusterSymbol flat_interpolation_cluster_symbol(Grid output_grid, Grid input_grid);
-ConstantSb flat_interpolation_sb(Grid output_grid, Grid input_grid);
-
-
+  ClusterSymbol flat_interpolation_cluster_symbol(Grid output_grid, Grid input_grid);
+  ConstantSb flat_interpolation_sb(Grid output_grid, Grid input_grid);
 }
 
 #endif

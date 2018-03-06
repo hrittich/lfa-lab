@@ -14,7 +14,7 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. 
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
 #include "BdMatrix.h"
@@ -169,11 +169,9 @@ double BdMatrix::norm() const
 
 double BdMatrix::spectral_radius() const
 {
-    ExEigenSolver eigen_solver;
-
     vector<double> radii(no_blocks());
     for (int i = 0; i < no_blocks(); ++i) {
-        radii[i] = abs(eigen_solver.maxMagnitude(block(i)));
+        radii[i] = abs(eigenvalue_max_magnitude(block(i)));
     }
 
     return *std::max_element(radii.begin(), radii.end());
@@ -181,12 +179,10 @@ double BdMatrix::spectral_radius() const
 
 double BdMatrix::spectral_norm() const
 {
-    ExEigenSolver eigen_solver;
-
     vector<double> norms(no_blocks());
     for (int i = 0; i < no_blocks(); ++i) {
         // compute the singular values
-        norms[i] = sqrt(abs(eigen_solver.maxMagnitude(
+        norms[i] = sqrt(abs(eigenvalue_max_magnitude(
                     block(i).adjoint() * block(i))));
     }
 

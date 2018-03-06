@@ -14,7 +14,7 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. 
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
 #ifndef LFA_CART_ITERATOR_H
@@ -23,97 +23,99 @@
 #include "Common.h"
 #include <iterator>
 
-/** Cartesian iterator. Iterates over all combinations of the first and the
- * second iterator.
- */
-template <typename first_iter,
-          typename second_iter>
-class CartIterator
-  : public std::iterator<std::forward_iterator_tag,
-                         std::pair<first_iter, second_iter> >
-{
+namespace lfa {
 
+  /** Cartesian iterator. Iterates over all combinations of the first and the
+   * second iterator.
+   */
+  template <typename first_iter, typename second_iter>
+  class CartIterator
+    : public std::iterator<std::forward_iterator_tag,
+                           std::pair<first_iter, second_iter> >
+  {
     public:
 
-        CartIterator() {
-        }
+      CartIterator() {
+      }
 
-        CartIterator(first_iter first_begin, first_iter first_end,
-                     second_iter second_begin, second_iter second_end,
-                     bool out_of_range = false)
-          : m_first_begin(first_begin),
-            m_first_end(first_end),
-            m_iter(first_begin, second_begin)
+      CartIterator(first_iter first_begin,
+                   first_iter first_end,
+                   second_iter second_begin,
+                   second_iter second_end,
+                   bool out_of_range = false)
+        : m_first_begin(first_begin),
+          m_first_end(first_end),
+          m_iter(first_begin, second_begin)
+      {
+        if (out_of_range) {
+          m_iter.second = second_end;
+        }
+      }
+
+      /** Out of stream iterator. */
+      CartIterator(second_iter second_end)
+      {
+
+      }
+
+      CartIterator& operator++()
+      {
+        ++m_iter.first;
+        if (m_iter.first == m_first_end)
         {
-            if (out_of_range) {
-                m_iter.second = second_end;
-            }
+          m_iter.first = m_first_begin;
 
+          ++m_iter.second;
         }
+        return *this;
+      }
 
-        /** Out of stream iterator. */
-        CartIterator(second_iter second_end)
-        {
+      CartIterator operator++(int)
+      {
+        CartIterator old = *this;
+        operator++ ();
+        return old;
+      }
 
-        }
-
-        CartIterator& operator++()
-        {
-            ++m_iter.first;
-            if (m_iter.first == m_first_end)
-            {
-                m_iter.first = m_first_begin;
-
-                ++m_iter.second;
-            }
-            return *this;
-        }
-
-        CartIterator operator++(int)
-        {
-            CartIterator old = *this;
-            operator++ ();
-            return old;
-        }
-
-        std::pair<first_iter, second_iter>&
+      std::pair<first_iter, second_iter>&
         operator* ()
         {
-            return m_iter;
+          return m_iter;
         }
 
-        std::pair<first_iter, second_iter>*
+      std::pair<first_iter, second_iter>*
         operator-> ()
         {
-            return &m_iter;
+          return &m_iter;
         }
 
-        bool operator== (const CartIterator& other) const {
-            return m_iter == other.m_iter;
-        }
+      bool operator== (const CartIterator& other) const {
+        return m_iter == other.m_iter;
+      }
 
-        bool operator!= (const CartIterator& other) const {
-            return !(*this == other);
-        }
+      bool operator!= (const CartIterator& other) const {
+        return !(*this == other);
+      }
 
 
     private:
-        first_iter m_first_begin, m_first_end;
+      first_iter m_first_begin, m_first_end;
 
-        std::pair<first_iter, second_iter> m_iter;
+      std::pair<first_iter, second_iter> m_iter;
 
-};
+  };
 
-template <typename first_iter,
-          typename second_iter>
-CartIterator<first_iter, second_iter> make_cart_iterator(first_iter first_begin,
-                                                         first_iter first_end,
-                                                         second_iter second_begin,
-                                                         second_iter second_end)
-{
-    return CartIterator<first_iter, second_iter> (first_begin, first_end,
-                                                  second_begin, second_end);
+  template <typename first_iter, typename second_iter>
+  CartIterator<first_iter, second_iter>
+    make_cart_iterator(first_iter first_begin,
+                       first_iter first_end,
+                       second_iter second_begin,
+                       second_iter second_end)
+  {
+   return CartIterator<first_iter, second_iter> (first_begin, first_end,
+       second_begin, second_end);
+  }
+
 }
-
 
 #endif

@@ -14,7 +14,7 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. 
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
 #ifndef LFA_SYSTEM_CLUSTER_SYMBOL_H
@@ -25,31 +25,31 @@
 
 namespace lfa {
 
-class SystemClusterSymbol {
+  class SystemClusterSymbol {
     public:
-        SystemClusterSymbol(int rows,
-                            int cols,
-                            ArrayFi row_cluster_shape,
-                            ArrayFi col_cluster_shape);
+      SystemClusterSymbol(int rows,
+                          int cols,
+                          ArrayFi row_cluster_shape,
+                          ArrayFi col_cluster_shape);
 
-        void setCluster(int si, int sj, const ClusterSymbol& cluster);
-        ClusterSymbol getCluster(int si, int sj);
+      void setCluster(int si, int sj, const ClusterSymbol& cluster);
+      ClusterSymbol getCluster(int si, int sj);
 
-        SystemClusterSymbol inverse() const;
+      SystemClusterSymbol inverse() const;
 
-        MatrixXcd& matrix() { return m_store; }
+      MatrixXcd& matrix() { return m_store; }
     private:
-        complex<double>& operator() (int si,
-                                     int sj,
-                                     const ArrayFi& ci,
-                                     const ArrayFi& cj);
+      complex<double>& operator() (int si,
+                                   int sj,
+                                   const ArrayFi& ci,
+                                   const ArrayFi& cj);
 
-        int m_rows;
-        int m_cols;
-        NdRange m_row_indices;
-        NdRange m_col_indices;
-        MatrixXcd m_store;
-};
+      int m_rows;
+      int m_cols;
+      NdRange m_row_indices;
+      NdRange m_col_indices;
+      MatrixXcd m_store;
+  };
 
 }
 

@@ -27,31 +27,31 @@
 
 namespace lfa {
 
-/** Storage for a rows x cols system of stencil equation. */
-class SystemStencil : public MatrixContainer<DenseStencil>
-{
+  /** Storage for a rows x cols system of stencil equation. */
+  class SystemStencil : public MatrixContainer<DenseStencil>
+  {
     public:
-        /** Initialize a scalar stencil system. */
-        SystemStencil(const DenseStencil& s);
-        /** Create an equation system consisting of the given number of cols
-         * and rows. */
-        SystemStencil(int rows = 0, int cols = 0);
+      /** Initialize a scalar stencil system. */
+      SystemStencil(const DenseStencil& s);
+      /** Create an equation system consisting of the given number of cols
+       * and rows. */
+      SystemStencil(int rows = 0, int cols = 0);
 
-        /** Returns the maximum of cols and rows. */
-        int grids() const { return std::max(rows(), cols()); }
+      /** Returns the maximum of cols and rows. */
+      int grids() const { return std::max(rows(), cols()); }
 
-        /** The dimension of the stencils. All stencils should have the same
-         * dimension. */
-        int dimension() const {
-            assert(!empty());
-            return (*this)(0,0).dimension();
-        }
-};
+      /** The dimension of the stencils. All stencils should have the same
+       * dimension. */
+      int dimension() const {
+        assert(!empty());
+        return (*this)(0,0).dimension();
+      }
+  };
 
-SystemStencil galerkin_stencil(
-        const SystemStencil& R,
-        const SystemStencil& A,
-        const SystemStencil& P);
+  SystemStencil galerkin_stencil(
+      const SystemStencil& R,
+      const SystemStencil& A,
+      const SystemStencil& P);
 
 }
 

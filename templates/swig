@@ -20,12 +20,3 @@
 */
 
 
-class HpFilterSb : public SymbolBuilder {
-  public:
-    HpFilterSb(Grid fine_grid, Grid coarse_grid);
-
-    virtual FoProperties properties();
-    virtual Symbol generate(const SamplingProperties& conf);
-};
-
-

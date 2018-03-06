@@ -14,11 +14,11 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. 
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
-#ifndef LFA_FO_STENCIL2_H
-#define LFA_FO_STENCIL2_H
+#ifndef LFA_FO_STENCIL_H
+#define LFA_FO_STENCIL_H
 
 #include "Common.h"
 #include "SparseStencil.h"
@@ -30,21 +30,29 @@
 
 namespace lfa {
 
-class FoStencil2 : public SymbolBuilder {
+  /** Builds the symbol of a stencil. */
+  class FoStencil : public SymbolBuilder {
     public:
-        FoStencil2(const SparseStencil& stencil, Grid grid);
+      FoStencil(const SparseStencil& stencil, Grid grid);
 
-        FoProperties properties();
+      FoProperties properties();
 
-        Symbol generate(const SamplingProperties& conf);
-        void fill(SymbolClusterRef cluster, ArrayFi base_index, const DiscreteDomain& domain);
-        complex<double> symbolAt(VectorFd frequency);
+      Symbol generate(const SamplingProperties& conf);
 
-        int dimension() { return m_grid.dimension(); }
+      /** Fill the ClusterSymbol given by cluster with the value of the symbol
+       * evaluated at the specified position. */
+      void fill(SymbolClusterRef cluster,
+                ArrayFi base_index,
+                const DiscreteDomain& domain);
+
+      /** Evaluate the symbol at the given frequency. */
+      complex<double> symbolAt(VectorFd frequency);
+
+      int dimension() { return m_grid.dimension(); }
     private:
-        SparseStencil m_stencil;
-        Grid m_grid;
-};
+      SparseStencil m_stencil;
+      Grid m_grid;
+  };
 
 }
 

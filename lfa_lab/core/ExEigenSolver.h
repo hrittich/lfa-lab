@@ -14,28 +14,21 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. 
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
 #ifndef LFA_EX_EIGEN_SOLVER_H
 #define LFA_EX_EIGEN_SOLVER_H
 
 #include "Common.h"
-
 #include <complex>
 
 namespace lfa {
 
-using namespace Eigen;
-using std::complex;
+  using namespace Eigen;
+  using std::complex;
 
-/** Solver for extremal eigenvalues. */
-class ExEigenSolver {
-    public:
-        /** computes the largest eigenvalue */
-        complex<double> maxMagnitude(const MatrixXcd& M);
-};
-
+  complex<double> eigenvalue_max_magnitude(const MatrixXcd& M);
 }
 
 

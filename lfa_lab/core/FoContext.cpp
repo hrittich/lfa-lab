@@ -14,7 +14,7 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. 
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
 #include "FoContext.h"
@@ -22,18 +22,18 @@
 
 namespace lfa {
 
-FoContext::FoContext(int dimension, ArrayFd step_size)
-  : m_dimension(dimension),
+  FoContext::FoContext(int dimension, ArrayFd step_size)
+    : m_dimension(dimension),
     m_step_size(step_size)
-{
+  {
     if (m_step_size.rows() == 0) {
-        m_step_size = 1.0 / 64 * ArrayFd::Ones(dimension);
+      m_step_size = 1.0 / 64 * ArrayFd::Ones(dimension);
     }
 
     if (m_step_size.rows() != dimension) {
-        throw logic_error("Step size has invalid number of rows.");
+      throw logic_error("Step size has invalid number of rows.");
     }
-}
+  }
 
 }
 

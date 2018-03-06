@@ -14,7 +14,7 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. 
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
 #include "ExEigenSolver.h"
@@ -82,7 +82,7 @@ extern "C" void zneupd_(
 
 namespace lfa {
 
-std::complex<double> ExEigenSolver::maxMagnitude(const MatrixXcd& M)
+std::complex<double> eigenvalue_max_magnitude(const MatrixXcd& M)
 {
 #ifdef WITH_ARPACK
     if (M.rows() <= 32)

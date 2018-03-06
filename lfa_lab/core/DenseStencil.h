@@ -14,7 +14,7 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. 
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
 #ifndef LFA_DENSE_STENCIL_H
@@ -26,51 +26,51 @@
 
 namespace lfa {
 
-/** Storage for a dense n-dimensional stencil. */
-class DenseStencil : public MultiArray<double>
-{
+  /** Storage for a dense n-dimensional stencil. */
+  class DenseStencil : public MultiArray<double>
+  {
     public:
-        /** Create a stencil. The dimension is given by the length of the two
-         * vectors.
-         * The stencil is initially filled with zeros. */
-        DenseStencil(ArrayFi start = ArrayFi::Zero(1),
-                     ArrayFi end = ArrayFi::Zero(1));
+      /** Create a stencil. The dimension is given by the length of the two
+       * vectors.
+       * The stencil is initially filled with zeros. */
+      DenseStencil(ArrayFi start = ArrayFi::Zero(1),
+                   ArrayFi end = ArrayFi::Zero(1));
 
-        /** Sets the stencil to the given size and fill it with zeros. */
-        void resize(ArrayFi start, ArrayFi end);
+      /** Sets the stencil to the given size and fill it with zeros. */
+      void resize(ArrayFi start, ArrayFi end);
 
-        void setZero(int dim);
-        void setIdentity(int dim);
+      void setZero(int dim);
+      void setIdentity(int dim);
 
 
-        typedef vector<StencilElement> ElementList;
-        /** Sets the stencil from a list of elements. The stencil will be
-         * resized appropriately. */
-        void setFromList(const ElementList& list);
+      typedef vector<StencilElement> ElementList;
+      /** Sets the stencil from a list of elements. The stencil will be
+       * resized appropriately. */
+      void setFromList(const ElementList& list);
 
-        /** A stencil representing the diagonal element. */
-        DenseStencil diag() const;
+      /** A stencil representing the diagonal element. */
+      DenseStencil diag() const;
 
-        /** A stencil representing the strictly lower diagonal elements. */
-        DenseStencil lower() const;
+      /** A stencil representing the strictly lower diagonal elements. */
+      DenseStencil lower() const;
 
-        /** A stencil representing the strictly upper diagonal elements. */
-        DenseStencil upper() const;
+      /** A stencil representing the strictly upper diagonal elements. */
+      DenseStencil upper() const;
 
-        DenseStencil coarse(const ArrayFi& space);
-};
+      DenseStencil coarse(const ArrayFi& space);
+  };
 
-/** Multiply two stencils. */
-DenseStencil operator* (const DenseStencil& s, const DenseStencil& t);
+  /** Multiply two stencils. */
+  DenseStencil operator* (const DenseStencil& s, const DenseStencil& t);
 
-/** Multiply a DenseStencil by a scalar value  */
-DenseStencil operator* (double s, const DenseStencil& t);
+  /** Multiply a DenseStencil by a scalar value  */
+  DenseStencil operator* (double s, const DenseStencil& t);
 
-/** Computes the galerkin coarse grid stencil. */
-DenseStencil galerkin_stencil(
-        const DenseStencil& R,
-        const DenseStencil& L,
-        const DenseStencil& P);
+  /** Computes the galerkin coarse grid stencil. */
+  DenseStencil galerkin_stencil(
+          const DenseStencil& R,
+          const DenseStencil& L,
+          const DenseStencil& P);
 
 }
 

@@ -1,4 +1,6 @@
 /*
+  vim: set filetype=cpp:
+
   LFA Lab - Library to simplify local Fourier analysis.
   Copyright (C) 2018  Hannah Rittich
 
@@ -15,36 +17,63 @@
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-
-  vim: set filetype=cpp:
 */
 
+%include "MatrixContainer.i"
+
 class SystemSymbol {
-    public:
-        explicit SystemSymbol(
-                int rows = 0,
-                int cols = 0,
-                HarmonicClusters output_clusters = HarmonicClusters(),
-                HarmonicClusters input_clusters = HarmonicClusters());
+  public:
+    explicit SystemSymbol(
+        int rows = 0,
+        int cols = 0,
+        HarmonicClusters output_clusters = HarmonicClusters(),
+        HarmonicClusters input_clusters = HarmonicClusters());
 
-        static SystemSymbol Identity(int rows,
-                                     int cols,
-                                     HarmonicClusters output_clusters,
-                                     HarmonicClusters input_clusters);
+    static SystemSymbol Identity(int rows,
+        int cols,
+        HarmonicClusters output_clusters,
+        HarmonicClusters input_clusters);
 
-        void resize(int rows, int cols);
+    void resize(int rows, int cols);
 
-        SystemSymbol operator* (const SystemSymbol& other) const;
-        SystemSymbol operator+ (const SystemSymbol& other) const;
-        //friend SystemSymbol operator* (double scalar, const SystemSymbol& other);
-        SystemSymbol operator- (const SystemSymbol& other) const;
+    SystemSymbol operator* (const SystemSymbol& other) const;
+    SystemSymbol operator+ (const SystemSymbol& other) const;
+    //friend SystemSymbol operator* (double scalar, const SystemSymbol& other);
+    SystemSymbol operator- (const SystemSymbol& other) const;
 
-        SystemSymbol inverse() const;
+    SystemSymbol inverse() const;
 
-        int rows() const { return m_rows; }
-        int cols() const { return m_cols; }
+    int rows() const { return m_rows; }
+    int cols() const { return m_cols; }
 
-        double norm() const;
+    double spectral_radius() const;
+    double spectral_norm() const;
+
+    %extend {
+      SystemSymbol __rmul__(double scalar) {
+        return scalar * (*$self);
+      }
+
+      void __setitem__(ArrayFi index, const Symbol& value) {
+        if (index.rows() != 2)
+          throw logic_error("Invalid number of indices.");
+
+        (*$self)(index[0], index[1]) = value;
+      }
+
+      Symbol __getitem__(ArrayFi index) {
+        if (index.rows() != 2)
+          throw logic_error("Invalid number of indices.");
+
+        return (*$self)(index[0], index[1]);
+      }
+    }
 };
+
+%template(SymbolMatrix) MatrixContainer<Symbol>;
+
+SystemSymbol combine_symbols_into_system(
+  const SystemSymbolProperties& properties,
+  const MatrixContainer<Symbol>& symbols); 
 
 

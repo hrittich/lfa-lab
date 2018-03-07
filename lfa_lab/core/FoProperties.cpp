@@ -14,7 +14,7 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. 
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
 #include "FoProperties.h"
@@ -25,12 +25,12 @@ namespace lfa {
       SplitFrequencyDomain output_domain,
       SplitFrequencyDomain input_domain)
     : m_output_domain(output_domain),
-    m_input_domain(input_domain)
+      m_input_domain(input_domain)
   {
 
   }
 
-  FoProperties FoProperties::operator+ (const FoProperties& other)
+  FoProperties FoProperties::operator+ (const FoProperties& other) const
   {
     ArrayFi lcc = m_input_domain.lcc(other.m_input_domain);
     FoProperties this_ex = this->expandInputTo(lcc);
@@ -44,9 +44,9 @@ namespace lfa {
     return this_ex;
   }
 
-  FoProperties FoProperties::operator* (const FoProperties& other)
+  FoProperties FoProperties::operator* (const FoProperties& other) const
   {
-    // ToDo simplify this
+    // ToDo simplify this code
     ArrayFi lcc = m_input_domain.lcc(other.m_output_domain);
     FoProperties this_ex = this->expandInputTo(lcc);
     FoProperties other_ex = other.expandOutputTo(lcc);
@@ -64,17 +64,17 @@ namespace lfa {
     return FoProperties(this_ex.m_output_domain, other_ex.m_input_domain);
   }
 
-  FoProperties FoProperties::inverse()
+  FoProperties FoProperties::inverse() const
   {
     return FoProperties(m_input_domain, m_output_domain);
   }
 
-  FoProperties FoProperties::adjoint()
+  FoProperties FoProperties::adjoint() const
   {
     return FoProperties(m_input_domain, m_output_domain);
   }
 
-  ArrayFi FoProperties::adjustResolution(ArrayFi desired_resolution)
+  ArrayFi FoProperties::adjustResolution(ArrayFi desired_resolution) const
   {
     ArrayFi factor =
       m_output_domain.grid().spacing() * m_output_domain.clusterShape();

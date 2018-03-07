@@ -127,6 +127,8 @@ namespace lfa {
       double m_precision;
   };
 
+  ArrayFi lcm(ArrayFi a, ArrayFi b);
+
   /** Square a number. */
   template <typename number_t>
     double sq(number_t x) { return x*x; }

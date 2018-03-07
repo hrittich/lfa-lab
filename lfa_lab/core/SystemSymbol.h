@@ -22,6 +22,9 @@
 
 #include "Common.h"
 #include "Symbol.h"
+#include "SystemClusterSymbol.h"
+#include "MatrixContainer.h"
+#include "SystemSymbolProperties.h"
 
 namespace lfa {
 
@@ -62,7 +65,14 @@ namespace lfa {
       int rows() const { return m_rows; }
       int cols() const { return m_cols; }
 
-      double norm() const;
+      double spectral_radius() const;
+      double spectral_norm() const;
+
+      /** Square root of the sum of the squares of the norms of the system
+       * entries. (Usually not what you want.) */
+      double system_norm() const;
+
+      SystemClusterSymbol at(ArrayFi base_index) const;
     private:
       int m_rows;
       int m_cols;
@@ -71,6 +81,10 @@ namespace lfa {
 
       vector<vector<Symbol> > m_store;
   };
+
+  SystemSymbol combine_symbols_into_system(
+    const SystemSymbolProperties& properties,
+    const MatrixContainer<Symbol>& symbols);
 
 }
 

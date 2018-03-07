@@ -35,6 +35,7 @@ add_library(lfa STATIC
   FoContext.cpp FoContext.h
   FoStencil.cpp FoStencil.h
   SystemSymbol.cpp SystemSymbol.h
+  SystemSymbolProperties.cpp SystemSymbolProperties.h
   SystemClusterSymbol.cpp SystemClusterSymbol.h
   FrequencyIndices.cpp FrequencyIndices.h
   HarmonicClusters.cpp HarmonicClusters.h

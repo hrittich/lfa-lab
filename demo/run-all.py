@@ -17,7 +17,7 @@ scripts = [
     'tutorial05-stencils.py',
     'tutorial06-multigrid.py',
     'aggressive_coarse.py',
-#    'biharmonic.py',
+    'biharmonic.py',
     'block_jac_2x2.py',
     'block_jac.py',
     'block_rb_jac_2x2.py',

@@ -21,6 +21,7 @@ LFA Lab depends on the following packages:
 - `Python2 <http://www.python.org/>`_
 - `Swig <http://swig.org/>`_
 - `NumPy <http://www.numpy.org/>`_
+- `six <https://pypi.org/project/six/>`_
 - Only for pre C++11 compilers: `Boost <http://www.boost.org/>`_
 
 Furthermore, the following packages provide extra functionality, but are

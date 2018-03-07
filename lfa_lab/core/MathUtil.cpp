@@ -137,11 +137,11 @@ namespace lfa {
   }
 
   template <typename T>
-    T lcm_imp(T a, T b)
-    {
-      T g = gcd(a, b);
-      return (a / g) * b;
-    }
+  T lcm_imp(T a, T b)
+  {
+    T g = gcd(a, b);
+    return (a / g) * b;
+  }
 
   ArrayFi lcm(ArrayFi a, ArrayFi b)
   {

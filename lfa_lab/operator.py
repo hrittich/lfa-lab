@@ -63,7 +63,9 @@ def lp_filter(fine_grid, coarse_grid):
     :param Grid fine_grid: The grid corresponding to all frequencies.
     :param Grid coarse_grid: The grid of the low modes.
     """
-    return LpFilterNode(fine_grid, coarse_grid)
+    I = IdentityNode(fine_grid)
+    HP = HpFilterNode(fine_grid, coarse_grid)
+    return I - HP
 
 def injection_interpolation(fine_grid, coarse_grid):
     """Create an injection interpolation operator.
@@ -97,4 +99,10 @@ def from_periodic_stencil(stencils, grid):
         stencils = PeriodicStencil(stencils.map(wrap_stencil))
 
     return PeriodicStencilNode(stencils, grid)
+
+def system(entries):
+    """Given a list of lists, returns a system of operators."""
+
+    return SystemNode(entries)
+
 

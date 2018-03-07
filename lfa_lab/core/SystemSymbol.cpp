@@ -19,6 +19,7 @@
 
 #include "SystemSymbol.h"
 #include "SystemClusterSymbol.h"
+#include "ExEigenSolver.h"
 
 namespace lfa {
 
@@ -29,7 +30,7 @@ SystemSymbol::SystemSymbol(int rows,
   : m_output_clusters(output_clusters),
     m_input_clusters(input_clusters)
 {
-    resize(rows, cols);
+  resize(rows, cols);
 }
 
 SystemSymbol SystemSymbol::Identity(int rows,
@@ -68,7 +69,10 @@ void SystemSymbol::resize(int rows, int cols)
 SystemSymbol SystemSymbol::operator* (const SystemSymbol& other) const
 {
   assert( cols() == other.rows() );
-  SystemSymbol result(m_rows, other.m_cols);
+  SystemSymbol result(m_rows,
+                      other.m_cols,
+                      m_output_clusters,
+                      other.m_input_clusters);
 
   for (int i = 0; i < result.rows(); ++i) {
     for (int j = 0; j < result.cols(); ++j) {
@@ -87,7 +91,7 @@ SystemSymbol SystemSymbol::operator* (const SystemSymbol& other) const
 
 SystemSymbol SystemSymbol::operator+ (const SystemSymbol& other) const
 {
-  SystemSymbol result(m_rows, m_cols);
+  SystemSymbol result(m_rows, m_cols, m_output_clusters, m_input_clusters);
 
   for (int i = 0; i < m_rows; ++i) {
     for (int j = 0; j < m_cols; ++j) {
@@ -100,7 +104,10 @@ SystemSymbol SystemSymbol::operator+ (const SystemSymbol& other) const
 
 SystemSymbol operator* (double scalar, const SystemSymbol& other)
 {
-  SystemSymbol result(other.m_rows, other.m_cols);
+  SystemSymbol result(other.m_rows,
+                      other.m_cols,
+                      other.m_output_clusters,
+                      other.m_input_clusters);
 
   for (int i = 0; i < other.m_rows; ++i) {
     for (int j = 0; j < other.m_cols; ++j) {
@@ -110,28 +117,34 @@ SystemSymbol operator* (double scalar, const SystemSymbol& other)
   return result;
 }
 
+SystemClusterSymbol SystemSymbol::at(ArrayFi base_index) const
+{
+  SystemClusterSymbol aux(m_rows,
+        m_cols,
+        m_output_clusters.clusterShape(),
+        m_input_clusters.clusterShape());
+
+  for (int si = 0; si < m_rows; ++si) {
+    for (int sj = 0; sj < m_cols; ++sj) {
+      aux.setCluster(si, sj, (*this)(si, sj).getCluster(base_index));
+    }
+  }
+
+  return aux;
+}
+
 SystemSymbol SystemSymbol::inverse() const
 {
   SystemSymbol result(m_cols, m_rows, m_input_clusters, m_output_clusters);
 
   NdRange bases = baseIndices();
-  for (NdRange::iterator b = bases.begin();
-      b != bases.end(); ++b)
+  for (NdRange::iterator b = bases.begin(); b != bases.end(); ++b)
   {
-    SystemClusterSymbol aux(m_rows,
-        m_cols,
-        m_output_clusters.clusterShape(),
-        m_input_clusters.clusterShape());
-
-    for (int si = 0; si < m_rows; ++si) {
-      for (int sj = 0; sj < m_cols; ++sj) {
-        aux.setCluster(si, sj, (*this)(si, sj).getCluster(*b));
-      }
-    }
+    SystemClusterSymbol aux = at(*b);
 
     SystemClusterSymbol aux_inv = aux.inverse();
 
-    // Assert that we really compted the inverse
+    // Assert that we really computed the inverse
     MatrixXcd expected_id = aux_inv.matrix() * aux.matrix();
     if ( (expected_id -
           MatrixXcd::Identity(aux.matrix().rows(),
@@ -151,8 +164,40 @@ SystemSymbol SystemSymbol::inverse() const
   return result;
 }
 
+double SystemSymbol::spectral_radius() const
+{
+  vector<double> max_evs;
 
-double SystemSymbol::norm() const
+  NdRange bases = baseIndices();
+  for (NdRange::iterator b = bases.begin(); b != bases.end(); ++b)
+  {
+    SystemClusterSymbol aux = at(*b);
+
+    max_evs.push_back(
+      abs(eigenvalue_max_magnitude(aux.matrix())));
+  }
+
+  return *max_element(max_evs.begin(), max_evs.end());
+}
+
+double SystemSymbol::spectral_norm() const
+{
+  vector<double> max_evs;
+
+  NdRange bases = baseIndices();
+  for (NdRange::iterator b = bases.begin(); b != bases.end(); ++b)
+  {
+    SystemClusterSymbol aux = at(*b);
+
+    max_evs.push_back(
+      abs(eigenvalue_max_magnitude(aux.matrix().adjoint()
+                                   * aux.matrix())));
+  }
+
+  return *max_element(max_evs.begin(), max_evs.end());
+}
+
+double SystemSymbol::system_norm() const
 {
   double norm_sq = 0;
 
@@ -162,6 +207,39 @@ double SystemSymbol::norm() const
     }
   }
   return sqrt(norm_sq);
+}
+
+SystemSymbol combine_symbols_into_system(
+  const SystemSymbolProperties& properties,
+  const MatrixContainer<Symbol>& symbols)
+{
+  if (symbols.rows() <= 0 || symbols.cols() <= 0) {
+    throw std::logic_error("Rows or columns of symbol matrix are zero, which "
+                           "is not allowed");
+  }
+
+  HarmonicClusters output_clusters
+    = make_harmonic_cluster(symbols(0,0).outputClusters().shape(),
+                            properties.element_properties().output());
+
+  HarmonicClusters input_clusters
+    = make_harmonic_cluster(symbols(0,0).inputClusters().shape(),
+                            properties.element_properties().input());
+
+  SystemSymbol symbol(symbols.rows(),
+                      symbols.cols(),
+                      output_clusters,
+                      input_clusters);
+
+  for (int i=0; i < symbols.rows(); ++i) {
+    for (int j=0; j < symbols.cols(); ++j) {
+      ArrayFi factor = input_clusters.clusterShape()
+                        / symbols(i,j).inputClusters().clusterShape();
+      symbol(i,j) = symbols(i,j).expand(factor);
+    }
+  }
+
+  return symbol;
 }
 
 

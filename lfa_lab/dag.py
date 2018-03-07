@@ -18,6 +18,8 @@
 from .core import *
 from .util import NdArray
 import numpy as np
+from abc import ABCMeta, abstractmethod
+from six import with_metaclass
 
 __all__ = [
     'StencilNode',
@@ -28,7 +30,7 @@ __all__ = [
     'FlatRestritionNode',
     'ZeroNode',
     'HpFilterNode',
-    'LpFilterNode'
+    'SystemNode'
 ]
 
 default_resolution = 32
@@ -82,6 +84,13 @@ class Node(object):
         :rtype: Node
         """
         return NodeAdjoint(self)
+
+    def __getitem__(self, index):
+        """Access the element of a system.
+
+        :rtype: Node
+        """
+        return NodeSubscript(self, index)
 
     @property
     def output_grid(self):
@@ -167,33 +176,84 @@ class Node(object):
 
         return symbol
 
+class Splitable(with_metaclass(ABCMeta)):
 
-class IdentityNode(Node):
+    @abstractmethod
+    def matching_identity(self):
+        pass
+
+    @abstractmethod
+    def matching_zero(self):
+        pass
+
+    @abstractmethod
+    def diag(self):
+        pass
+
+    @abstractmethod
+    def upper(self):
+        pass
+
+    @abstractmethod
+    def lower(self):
+        pass
+
+class IdentityNode(Node, Splitable):
     """The identity on a certain grid."""
 
     def __init__(self, grid):
         super(IdentityNode, self).__init__()
-        self._grid = grid
+        self.grid = grid
         self.dependencies = []
 
         domain = SplitFrequencyDomain(grid)
         self.properties = FoProperties(domain, domain)
 
     def compute_symbol(self):
-        self._symbol = Symbol.Identity(self._grid, self.configuration)
+        self._symbol = Symbol.Identity(self.grid, self.configuration)
+
+    def matching_identity(self):
+        return self
+
+    def matching_zero(self):
+        return ZeroNode(self.grid)
+
+    def diag(self):
+        return self
+
+    def upper(self):
+        return ZeroNode(self.grid)
+
+    def lower(self):
+        return ZeroNode(self.grid)
 
 class ZeroNode(Node):
 
     def __init__(self, grid):
         super(ZeroNode, self).__init__()
-        self._grid = grid
+        self.grid = grid
         self.dependencies = []
 
         domain = SplitFrequencyDomain(grid)
         self.properties = FoProperties(domain, domain)
 
     def compute_symbol(self):
-        self._symbol = Symbol.Zero(self._grid, self.configuration)
+        self._symbol = Symbol.Zero(self.grid, self.configuration)
+
+    def matching_identity(self):
+        return IdentityNode(self.grid)
+
+    def matching_zero(self):
+        self
+
+    def diag(self):
+        return self
+
+    def upper(self):
+        return self
+
+    def lower(self):
+        return self
 
 class GeneratorNode(Node):
     """
@@ -228,6 +288,16 @@ class StencilNode(GeneratorNode):
         self.grid = grid
 
         super(StencilNode, self).__init__(gen)
+
+    def matching_identity(self):
+        """An identity operator that has the same output and input grid as the
+        current one."""
+        return IdentityNode(self.grid)
+
+    def matching_zero(self):
+        """A zero operator that has the same output and input grid as the
+        current one."""
+        return ZeroNode(self.grid)
 
     def diag(self):
         """A stencil operator that was constructed using the diagonal entries
@@ -322,7 +392,17 @@ class NodeAdjoint(Node):
     def compute_symbol(self):
         self._symbol = self._other._symbol.adjoint()
 
+class NodeSubscript(Node):
+    def __init__(self, container_node, index):
+        super(NodeSubscript, self).__init__()
 
+        self._container_node = container_node
+        self._index = index
+        self.dependencies = [container_node]
+        self.properties = container_node.properties.element_properties()
+
+    def compute_symbol(self):
+        self._symbol = self._container_node._symbol[self._index]
 
 class BlockNode(Node):
 
@@ -387,11 +467,85 @@ class HpFilterNode(GeneratorNode):
         super(HpFilterNode, self).__init__(
                 HpFilterSb(fine_grid, coarse_grid))
 
+class SystemNode(Node,Splitable):
+    """System of symbols.
 
-def LpFilterNode(fine_grid, coarse_grid):
-    """Low pass filter symbol."""
-    I = IdentityNode(fine_grid)
-    HP = HpFilterNode(fine_grid, coarse_grid)
-    return I - HP
+    :param entries: The entries as a list of lists.
+    """
+
+    def __init__(self, entries):
+        super(SystemNode, self).__init__()
+
+        ps = FoPropertiesMatrix(len(entries), len(entries[0]))
+        self.dependencies = []
+        for i in range(ps.rows()):
+            assert(len(entries[i]) == ps.cols())
+            for j in range(ps.cols()):
+                ps[i,j] = entries[i][j].properties
+                self.dependencies.append(entries[i][j])
+
+        self._entries = entries
+        self.properties = properties_of_symbol_system(ps)
+
+    def compute_symbol(self):
+        s = SymbolMatrix(self.properties.rows(), self.properties.cols())
+        for i in range(self.properties.rows()):
+            for j in range(self.properties.cols()):
+                s[i,j] = self._entries[i][j]._symbol
+
+        self._symbol = combine_symbols_into_system(self.properties, s)
+
+    @property
+    def grid(self):
+        return self._entries[0][0].grid
+
+    def matching_identity(self):
+        I = self._entries[0][0].matching_identity()
+        Z = self._entries[0][0].matching_zero()
+        assert(I is not None)
+        assert(Z is not None)
+
+        def entry(i,j):
+            if i == j:
+                return I
+            else:
+                return Z
+
+        def row(i):
+            return [ entry(i,j) for j in range(self.properties.cols()) ]
+
+        new_entries = [ row(i) for i in range(self.properties.rows()) ]
+        return SystemNode(new_entries)
+
+    def matching_zero(self):
+        Z = self._entries[0][0].matching_zero()
+
+        new_entries = [ [ Z for j in range(self.properties.rows()) ]
+                        for j in range(self.properties.cols()) ]
+        return SystemNode(new_entries)
+
+    def diag(self):
+        new_entries = []
+        for i, row in enumerate(self._entries):
+            new_row = []
+            for j, entry in enumerate(row):
+                if i == j:
+                    new_row.append(entry.diag())
+                else:
+                    new_row.append(ZeroNode(entry.grid))
+            new_entries.append(new_row)
+        return SystemNode(new_entries)
+
+    def elementwise_diag(self):
+        new_entries = \
+            map(lambda l: map(lambda e: e.diag(), l), self._entries)
+
+        return SystemNode(new_entries)
+
+    def upper(self):
+        pass
+
+    def lower(self):
+        pass
 
 

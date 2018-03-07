@@ -28,6 +28,10 @@ namespace lfa {
   using namespace Eigen;
   using std::complex;
 
+  /** Compute the eigenvalue with largest magnitude.
+   *
+   * An Arnoldi method is used if ARPACK support is enabled.
+   */
   complex<double> eigenvalue_max_magnitude(const MatrixXcd& M);
 }
 

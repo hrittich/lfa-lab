@@ -70,7 +70,7 @@ namespace lfa {
       SplitFrequencyDomain expand(ArrayFi factor) const;
 
       /** Compute the least common coupling of this and other. */
-      ArrayFi lcc(const SplitFrequencyDomain& other);
+      ArrayFi lcc(const SplitFrequencyDomain& other) const;
     private:
       Grid m_grid;
       ArrayFi m_cluster_shape;

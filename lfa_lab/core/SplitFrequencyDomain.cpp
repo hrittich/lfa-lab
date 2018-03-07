@@ -76,7 +76,7 @@ namespace lfa {
     return SplitFrequencyDomain(m_grid, m_cluster_shape * factor);
   }
 
-  ArrayFi SplitFrequencyDomain::lcc(const SplitFrequencyDomain& other)
+  ArrayFi SplitFrequencyDomain::lcc(const SplitFrequencyDomain& other) const
   {
     return lcm(m_cluster_shape, other.m_cluster_shape);
   }

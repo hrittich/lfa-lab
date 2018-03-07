@@ -113,9 +113,14 @@ class Symbol {
         iterator begin();
         iterator end();
     private:
+        /** The number (shape) of the rows and the number (shape) of sampling
+         * points. */
         HarmonicClusters m_output_clusters;
 
+        /** The number (shape) of columns and the number (shape) of sampling
+         * points. */
         HarmonicClusters m_input_clusters;
+
         BdMatrix m_store;
 };
 

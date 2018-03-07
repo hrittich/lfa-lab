@@ -1,4 +1,6 @@
 /*
+  vim: set filetype=cpp:
+
   LFA Lab - Library to simplify local Fourier analysis.
   Copyright (C) 2018  Hannah Rittich
 
@@ -17,30 +19,34 @@
   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
-#ifndef SAMPLING_PROPERTIES_H
-#define SAMPLING_PROPERTIES_H
 
-#include "Common.h"
-#include "Grid.h"
+template <typename T>
+class MatrixContainer
+{
+  public:
+    MatrixContainer(int nrows = 0, int ncols = 0);
 
-namespace lfa {
+    T& operator() (int row, int col);
 
-  class SamplingProperties {
-    public:
-      /** Set finest_resolution and compute the default base_frequency.
-       * @param grid Is an arbitrary grid from the grid hierarchy.
-       */
-      SamplingProperties(ArrayFi finest_resolution, Grid grid);
-      SamplingProperties(ArrayFi finest_resolution, ArrayFd base_frequency);
+    void resize(int rows, int cols);
 
-      /** Resolution on the finest grid. */
-      const ArrayFi& finest_resolution() const { return m_finest_resolution; }
-      const ArrayFd& base_frequency() const { return m_base_frequency; }
-    private:
-      ArrayFi m_finest_resolution; /// < The resolution on the finest grid.
-      ArrayFd m_base_frequency;
-  };
+    int rows() const;
+    int cols() const;
 
-}
+    bool empty() const;
 
-#endif // SAMPLING_PROPERTIES_H
+    %extend {
+      T __getitem__(int i, int j) {
+        return (*$self)(i, j);
+      }
+
+      void __setitem__(ArrayFi p, T value) {
+        if (p.rows() != 2) {
+          throw std::logic_error("Invalid index length.");
+        }
+        (*$self)(p[0], p[1]) = value;
+      }
+    }
+};
+
+

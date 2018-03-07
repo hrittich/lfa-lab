@@ -19,6 +19,7 @@
 
 #include "HarmonicClusters.h"
 #include "MathUtil.h"
+#include "SplitFrequencyDomain.h"
 
 namespace lfa {
 
@@ -98,7 +99,6 @@ namespace lfa {
     result_cluster_index = result_clusters.clusterIndex(global);
   }
 
-
   HarmonicClusters HarmonicClusters::minContainer(const HarmonicClusters& other) const
   {
     ArrayFi l = lcm(this->clusterIndices().shape(),
@@ -119,6 +119,19 @@ namespace lfa {
     }
 
     return expanded.m_cluster_shape / m_cluster_shape;
+  }
+
+  HarmonicClusters make_harmonic_cluster(ArrayFi shape,
+                                         const SplitFrequencyDomain &domain)
+  {
+    if ((shape.binaryExpr(domain.clusterShape(), std::modulus<int>())
+           != ArrayFi::Zero(domain.dimension())).any())
+    {
+      throw logic_error("Split frequency domain is incopatible with resolution.");
+    }
+
+    return HarmonicClusters(shape / domain.clusterShape(),
+                            domain.clusterShape());
   }
 
 

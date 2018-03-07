@@ -29,5 +29,6 @@
 #include <lfa_lab/core/FoStencil.h>
 #include <lfa_lab/core/ConstantSb.h>
 #include <lfa_lab/core/HpFilterSb.h>
+#include <lfa_lab/core/SystemSymbolProperties.h>
 
 #endif

@@ -117,7 +117,7 @@ TEST(SystemSymbol, norm_identity)
 
     double expect = sqrt(clusters.size() * S.rows());
 
-    EXPECT_EQ(expect, S.norm());
+    EXPECT_EQ(expect, S.system_norm());
 }
 
 
@@ -159,9 +159,9 @@ TEST(SystemSymbol, MatMultPermut)
     SystemSymbol result = P_T * P;
     SystemSymbol I = SystemSymbol::Identity(P.rows(), P.cols(), clusters, clusters);
 
-    EXPECT_LE( (I - result).norm(), 1e-12 );
+    EXPECT_LE( (I - result).system_norm(), 1e-12 );
 
-    EXPECT_LE( (P_T - P.inverse()).norm(), 1e-12);
+    EXPECT_LE( (P_T - P.inverse()).system_norm(), 1e-12);
 }
 
 TEST(SystemSymbol, ConstDiagBlock)
@@ -185,7 +185,7 @@ TEST(SystemSymbol, ConstDiagBlock)
     expected(1, 0) =  3.0/2 * I;
     expected(1, 1) = -1.0/2 * I;
 
-    EXPECT_LE( (expected - sym.inverse()).norm(), 1e-12 );
+    EXPECT_LE( (expected - sym.inverse()).system_norm(), 1e-12 );
 
 
     // Test Multiplication
@@ -200,7 +200,7 @@ TEST(SystemSymbol, ConstDiagBlock)
     expected(1, 0) = 43 * I;
     expected(1, 1) = 50 * I;
 
-    EXPECT_LE( (expected - sym * sym2).norm(), 1e-12 );
+    EXPECT_LE( (expected - sym * sym2).system_norm(), 1e-12 );
 }
 
 TEST(SystemSymbol, inverse)
@@ -219,7 +219,7 @@ TEST(SystemSymbol, inverse)
     SystemSymbol result = sym_inv * sym;
     SystemSymbol I = SystemSymbol::Identity(sym.rows(), sym.cols(), clusters, clusters);
 
-    EXPECT_LE( (I - result).norm(), 1e-12);
+    EXPECT_LE( (I - result).system_norm(), 1e-12);
 }
 
 

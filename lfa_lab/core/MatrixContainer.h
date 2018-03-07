@@ -14,7 +14,7 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. 
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
 #ifndef LFA_MATRIX_CONTAINER_H
@@ -24,61 +24,61 @@
 
 namespace lfa {
 
-template <typename T>
-class MatrixContainer
-{
+  template <typename T>
+  class MatrixContainer
+  {
     public:
-        MatrixContainer(int nrows = 0, int ncols = 0)
-         :  m_store(nrows, vector<T>(ncols)),
-            m_nrows(nrows),
-            m_ncols(ncols)
-        {}
+      MatrixContainer(int nrows = 0, int ncols = 0)
+        :  m_store(nrows, vector<T>(ncols)),
+        m_nrows(nrows),
+        m_ncols(ncols)
+      {}
 
-        template <typename R>
-        MatrixContainer(const MatrixContainer<R>& rhs)
-         :  m_nrows(0), m_ncols(0)
+      template <typename R>
+      MatrixContainer(const MatrixContainer<R>& rhs)
+      :  m_nrows(0), m_ncols(0)
+      {
+        resize(rhs.rows(), rhs.cols());
+
+        for (int i = 0; i < rows(); ++i) {
+          for (int j = 0; j < cols(); ++j) {
+            (*this)(i,j) = rhs(i,j);
+          }
+        }
+      }
+
+      T& operator() (int row, int col) {
+        return m_store[row][col];
+      }
+
+      const T& operator() (int row, int col) const {
+        return m_store[row][col];
+      }
+
+      void resize(int rows, int cols)
+      {
+        m_nrows = rows;
+        m_ncols = cols;
+
+        m_store.resize(rows);
+        for (int i = 0; i < rows; ++i)
         {
-            resize(rhs.rows(), rhs.cols());
-
-            for (int i = 0; i < rows(); ++i) {
-                for (int j = 0; j < cols(); ++j) {
-                    (*this)(i,j) = rhs(i,j);
-                }
-            }
+          m_store[i].resize(cols);
         }
+      }
 
-        T& operator() (int row, int col) {
-            return m_store[row][col];
-        }
+      int rows() const { return m_nrows; }
+      int cols() const { return m_ncols; }
 
-        const T& operator() (int row, int col) const {
-            return m_store[row][col];
-        }
-
-        void resize(int rows, int cols)
-        {
-            m_nrows = rows;
-            m_ncols = cols;
-
-            m_store.resize(rows);
-            for (int i = 0; i < rows; ++i)
-            {
-                m_store[i].resize(cols);
-            }
-        }
-
-        int rows() const { return m_nrows; }
-        int cols() const { return m_ncols; }
-
-        bool empty() const {
-            return (rows() == 0 || cols() == 0);
-        }
+      bool empty() const {
+        return (rows() == 0 || cols() == 0);
+      }
     private:
-        vector< vector<T> > m_store;
+      vector< vector<T> > m_store;
 
-        int m_nrows;
-        int m_ncols;
-};
+      int m_nrows;
+      int m_ncols;
+  };
 
 }
 

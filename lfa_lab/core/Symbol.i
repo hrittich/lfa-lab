@@ -1,4 +1,6 @@
 /*
+  vim: set filetype=cpp:
+
   LFA Lab - Library to simplify local Fourier analysis.
   Copyright (C) 2018  Hannah Rittich
 
@@ -14,10 +16,8 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. 
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
-
-// vim: set filetype=cpp:
 
 %feature("autodoc", "Approximation of a matrix symbols.") Symbol;
 %feature("autodoc",
@@ -66,6 +66,9 @@ class Symbol {
             def symbol(self):
                 return self
         }
+
+        const HarmonicClusters& outputClusters() const;
+        const HarmonicClusters& inputClusters() const;
 };
 
 %extend Symbol {

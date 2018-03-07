@@ -23,7 +23,8 @@ from .operator import *
 __all__ = [
     'jacobi',
     'gs_lex',
-    'rb_jacobi'
+    'rb_jacobi',
+    'collective_jacobi'
 ]
 
 def jacobi(op, weight=1.0):
@@ -38,13 +39,19 @@ def jacobi(op, weight=1.0):
     :param StencilNode op: The original operator :math:`A`.
     :param weight: The weight :math:`\omega`.
     """
-    grid = op.grid
-
     A = op
-    I = identity(grid)
-    D = A.diag()
+    I = op.matching_identity()
+    D = op.diag()
 
     return (I - weight * D.inverse() * A)
+
+def collective_jacobi(op, weight=1.0):
+    A = op
+    I = op.matching_identity()
+    D = op.elementwise_diag()
+
+    return (I - weight * D.inverse() * A)
+
 
 def gs_lex(op):
     """The Gauss-Seidel lexicographic smoother.
@@ -62,7 +69,7 @@ def gs_lex(op):
     grid = op.grid
 
     A = op
-    I = identity(grid)
+    I = op.matching_identity()
     D = op.diag()
     L = op.lower()
 

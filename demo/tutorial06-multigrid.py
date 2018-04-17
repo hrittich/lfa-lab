@@ -34,4 +34,4 @@ def multigrid(level, fine_grid):
 fine_grid = Grid(2, [1.0/32, 1.0/32])
 E, L = multigrid(3, fine_grid)
 
-print(E.symbol().spectral_radius())
+print((E.symbol().spectral_radius()))

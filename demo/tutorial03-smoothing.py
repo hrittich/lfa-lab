@@ -16,4 +16,4 @@ F = operator.hp_filter(fine, coarse)
 # removed from the spectrum.
 E = F * S
 
-print(E.symbol().spectral_radius())
+print((E.symbol().spectral_radius()))

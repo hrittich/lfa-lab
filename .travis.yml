@@ -20,13 +20,13 @@ matrix:
     # In source build
     - script:
       - alias python=python3
-      - cmake -DCMAKE_CXX_COMPILER=g++-6 .
+      - cmake -DCMAKE_CXX_COMPILER=g++-6 -DPYTHON_EXECUTABLE=`which python3` .
       - make
     # Out of source build
     - script:
       - alias python=python3
       - mkdir build
       - cd build
-      - cmake -DCMAKE_CXX_COMPILER=g++-6 ../
+      - cmake -DCMAKE_CXX_COMPILER=g++-6 -DPYTHON_EXECUTABLE=`which python3` ../
       - make
 

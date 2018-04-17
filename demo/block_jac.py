@@ -1,4 +1,4 @@
-from __future__ import division
+
 from lfa_lab import *
 from lfa_lab.plot import *
 from lfa_lab.gallery import *

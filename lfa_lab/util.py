@@ -15,9 +15,6 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-from __future__ import division
-from future_builtins import zip
-
 import numpy as np
 from .core import NdRange
 
@@ -165,16 +162,16 @@ class NdArray:
         # map over a nested list (tree) of depth d
         def map_tree(d, entries):
             if d == 1:
-                return map(f, entries)
+                return list(map(f, entries))
             else:
-                return map(lambda e: map_tree(d-1, e), entries)
+                return [map_tree(d-1, e) for e in entries]
         return map_tree(self.dim, self._entries)
 
 
 
 def _test():
     a = NdArray([[[1, 2], [3, 4]], [[5, 6], [7, 8]]])
-    print(a.dim)
+    print((a.dim))
     a[1,0,1] = 99
     print(a)
 

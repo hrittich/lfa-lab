@@ -21,7 +21,7 @@ omega = 0.8
 I = operator.identity(grid)
 E = (I - omega * D.inverse() * A)
 
-print(E.symbol().spectral_radius())
+print((E.symbol().spectral_radius()))
 
 plot.plot_2d(E, norm_type='output')
 plt.show()

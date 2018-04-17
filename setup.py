@@ -52,7 +52,7 @@ class install_cmake(Command):
             for line in in_fp:
                 outputs.append(line.strip('\n\r'))
 
-        print('Outputs returned by CMake: {}'.format(outputs))
+        print(('Outputs returned by CMake: {}'.format(outputs)))
         return outputs
 
 class build_cmake(Command):

@@ -17,7 +17,7 @@
 
 """ Produces a report for an operator """
 
-import plot
+from . import plot
 import numpy as np
 
 try:
@@ -37,16 +37,16 @@ def print_report(E, title=''):
     if len(title) > 0:
         print('')
         print(title)
-        print('=' * len(title))
+        print(('=' * len(title)))
         print('')
-    print('r(E)       = {0}'.format(smpl.spectral_radius()))
-    print('|| E ||    = {0}'.format(smpl.spectral_norm()))
-    print('Coupling   = {} x {}'.format(
+    print(('r(E)       = {0}'.format(smpl.spectral_radius())))
+    print(('|| E ||    = {0}'.format(smpl.spectral_norm())))
+    print(('Coupling   = {} x {}'.format(
         np.array(smpl.output_coupling_shape()),
-        np.array(smpl.input_coupling_shape())))
-    print('Resolution = {} x {}'.format(
+        np.array(smpl.input_coupling_shape()))))
+    print(('Resolution = {} x {}'.format(
         np.array(smpl.output_shape()),
-        np.array(smpl.input_shape())))
+        np.array(smpl.input_shape()))))
 
 
     if smpl.dimension() == 1:
@@ -63,8 +63,8 @@ def print_report(E, title=''):
         plt.title('{} (input)'.format(title))
 
     else:
-        print('I am sorry. I can not plot {}-dimensional data.'
-                .format(smpl.dimension()))
+        print(('I am sorry. I can not plot {}-dimensional data.'
+                .format(smpl.dimension())))
 
 def save_report(E, file_name_prefix, title='', standalone=False):
     r"""Store a report about an operator as a LaTeX file.

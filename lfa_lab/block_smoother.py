@@ -17,7 +17,7 @@
 
 """This module contains methods for construction block smoothers."""
 
-from __future__ import division
+
 
 from .util import *
 from .core import *

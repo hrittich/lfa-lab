@@ -13,4 +13,4 @@ S = jacobi(L, 0.8)
 symbol = S.symbol()
 
 # Print spectral radius of S.
-print(symbol.spectral_radius())
+print((symbol.spectral_radius()))

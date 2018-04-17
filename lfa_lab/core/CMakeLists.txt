@@ -82,7 +82,7 @@ add_custom_command(
         ${CMAKE_CURRENT_BINARY_DIR}/extension.cpp
         ${CMAKE_CURRENT_BINARY_DIR}/extension.py
     COMMAND
-        ${SWIG_EXECUTABLE} ARGS -c++ -python
+        ${SWIG_EXECUTABLE} ARGS -c++ -python -py3
         -o ${CMAKE_CURRENT_BINARY_DIR}/extension.cpp
         "${CMAKE_CURRENT_SOURCE_DIR}/lfa.i"
     MAIN_DEPENDENCY ${CMAKE_CURRENT_SOURCE_DIR}/lfa.i

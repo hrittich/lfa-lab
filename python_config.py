@@ -10,9 +10,9 @@ def cmake_list(l):
     return ';'.join(l)
 
 def cmake_set_cache(name, value, ctype, doc):
-    print('set({0} "{1}" CACHE {2} "{3}")'.format(name, value, ctype, doc))
+    print(('set({0} "{1}" CACHE {2} "{3}")'.format(name, value, ctype, doc)))
 def cmake_set(name, value):
-    print('set({0} "{1}")'.format(name, value))
+    print(('set({0} "{1}")'.format(name, value)))
 
 # print all NumPy include directories
 ds = numpy.distutils.misc_util.get_numpy_include_dirs()

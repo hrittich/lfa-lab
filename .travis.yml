@@ -8,12 +8,12 @@ addons:
     packages:
     - g++-6
     - cmake
-    - python-dev
-    - python-numpy-dev
+    - python3-dev
+    - python3-numpy-dev
     - swig
     - libeigen3-dev
     - liblapack-dev
-    - python-matplotlib
+    - python3-matplotlib
 
 matrix:
   include:

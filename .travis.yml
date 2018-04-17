@@ -19,10 +19,12 @@ matrix:
   include:
     # In source build
     - script:
+      - alias python=python3
       - cmake -DCMAKE_CXX_COMPILER=g++-6 .
       - make
     # Out of source build
     - script:
+      - alias python=python3
       - mkdir build
       - cd build
       - cmake -DCMAKE_CXX_COMPILER=g++-6 ../

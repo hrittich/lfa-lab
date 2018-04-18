@@ -37,7 +37,7 @@ def print_report(E, title=''):
     if len(title) > 0:
         print('')
         print(title)
-        print(('=' * len(title)))
+        print('=' * len(title))
         print('')
     print(('r(E)       = {0}'.format(smpl.spectral_radius())))
     print(('|| E ||    = {0}'.format(smpl.spectral_norm())))

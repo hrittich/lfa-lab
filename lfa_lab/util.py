@@ -162,7 +162,7 @@ class NdArray:
         # map over a nested list (tree) of depth d
         def map_tree(d, entries):
             if d == 1:
-                return list(map(f, entries))
+                return map(f, entries)
             else:
                 return map(lambda e: map_tree(d-1, e), entries)
         return map_tree(self.dim, self._entries)

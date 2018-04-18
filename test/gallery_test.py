@@ -26,7 +26,8 @@ class GalleryTest(TestCase):
 
     def test_ml_interpolation_2(self):
         grid = lfa_lab.Grid(2)
-        s = ml_interpolation_stencil(grid)
+        coarse_grid = grid.coarse((2,2))
+        s = ml_interpolation_stencil(grid, coarse_grid)
 
         expect = [ 1/4, 2/4, 1/4,
                    2/4, 4/4, 2/4,
@@ -37,7 +38,8 @@ class GalleryTest(TestCase):
 
     def test_ml_interpolation_3(self):
         grid = lfa_lab.Grid(3)
-        s = ml_interpolation_stencil(grid)
+        coarse_grid = grid.coarse((2,2,2))
+        s = ml_interpolation_stencil(grid, coarse_grid)
 
         expect = [
             1.0/8, 1.0/4, 1.0/8,
@@ -59,7 +61,8 @@ class GalleryTest(TestCase):
 
     def test_fw_restriction_2(self):
         grid = lfa_lab.Grid(2)
-        s = fw_restriction_stencil(grid)
+        coarse_grid = grid.coarse((2,2))
+        s = fw_restriction_stencil(grid, coarse_grid)
 
         expect = [
             0.0625, 0.125, 0.0625,
@@ -71,7 +74,8 @@ class GalleryTest(TestCase):
 
     def test_fw_restriction_3(self):
         grid = lfa_lab.Grid(3)
-        s = fw_restriction_stencil(grid)
+        coarse_grid = grid.coarse((2,2,2))
+        s = fw_restriction_stencil(grid, coarse_grid)
 
         expect = [
             1.0/64, 2.0/64, 1.0/64,

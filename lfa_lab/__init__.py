@@ -15,14 +15,14 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-from .core import *
-from .dag import *
-from .stencil import *
-from .smoother import *
-from .two_grid import *
-from .block_smoother import *
-from .report import *
+from lfa_lab.core import *
+from lfa_lab.dag import *
+from lfa_lab.stencil import *
+from lfa_lab.smoother import *
+from lfa_lab.two_grid import *
+from lfa_lab.block_smoother import *
+from lfa_lab.report import *
 
-from . import gallery
-from . import operator
+from lfa_lab import gallery
+from lfa_lab import operator
 

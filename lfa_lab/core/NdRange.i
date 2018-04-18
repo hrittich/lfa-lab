@@ -19,7 +19,7 @@
 
 // vim: set filetype=cpp:
 
-%exception PyNdRangeIterator::next {
+%exception PyNdRangeIterator::__next__ {
     try {
         $action
     }
@@ -41,7 +41,7 @@ class stop_iteration : public std::exception { };
                 m_pos(grid.begin())
             { }
 
-            ArrayFi next() {
+            ArrayFi __next__() {
                 if (m_pos == m_grid.end())
                     throw stop_iteration();
 

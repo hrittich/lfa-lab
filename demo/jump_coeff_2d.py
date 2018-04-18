@@ -1,4 +1,4 @@
-from __future__ import division
+
 import lfa_lab
 from lfa_lab import *
 from lfa_lab.plot import plot_2d

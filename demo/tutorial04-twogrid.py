@@ -21,4 +21,4 @@ cgc = coarse_grid_correction(
 # Apply one pre- and one post-smoothing step.
 E = S * cgc * S
 
-print(E.symbol().spectral_radius())
+print((E.symbol().spectral_radius()))

@@ -56,4 +56,4 @@ cgc = coarse_grid_correction(
         restriction = R)
 E = S * cgc * S
 
-print(E.symbol().spectral_radius())
+print((E.symbol().spectral_radius()))

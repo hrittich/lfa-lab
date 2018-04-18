@@ -63,8 +63,8 @@ def print_report(E, title=''):
         plt.title('{} (input)'.format(title))
 
     else:
-        print(('I am sorry. I can not plot {}-dimensional data.'
-                .format(smpl.dimension())))
+        print('I am sorry. I can not plot {}-dimensional data.'
+                .format(smpl.dimension()))
 
 def save_report(E, file_name_prefix, title='', standalone=False):
     r"""Store a report about an operator as a LaTeX file.

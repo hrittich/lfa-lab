@@ -27,8 +27,8 @@ scripts = [
 ]
 
 for s in scripts:
-    print(('=' * 80))
-    print(('Running {}'.format(s)))
+    print('=' * 80)
+    print('Running {}'.format(s))
     with open(s, 'r') as fp:
         exec(fp.read())
 

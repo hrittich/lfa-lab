@@ -164,14 +164,14 @@ class NdArray:
             if d == 1:
                 return list(map(f, entries))
             else:
-                return [map_tree(d-1, e) for e in entries]
+                return map(lambda e: map_tree(d-1, e), entries)
         return map_tree(self.dim, self._entries)
 
 
 
 def _test():
     a = NdArray([[[1, 2], [3, 4]], [[5, 6], [7, 8]]])
-    print((a.dim))
+    print(a.dim)
     a[1,0,1] = 99
     print(a)
 

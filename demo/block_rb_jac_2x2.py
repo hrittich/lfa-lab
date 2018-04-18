@@ -39,7 +39,7 @@ J = (I - D.inverse() * A)
 # Define the RB-Jacobi error propagator
 E = (FR + FB * J) * (FB + FR * J)
 
-print((E.symbol().spectral_radius()))
+print(E.symbol().spectral_radius())
 
 plot.plot_2d(E, norm_type='output')
 plt.show()

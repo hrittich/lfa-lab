@@ -437,7 +437,7 @@ class BlockNode(Node):
 
 
 # ToDo: Remove this class.
-class PeriodicStencilNode(BlockNode):
+class PeriodicStencilNode(BlockNode, Splitable):
 
     def __init__(self, stencils, grid):
         # convert all stencils to symbols
@@ -446,6 +446,12 @@ class PeriodicStencilNode(BlockNode):
         ops = stencils.entries.map(lambda s: StencilNode(s, grid))
 
         super(PeriodicStencilNode, self).__init__(ops)
+
+    def matching_identity(self):
+        return IdentityNode(self.grid)
+
+    def matching_zero(self):
+        return ZeroNode(self.grid)
 
     def diag(self):
         """Diagonal part of the stencil."""
@@ -538,7 +544,7 @@ class SystemNode(Node,Splitable):
 
     def elementwise_diag(self):
         new_entries = \
-            map(lambda l: map(lambda e: e.diag(), l), self._entries)
+            list(map(lambda l: list(map(lambda e: e.diag(), l)), self._entries))
 
         return SystemNode(new_entries)
 

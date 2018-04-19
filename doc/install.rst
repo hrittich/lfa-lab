@@ -43,7 +43,7 @@ Debian
 To install the dependencies on Debian, run the following command::
 
   sudo apt-get install -y \
-      g++ cmake python-dev python-numpy-dev swig \
+      g++ cmake python-dev python-numpy-dev python-six swig \
       libeigen3-dev liblapack-dev python-matplotlib
 
 Fedora
@@ -52,7 +52,7 @@ Fedora
 To install the dependencies on Fedora, run the following command::
 
   sudo dnf install -y \
-      gcc-c++ cmake python2-devel python2-numpy swig \
+      gcc-c++ cmake python2-devel python2-numpy python-six swig \
       eigen3-devel lapack-devel python2-matplotlib
 
 Mac OS X

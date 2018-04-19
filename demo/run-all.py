@@ -1,3 +1,8 @@
+import matplotlib
+
+# non interactive graphics
+matplotlib.use('Agg')
+
 import matplotlib.pyplot as plt
 
 # turn interactive mode on, such that plt.show will not block

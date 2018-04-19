@@ -11,9 +11,12 @@ addons:
     - python-dev
     - python-numpy-dev
     - python-matplotlib
+    - python-six
+    - python-tk
     - python3-dev
     - python3-numpy-dev
     - python3-matplotlib
+    - python3-six
     - swig
     - libeigen3-dev
     - liblapack-dev
@@ -22,25 +25,30 @@ matrix:
   include:
     # Python2: In source build
     - script:
-      - cmake -DCMAKE_CXX_COMPILER=g++-6  .
-      - make
+      - (cmake -DCMAKE_CXX_COMPILER=g++-6 . && make)
+      - source setup-env.sh
+      - (cd test && python all.py)
+      - (cd demo && python run-all.py)
     # Python2: Out of source build
     - script:
       - mkdir build
-      - cd build
-      - cmake -DCMAKE_CXX_COMPILER=g++-6 ../
-      - make
+      - (cd build && cmake -DCMAKE_CXX_COMPILER=g++-6 ../ && make)
+      - source build/setup-env.sh
+      - (cd test && python all.py)
+      - (cd demo && python run-all.py)
     # Python3: In source build
     - script:
-      - alias python=python3
-      - cmake -DCMAKE_CXX_COMPILER=g++-6 -DPYTHON_EXECUTABLE=`which python3` .
-      - make
+      - (cmake -DCMAKE_CXX_COMPILER=g++-6 -DPYTHON_EXECUTABLE=`which python3` . && make)
+      - source setup-env.sh
+      - (cd test && python3 all.py)
+      - (cd demo && python3 run-all.py)
     # Python3: Out of source build
     - script:
       - alias python=python3
       - mkdir build
-      - cd build
-      - cmake -DCMAKE_CXX_COMPILER=g++-6 -DPYTHON_EXECUTABLE=`which python3` ../
-      - make
+      - (cd build && cmake -DCMAKE_CXX_COMPILER=g++-6 -DPYTHON_EXECUTABLE=`which python3` ../ && make)
+      - source build/setup-env.sh
+      - (cd test && python3 all.py)
+      - (cd demo && python3 run-all.py)
 
 

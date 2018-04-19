@@ -33,6 +33,12 @@
 class stop_iteration : public std::exception { };
 %}
 
+%pythoncode %{
+  import six
+  # derive the following class from six.Iterator
+  _object = six.Iterator
+%}
+
 %inline{
     class PyNdRangeIterator {
         public:
@@ -55,6 +61,10 @@ class stop_iteration : public std::exception { };
             NdRange::iterator m_pos;
     };
 }
+
+%pythoncode %{
+  _object = object
+%}
 
 class NdRange {
     public:

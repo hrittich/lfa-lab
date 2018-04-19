@@ -15,7 +15,6 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-
 function(ADD_PYTHON TARGET MODULE_PATH)
 
   foreach(_PYTHON_FILE ${ARGN})
@@ -48,7 +47,8 @@ function(ADD_PYTHON TARGET MODULE_PATH)
       OUTPUT ${_TARGET_FILE}
       COMMAND
         ${PYTHON_EXECUTABLE} ARGS -m py_compile ${_SOURCE_FILE}
-      DEPENDS ${_SOURCE_FILE})
+      DEPENDS ${_SOURCE_FILE}
+      WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
 
     install(FILES "${_SOURCE_FILE}" "${_TARGET_FILE}"
             DESTINATION ${PYTHON_INSTALL_DIR}/${MODULE_PATH})

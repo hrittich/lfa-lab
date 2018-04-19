@@ -75,6 +75,12 @@ if(WITH_TESTS)
     target_link_libraries(lfa_test lfa ${LIBS} ${GTEST_BOTH_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
 endif()
 
+if(PYTHON_VERSION_MAJOR EQUAL 3)
+  set(SWIG_PYTHON_VERSION_SWITCH "-py3")
+else()
+  set(SWIG_PYTHON_VERSION_SWITCH "")
+endif()
+
 # Create wrapper using Swig
 file(GLOB SWIG_INPUT_FILES *.i)
 add_custom_command(
@@ -82,7 +88,7 @@ add_custom_command(
         ${CMAKE_CURRENT_BINARY_DIR}/extension.cpp
         ${CMAKE_CURRENT_BINARY_DIR}/extension.py
     COMMAND
-        ${SWIG_EXECUTABLE} ARGS -c++ -python
+        ${SWIG_EXECUTABLE} ARGS -c++ -python ${SWIG_PYTHON_VERSION_SWITCH}
         -o ${CMAKE_CURRENT_BINARY_DIR}/extension.cpp
         "${CMAKE_CURRENT_SOURCE_DIR}/lfa.i"
     MAIN_DEPENDENCY ${CMAKE_CURRENT_SOURCE_DIR}/lfa.i

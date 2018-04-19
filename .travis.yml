@@ -25,30 +25,26 @@ matrix:
   include:
     # Python2: In source build
     - script:
-      - (cmake -DCMAKE_CXX_COMPILER=g++-6 . && make)
-      - source setup-env.sh
-      - (cd test && python all.py)
-      - (cd demo && python run-all.py)
+      - cmake -DCMAKE_CXX_COMPILER=g++-6 .
+      - make
+      - make check
     # Python2: Out of source build
     - script:
       - mkdir build
-      - (cd build && cmake -DCMAKE_CXX_COMPILER=g++-6 ../ && make)
-      - source build/setup-env.sh
-      - (cd test && python all.py)
-      - (cd demo && python run-all.py)
+      - (cd build && cmake -DCMAKE_CXX_COMPILER=g++-6 ../ )
+      - make -C build
+      - make -C build check
     # Python3: In source build
     - script:
-      - (cmake -DCMAKE_CXX_COMPILER=g++-6 -DPYTHON_EXECUTABLE=`which python3` . && make)
-      - source setup-env.sh
-      - (cd test && python3 all.py)
-      - (cd demo && python3 run-all.py)
+      - cmake -DCMAKE_CXX_COMPILER=g++-6 -DPYTHON_EXECUTABLE=`which python3` .
+      - make
+      - make check
     # Python3: Out of source build
     - script:
       - alias python=python3
       - mkdir build
-      - (cd build && cmake -DCMAKE_CXX_COMPILER=g++-6 -DPYTHON_EXECUTABLE=`which python3` ../ && make)
-      - source build/setup-env.sh
-      - (cd test && python3 all.py)
-      - (cd demo && python3 run-all.py)
+      - (cd build && cmake -DCMAKE_CXX_COMPILER=g++-6 -DPYTHON_EXECUTABLE=`which python3` ../ )
+      - make -C build
+      - make -C build check
 
 

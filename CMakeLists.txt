@@ -235,10 +235,6 @@ Install to ${PYTHON_INSTALL_DIR}
 configure_file(Config.h.in Config.h)
 include_directories(BEFORE ${CMAKE_BINARY_DIR})
 
-add_subdirectory(lfa_lab)
-add_subdirectory(doc)
-
-
 # Environment source file
 configure_file("setup-env.sh.in" "setup-env.sh")
 
@@ -260,4 +256,13 @@ add_custom_target(dist
   COMMAND ${CMAKE_COMMAND} -E remove_directory ${DIST_DIR})
 add_dependencies(dist sphinx-doc)
 
+
+# Target to run all checks
+add_custom_target(check)
+
+# Subdirectories
+add_subdirectory(lfa_lab)
+add_subdirectory(doc)
+add_subdirectory(test)
+add_subdirectory(demo)
 

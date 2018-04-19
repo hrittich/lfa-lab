@@ -252,6 +252,7 @@ add_custom_target(dist
     ${DIST_DIR}/doc/html/publications
   COMMAND ${CMAKE_COMMAND} -E remove_directory
     ${DIST_DIR}/doc/publications
+  COMMAND ${CMAKE_COMMAND} -E remove ${DIST_DIR}/README.md
   COMMAND tar -zcvf "${DIST_DIR}.tar.gz" ${DIST_DIR}
   COMMAND ${CMAKE_COMMAND} -E remove_directory ${DIST_DIR})
 add_dependencies(dist sphinx-doc)

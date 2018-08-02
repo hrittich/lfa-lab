@@ -34,11 +34,11 @@ class Stencil2d : public DenseStencil
         Stencil2d(int x0 = 0, int y0 = 0, int x1 = 0, int y1 = 0);
 
         inline
-        double& operator() (int x, int y) {
+        complex<double>& operator() (int x, int y) {
             return DenseStencil::operator() (Vector2i(x,y));
         }
 
-        inline double operator() (int x, int y) const {
+        inline complex<double> operator() (int x, int y) const {
             return DenseStencil::operator() (Vector2i(x, y));
         }
 

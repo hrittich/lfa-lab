@@ -30,15 +30,15 @@ class Stencil3d : public DenseStencil
 {
     public:
         Stencil3d(int x0, int y0, int z0,
-                int x1, int y1, int z1)
+                  int x1, int y1, int z1)
             : DenseStencil(Vector3i(x0, y0, z0), Vector3i(x1, y1, z1) )
         { }
 
-        inline double& operator() (int x, int y, int z) {
+        inline complex<double>& operator() (int x, int y, int z) {
             return DenseStencil::operator() ( Vector3i(x,y,z) );
         }
 
-        inline double operator() (int x, int y, int z) const {
+        inline complex<double> operator() (int x, int y, int z) const {
             return DenseStencil::operator() ( Vector3i(x,y,z) );
         }
 };

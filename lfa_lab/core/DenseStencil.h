@@ -27,7 +27,7 @@
 namespace lfa {
 
   /** Storage for a dense n-dimensional stencil. */
-  class DenseStencil : public MultiArray<double>
+  class DenseStencil : public MultiArray<complex<double> >
   {
     public:
       /** Create a stencil. The dimension is given by the length of the two

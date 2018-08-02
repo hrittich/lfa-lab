@@ -14,16 +14,16 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. 
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
 // vim: set filetype=cpp:
 
 %include "MultiArray.i"
 
-%template(MultiArrayDouble) MultiArray<double>;
+%template(MultiArrayComplex) MultiArray<std::complex<double> >;
 %rename(_DenseStencil) DenseStencil;
-class DenseStencil : public MultiArray<double>
+class DenseStencil : public MultiArray<std::complex<double> >
 {
     public:
         DenseStencil(

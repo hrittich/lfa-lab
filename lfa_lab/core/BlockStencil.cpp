@@ -158,7 +158,7 @@ namespace lfa {
       ArrayFi other_pos = mod(a_offset + it.pos(), shape());
       const DenseStencil& b = (*this)(other_pos);
 
-      double coeff_a = it.value();
+      complex<double> coeff_a = it.value();
 
       // compute coefficients
       for (DenseStencil::ConstIterator inner_it(b); inner_it; ++inner_it)

@@ -14,7 +14,7 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. 
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
 // vim: set filetype=cpp:
@@ -29,13 +29,19 @@ class SparseStencil {
 
         int nonZeros();
 
-        void append(ArrayFi offset, double value);
+        void append(ArrayFi offset, std::complex<double> value);
+
+        %extend {
+        void append(ArrayFi offset, double value) {
+           $self->append(offset, complex<double> (value));
+        }
+        }
 
         int dimension() const;
 };
 
 %extend SparseStencil {
     ArrayFi _get_offset_at(int p) { return (*$self)[p].offset; }
-    double _get_value_at(int p) { return (*$self)[p].value; }
+    std::complex<double> _get_value_at(int p) { return (*$self)[p].value; }
 }
 

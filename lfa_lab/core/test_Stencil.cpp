@@ -14,7 +14,7 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. 
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
 #include <gtest/gtest.h>
@@ -54,7 +54,7 @@ TEST(DenseStencil, SimpleStoreAndRead)
     {
         for (pos(0) = -1; pos(0) <= 1; ++pos(0))
         {
-            EXPECT_EQ( (pos(1) + 1) * pos(0), L(pos) );
+            EXPECT_EQ( complex<double>((pos(1) + 1) * pos(0)), L(pos) );
         }
     }
 
@@ -63,7 +63,7 @@ TEST(DenseStencil, SimpleStoreAndRead)
     {
         for (pos(0) = -1; pos(0) <= 1; ++pos(0))
         {
-            EXPECT_EQ( (pos(1) + 1) * pos(0), it.value() );
+            EXPECT_EQ( complex<double>((pos(1) + 1) * pos(0)), it.value() );
             EXPECT_EQ( true, (bool)it );
             ++it;
         }
@@ -86,11 +86,11 @@ TEST(DenseStencil, Multiply)
 
     DenseStencil R = L*L;
 
-    EXPECT_EQ(20, R(Vector2i(0,0)));
-    EXPECT_EQ(-8, R(Vector2i(0,1)));
-    EXPECT_EQ(2, R(Vector2i(1,1)));
-    EXPECT_EQ(1, R(Vector2i(0,2)));
-    EXPECT_EQ(0, R(Vector2i(2,2)));
+    EXPECT_EQ(complex<double>(20), R(Vector2i(0,0)));
+    EXPECT_EQ(complex<double>(-8), R(Vector2i(0,1)));
+    EXPECT_EQ(complex<double>(2), R(Vector2i(1,1)));
+    EXPECT_EQ(complex<double>(1), R(Vector2i(0,2)));
+    EXPECT_EQ(complex<double>(0), R(Vector2i(2,2)));
 }
 
 TEST(DenseStencil, center)
@@ -136,8 +136,9 @@ TEST(DenseStencil, lower)
 
     DenseStencil lower = L.lower();
     for (DenseStencil::Iterator it(lower); it; ++it) {
-        EXPECT_TRUE(it.value() == 0 || it.value() == 4);
-        if (it.value() == 4)
+        EXPECT_TRUE(it.value() == complex<double>(0)
+                    || it.value() == complex<double>(4));
+        if (it.value() == complex<double>(4))
             count++;
     }
 
@@ -254,14 +255,14 @@ TEST(DenseStencil, BlockStencilMultiply)
 
         BlockStencil C = A*B;
 
-        EXPECT_EQ( C(0*v)(-2*v), -2);
-        EXPECT_EQ( C(0*v)(-1*v), -1);
-        EXPECT_EQ( C(0*v)(-0*v), -1);
-        EXPECT_EQ( C(0*v)( 1*v),  1);
+        EXPECT_EQ( C(0*v)(-2*v), complex<double>(-2));
+        EXPECT_EQ( C(0*v)(-1*v), complex<double>(-1));
+        EXPECT_EQ( C(0*v)(-0*v), complex<double>(-1));
+        EXPECT_EQ( C(0*v)( 1*v),  complex<double>(1));
 
-        EXPECT_EQ( C(1*v)(-1*v), -1);
-        EXPECT_EQ( C(1*v)(-0*v), -1);
-        EXPECT_EQ( C(1*v)( 1*v), -1);
+        EXPECT_EQ( C(1*v)(-1*v), complex<double>(-1));
+        EXPECT_EQ( C(1*v)(-0*v), complex<double>(-1));
+        EXPECT_EQ( C(1*v)( 1*v), complex<double>(-1));
     }
 
 }
@@ -283,10 +284,9 @@ TEST(DenseStencil, BlockStencilAdjoint)
 
     BlockStencil T = L.adjoint();
 
-    EXPECT_EQ(T(Array2i(0,0))(Array2i(0, -1)), 2);
-    EXPECT_EQ(T(Array2i(1,0))(Array2i(-1, 0)), 1);
-    EXPECT_EQ(T(Array2i(0,1))(Array2i(-1, 0)), 1);
-    EXPECT_EQ(T(Array2i(1,1))(Array2i(0, -1)), 2);
-
+    EXPECT_EQ(T(Array2i(0,0))(Array2i(0, -1)), complex<double>(2));
+    EXPECT_EQ(T(Array2i(1,0))(Array2i(-1, 0)), complex<double>(1));
+    EXPECT_EQ(T(Array2i(0,1))(Array2i(-1, 0)), complex<double>(1));
+    EXPECT_EQ(T(Array2i(1,1))(Array2i(0, -1)), complex<double>(2));
 }
 

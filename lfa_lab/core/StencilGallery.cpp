@@ -14,7 +14,7 @@
 
   You should have received a copy of the GNU General Public License along
   with this program; if not, write to the Free Software Foundation, Inc.,
-  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. 
+  51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
 #include "StencilGallery.h"
@@ -220,15 +220,18 @@ BlockStencil flux_conserving_int_2d(BlockStencil L)
         for (int x = 1; x < shape(0); x+=2) {
             const DenseStencil& l = L(Array2i(x,y));
 
-            double center = l(Array2i( 0, -1)) +
-                            l(Array2i( 0,  0)) +
-                            l(Array2i( 0, +1));
-            double left =   l(Array2i(-1, -1)) +
-                            l(Array2i(-1,  0)) +
-                            l(Array2i(-1, +1));
-            double right =  l(Array2i(+1, -1)) +
-                            l(Array2i(+1,  0)) +
-                            l(Array2i(+1, +1));
+            complex<double>
+              center = l(Array2i( 0, -1)) +
+                       l(Array2i( 0,  0)) +
+                       l(Array2i( 0, +1));
+            complex<double>
+              left = l(Array2i(-1, -1)) +
+                     l(Array2i(-1,  0)) +
+                     l(Array2i(-1, +1));
+            complex<double>
+              right = l(Array2i(+1, -1)) +
+                      l(Array2i(+1,  0)) +
+                      l(Array2i(+1, +1));
 
             DenseStencil s(Array2i(-1, 0), Array2i(1, 0));
             s(Array2i(-1, 0)) = -(left / center);
@@ -243,15 +246,18 @@ BlockStencil flux_conserving_int_2d(BlockStencil L)
         for (int x = 0; x < shape(0); x+=2) {
             const DenseStencil& l = L(Array2i(x,y));
 
-            double center = l(Array2i(-1, 0)) +
-                            l(Array2i( 0, 0)) +
-                            l(Array2i(+1, 0));
-            double top = l(Array2i(-1, -1)) +
-                         l(Array2i( 0, -1)) +
-                         l(Array2i(+1, -1));
-            double bottom = l(Array2i(-1, +1)) +
-                            l(Array2i( 0, +1)) +
-                            l(Array2i(+1, +1));
+            complex<double>
+              center = l(Array2i(-1, 0)) +
+                       l(Array2i( 0, 0)) +
+                       l(Array2i(+1, 0));
+            complex<double>
+              top = l(Array2i(-1, -1)) +
+                    l(Array2i( 0, -1)) +
+                    l(Array2i(+1, -1));
+            complex<double>
+              bottom = l(Array2i(-1, +1)) +
+                       l(Array2i( 0, +1)) +
+                       l(Array2i(+1, +1));
 
             DenseStencil s(Array2i(0, -1), Array2i(0, 1));
             s(Array2i(0, -1)) = -(top/center);
@@ -267,7 +273,7 @@ BlockStencil flux_conserving_int_2d(BlockStencil L)
         for (int x = 1; x < shape(0); x+=2) {
 
             const DenseStencil& l = L(Array2i(x,y));
-            double center = l(Array2i(0,0));
+            complex<double> center = l(Array2i(0,0));
 
             DenseStencil s(Array2i(-1, -1), Array2i(1, 1));
 

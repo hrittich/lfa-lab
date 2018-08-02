@@ -44,7 +44,7 @@ class SparseStencil {
 
         int dimension() const;
 
-        void append(ArrayFi offset, double value);
+        void append(ArrayFi offset, complex<double> value);
     private:
         vector<StencilElement> m_elements;
 };

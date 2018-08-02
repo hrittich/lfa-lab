@@ -33,6 +33,7 @@ using namespace lfa;
 %}
 
 %include "std_string.i"
+%include "std_complex.i"
 // %include "exception.i"
 
 %init %{

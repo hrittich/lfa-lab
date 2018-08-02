@@ -28,12 +28,12 @@ struct StencilElement
 {
     StencilElement() { }
 
-    StencilElement(ArrayFi offset, double value)
+    StencilElement(ArrayFi offset, complex<double> value)
       : offset(offset), value(value)
     { }
 
     ArrayFi offset;
-    double value;
+    complex<double> value;
 };
 
 }

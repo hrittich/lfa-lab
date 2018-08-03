@@ -60,18 +60,21 @@ add_library(lfa STATIC
 set_property(TARGET lfa PROPERTY POSITION_INDEPENDENT_CODE ON)
 
 if(WITH_TESTS)
-    add_executable(lfa_test
-        test_Stencil.cpp
-        test_General.cpp
-        test_Harmonics.cpp
-        test_BdMatrix.cpp
-        test_Symbol.cpp
-        test_CartIterator.cpp
-        test_SystemSymbol.cpp
-        test_NdArray.cpp
-        test_SparseStencil.cpp
-        test_FoProperties.cpp)
-    target_link_libraries(lfa_test lfa ${LIBS} ${GTEST_BOTH_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
+  add_executable(lfa_test
+    test_Stencil.cpp
+    test_General.cpp
+    test_Harmonics.cpp
+    test_BdMatrix.cpp
+    test_Symbol.cpp
+    test_CartIterator.cpp
+    test_SystemSymbol.cpp
+    test_NdArray.cpp
+    test_SparseStencil.cpp
+    test_FoProperties.cpp)
+  target_link_libraries(lfa_test lfa ${LIBS} ${GTEST_BOTH_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
+
+  add_custom_target(core-tests lfa_test)
+  add_dependencies(check core-tests)
 endif()
 
 if(PYTHON_VERSION_MAJOR EQUAL 3)

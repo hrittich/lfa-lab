@@ -23,6 +23,7 @@ from block_test import *
 from gallery_test import *
 from smoother_test import *
 from operator_test import *
+from stencil_test import *
 
 if __name__ == '__main__':
     unittest.main()

@@ -20,6 +20,7 @@ from .core import *
 from .util import *
 from .dag import *
 import numpy as np
+from six import iteritems
 
 __all__ = [
     'SparseStencil',
@@ -122,10 +123,26 @@ class SparseStencil(_SparseStencil):
         return self.transpose().conjugate()
 
     def __rmul__(self, other):
-        """
-            Scalar multiplication
-        """
+        """Scalar multiplication"""
         return self.map(lambda o, v: (o, other*v))
+
+    def __mul__(self, other):
+        """Stencil composition."""
+
+        entries = {}
+
+        for (o1, v1) in self:
+            for (o2, v2) in other:
+                o1 = np.array(o1)
+                o2 = np.array(o2)
+                d = tuple(o1 + o2)
+
+                if d in entries:
+                    entries[d] += v1 * v2
+                else:
+                    entries[d] = v1 * v2
+
+        return SparseStencil(iteritems(entries))
 
 
 

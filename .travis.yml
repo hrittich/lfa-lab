@@ -8,6 +8,7 @@ addons:
     packages:
     - g++-6
     - cmake
+    - libgtest-dev
     - python-dev
     - python-numpy-dev
     - python-matplotlib
@@ -25,25 +26,25 @@ matrix:
   include:
     # Python2: In source build
     - script:
-      - cmake -DCMAKE_CXX_COMPILER=g++-6 .
+      - cmake -DCMAKE_CXX_COMPILER=g++-6 -DWITH_TESTS=ON .
       - make
       - make check
     # Python2: Out of source build
     - script:
       - mkdir build
-      - (cd build && cmake -DCMAKE_CXX_COMPILER=g++-6 ../ )
+      - (cd build && cmake -DCMAKE_CXX_COMPILER=g++-6 -DWITH_TESTS=ON ../ )
       - make -C build
       - make -C build check
     # Python3: In source build
     - script:
-      - cmake -DCMAKE_CXX_COMPILER=g++-6 -DPYTHON_EXECUTABLE=`which python3` .
+      - cmake -DCMAKE_CXX_COMPILER=g++-6 -DWITH_TESTS=ON -DPYTHON_EXECUTABLE=`which python3` .
       - make
       - make check
     # Python3: Out of source build
     - script:
       - alias python=python3
       - mkdir build
-      - (cd build && cmake -DCMAKE_CXX_COMPILER=g++-6 -DPYTHON_EXECUTABLE=`which python3` ../ )
+      - (cd build && cmake -DCMAKE_CXX_COMPILER=g++-6 -DWITH_TESTS=ON -DPYTHON_EXECUTABLE=`which python3` ../ )
       - make -C build
       - make -C build check
 

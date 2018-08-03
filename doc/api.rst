@@ -72,4 +72,6 @@ Core Classes and Functions
 .. automodule:: lfa_lab.core
    :members:
 
+.. automodule:: lfa_lab.core.extension
+   :members:
 

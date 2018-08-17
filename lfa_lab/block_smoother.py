@@ -67,7 +67,7 @@ def rb_block_jacobi(op, block_size, weight = 1.0):
     :return: The error propagation operator of the method.
     :rtype: Node
     """
-    grid = stencil.grid
+    grid = op.grid
 
     block_size = np.array(block_size)
 
@@ -89,7 +89,7 @@ def rb_block_jacobi(op, block_size, weight = 1.0):
     red_filter = BlockNode(red_filter._entries)
     black_filter = BlockNode(black_filter._entries)
 
-    J = block_jacobi(stencil, block_size, weight)
+    J = block_jacobi(op, block_size, weight)
     return (red_filter + black_filter * J) * \
            (black_filter + red_filter * J)
 

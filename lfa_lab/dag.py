@@ -459,11 +459,11 @@ class PeriodicStencilNode(BlockNode, Splitable):
 
     def upper(self):
         """Upper part of the stencil."""
-        return PeriodicStencilNode(self.stencil.upper(), self.grid)
+        return PeriodicStencilNode(self.stencils.upper(), self.grid)
 
     def lower(self):
         """Lower part of the stencil."""
-        return PeriodicStencilNode(self.stencil.lower(), self.grid)
+        return PeriodicStencilNode(self.stencils.lower(), self.grid)
 
 class HpFilterNode(GeneratorNode):
     """High pass filter symbol."""

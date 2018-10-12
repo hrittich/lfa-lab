@@ -7,7 +7,7 @@ following publications.
 
 - H. Rittich, *Extending and Automating Fourier Analysis for Multigrid
   Methods*
-  (`PDF <publications/RitExtending2017.pdf>`__)::
+  (:download:`PDF <publications/RitExtending2017.pdf>`)::
 
     @PhdThesis{RitExtending2017,
       author    = {Rittich, Hannah},
@@ -20,7 +20,7 @@ following publications.
 - M. Bolten & H. Rittich,
   *Fourier Analysis of Periodic Stencils in Multigrid Methods*
   SIAM Journal on Scientific Computing, 2018, 40, A1642-A1668
-  (`PDF <publications/BRFourier2018.pdf>`__,
+  (:download:`PDF <publications/BRFourier2018.pdf>`,
   `Journal <https://doi.org/10.1137/16M1073959>`__)::
 
     @Article{BRFourier2018,

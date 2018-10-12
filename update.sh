@@ -4,7 +4,6 @@ WORKDIR=$(mktemp -d)
 git clone https://github.com/hrittich/lfa-lab $WORKDIR
 (cd $WORKDIR; cmake . ; make -j4 sphinx-doc)
 rsync -rv --delete \
-  --exclude='lfa-lab' \
   --exclude='update.sh' \
   --exclude='releases' \
   --exclude='.*' \

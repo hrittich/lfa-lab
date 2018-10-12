@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Homepage of LFA Lab &#8212; LFA Lab 0.3.0 documentation</title>
+    <title>Homepage of LFA Lab &#8212; LFA Lab 0.4.0-alpha documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.3.0',
+        VERSION:     '0.4.0-alpha',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,7 +26,7 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="top" title="LFA Lab 0.3.0 documentation" href="#" />
+    <link rel="top" title="LFA Lab 0.4.0-alpha documentation" href="#" />
     <link rel="next" title="Installation" href="install.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -54,13 +54,52 @@
 <h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="install.html#download">Download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#prepare-your-system">Prepare your System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#build-lfa-lab">Build LFA Lab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="install.html#id3">Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#the-jacobi-method">The Jacobi Method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#plotting-symbols">Plotting Symbols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#smoothing-analysis">Smoothing Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#two-grids">Two Grids</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#defining-stencil-operators">Defining Stencil Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorial.html#multigrid-method">Multigrid Method</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-lfa_lab.operator">Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-lfa_lab.smoother">Smoother</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-lfa_lab.two_grid">Multigrid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-lfa_lab.gallery">Gallery</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-lfa_lab.stencil">Stencil</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-lfa_lab.plot">Plotting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-lfa_lab.report">Printing Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-lfa_lab.util">Util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#module-lfa_lab.core">Core Classes and Functions</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="citation.html">Publications &amp; Citations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="download.html">Download</a></li>
-<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
-<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="download.html">Download</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="download.html#releases">Releases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="download.html#git-repository">Git Repository</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="license.html#license-faq">License FAQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="license.html#license-text">License Text</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#equations">Equations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#injection-operators">Injection Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#error-propagation-operators">Error Propagation Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="glossary.html#software">Software</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>

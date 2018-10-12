@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Installation &#8212; LFA Lab 0.3.0 documentation</title>
+    <title>Installation &#8212; LFA Lab 0.4.0-alpha documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.3.0',
+        VERSION:     '0.4.0-alpha',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,7 +26,7 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="top" title="LFA Lab 0.3.0 documentation" href="index.html" />
+    <link rel="top" title="LFA Lab 0.4.0-alpha documentation" href="index.html" />
     <link rel="next" title="Tutorial" href="tutorial.html" />
     <link rel="prev" title="Homepage of LFA Lab" href="index.html" />
    
@@ -60,6 +60,7 @@ when necessary.</p>
 <li><a class="reference external" href="http://www.python.org/">Python2</a></li>
 <li><a class="reference external" href="http://swig.org/">Swig</a></li>
 <li><a class="reference external" href="http://www.numpy.org/">NumPy</a></li>
+<li><a class="reference external" href="https://pypi.org/project/six/">six</a></li>
 <li>Only for pre C++11 compilers: <a class="reference external" href="http://www.boost.org/">Boost</a></li>
 </ul>
 <p>Furthermore, the following packages provide extra functionality, but are
@@ -78,7 +79,7 @@ systems below.</p>
 <h3>Debian<a class="headerlink" href="#debian" title="Permalink to this headline">¶</a></h3>
 <p>To install the dependencies on Debian, run the following command:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> \
-    <span class="n">g</span><span class="o">++</span> <span class="n">cmake</span> <span class="n">python</span><span class="o">-</span><span class="n">dev</span> <span class="n">python</span><span class="o">-</span><span class="n">numpy</span><span class="o">-</span><span class="n">dev</span> <span class="n">swig</span> \
+    <span class="n">g</span><span class="o">++</span> <span class="n">cmake</span> <span class="n">python</span><span class="o">-</span><span class="n">dev</span> <span class="n">python</span><span class="o">-</span><span class="n">numpy</span><span class="o">-</span><span class="n">dev</span> <span class="n">python</span><span class="o">-</span><span class="n">six</span> <span class="n">swig</span> \
     <span class="n">libeigen3</span><span class="o">-</span><span class="n">dev</span> <span class="n">liblapack</span><span class="o">-</span><span class="n">dev</span> <span class="n">python</span><span class="o">-</span><span class="n">matplotlib</span>
 </pre></div>
 </div>
@@ -87,7 +88,7 @@ systems below.</p>
 <h3>Fedora<a class="headerlink" href="#fedora" title="Permalink to this headline">¶</a></h3>
 <p>To install the dependencies on Fedora, run the following command:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">dnf</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> \
-    <span class="n">gcc</span><span class="o">-</span><span class="n">c</span><span class="o">++</span> <span class="n">cmake</span> <span class="n">python2</span><span class="o">-</span><span class="n">devel</span> <span class="n">python2</span><span class="o">-</span><span class="n">numpy</span> <span class="n">swig</span> \
+    <span class="n">gcc</span><span class="o">-</span><span class="n">c</span><span class="o">++</span> <span class="n">cmake</span> <span class="n">python2</span><span class="o">-</span><span class="n">devel</span> <span class="n">python2</span><span class="o">-</span><span class="n">numpy</span> <span class="n">python</span><span class="o">-</span><span class="n">six</span> <span class="n">swig</span> \
     <span class="n">eigen3</span><span class="o">-</span><span class="n">devel</span> <span class="n">lapack</span><span class="o">-</span><span class="n">devel</span> <span class="n">python2</span><span class="o">-</span><span class="n">matplotlib</span>
 </pre></div>
 </div>
@@ -205,7 +206,13 @@ how to use it.</p>
             </a></p>
 <h3><a href="index.html">Table Of Contents</a></h3>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#download">Download</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prepare-your-system">Prepare your System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build-lfa-lab">Build LFA Lab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">Installation</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="citation.html">Publications &amp; Citations</a></li>

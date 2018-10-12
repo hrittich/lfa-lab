@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Tutorial &#8212; LFA Lab 0.3.0 documentation</title>
+    <title>Tutorial &#8212; LFA Lab 0.4.0-alpha documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.3.0',
+        VERSION:     '0.4.0-alpha',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,7 +26,7 @@
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="top" title="LFA Lab 0.3.0 documentation" href="index.html" />
+    <link rel="top" title="LFA Lab 0.4.0-alpha documentation" href="index.html" />
     <link rel="next" title="API" href="api.html" />
     <link rel="prev" title="Installation" href="install.html" />
    
@@ -68,7 +68,7 @@ compute spectral radius of the error propagator of the method.</p>
 <span class="n">symbol</span> <span class="o">=</span> <span class="n">S</span><span class="o">.</span><span class="n">symbol</span><span class="p">()</span>
 
 <span class="c1"># Print spectral radius of S.</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">symbol</span><span class="o">.</span><span class="n">spectral_radius</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">((</span><span class="n">symbol</span><span class="o">.</span><span class="n">spectral_radius</span><span class="p">()))</span>
 </pre></div>
 </div>
 <p>Let us walk through this example step by step.  To make any analysis, we first
@@ -178,7 +178,7 @@ computing the spectral radius</p>
 <span class="c1"># removed from the spectrum.</span>
 <span class="n">E</span> <span class="o">=</span> <span class="n">F</span> <span class="o">*</span> <span class="n">S</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">E</span><span class="o">.</span><span class="n">symbol</span><span class="p">()</span><span class="o">.</span><span class="n">spectral_radius</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">((</span><span class="n">E</span><span class="o">.</span><span class="n">symbol</span><span class="p">()</span><span class="o">.</span><span class="n">spectral_radius</span><span class="p">()))</span>
 </pre></div>
 </div>
 </div>
@@ -230,7 +230,7 @@ two-grid method.</p>
 <span class="c1"># Apply one pre- and one post-smoothing step.</span>
 <span class="n">E</span> <span class="o">=</span> <span class="n">S</span> <span class="o">*</span> <span class="n">cgc</span> <span class="o">*</span> <span class="n">S</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">E</span><span class="o">.</span><span class="n">symbol</span><span class="p">()</span><span class="o">.</span><span class="n">spectral_radius</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">((</span><span class="n">E</span><span class="o">.</span><span class="n">symbol</span><span class="p">()</span><span class="o">.</span><span class="n">spectral_radius</span><span class="p">()))</span>
 </pre></div>
 </div>
 </div>
@@ -365,7 +365,7 @@ operator <span class="math">\(R_\mathrm{st}\)</span> and the injection restricti
         <span class="n">restriction</span> <span class="o">=</span> <span class="n">R</span><span class="p">)</span>
 <span class="n">E</span> <span class="o">=</span> <span class="n">S</span> <span class="o">*</span> <span class="n">cgc</span> <span class="o">*</span> <span class="n">S</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">E</span><span class="o">.</span><span class="n">symbol</span><span class="p">()</span><span class="o">.</span><span class="n">spectral_radius</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">((</span><span class="n">E</span><span class="o">.</span><span class="n">symbol</span><span class="p">()</span><span class="o">.</span><span class="n">spectral_radius</span><span class="p">()))</span>
 </pre></div>
 </div>
 </div>
@@ -412,7 +412,7 @@ recursive function that computes the error propagator of the multigrid method.</
 <span class="n">fine_grid</span> <span class="o">=</span> <span class="n">Grid</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="mf">1.0</span><span class="o">/</span><span class="mi">32</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">/</span><span class="mi">32</span><span class="p">])</span>
 <span class="n">E</span><span class="p">,</span> <span class="n">L</span> <span class="o">=</span> <span class="n">multigrid</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">fine_grid</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">E</span><span class="o">.</span><span class="n">symbol</span><span class="p">()</span><span class="o">.</span><span class="n">spectral_radius</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">((</span><span class="n">E</span><span class="o">.</span><span class="n">symbol</span><span class="p">()</span><span class="o">.</span><span class="n">spectral_radius</span><span class="p">()))</span>
 </pre></div>
 </div>
 </div>

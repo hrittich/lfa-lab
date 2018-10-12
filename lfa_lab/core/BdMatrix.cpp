@@ -29,7 +29,7 @@ namespace lfa {
 BdMatrix::BdMatrix(int no_diag_blocks, int block_rows, int block_cols)
   : m_block_rows(block_rows),
     m_block_cols(block_cols),
-    m_diag_matrices(no_diag_blocks)
+    m_diag_matrices(no_diag_blocks, MatrixXcd(block_rows, block_cols))
 {
     assert(no_diag_blocks >= 0);
 }
@@ -37,7 +37,9 @@ BdMatrix::BdMatrix(int no_diag_blocks, int block_rows, int block_cols)
 void BdMatrix::resize(int no_diag_blocks, int block_rows, int block_cols)
 {
     m_diag_matrices.resize(no_diag_blocks);
-    fill(m_diag_matrices.begin(), m_diag_matrices.end(), MatrixXcd());
+    fill(m_diag_matrices.begin(),
+         m_diag_matrices.end(),
+         MatrixXcd(block_rows, block_cols));
 
     m_block_rows = block_rows;
     m_block_cols = block_cols;
@@ -46,7 +48,7 @@ void BdMatrix::resize(int no_diag_blocks, int block_rows, int block_cols)
 void BdMatrix::setZero()
 {
     for (int i = 0; i < no_blocks(); ++i) {
-        block(i) = MatrixXcd::Zero(m_block_rows, m_block_cols);
+        set_block(i, MatrixXcd::Zero(m_block_rows, m_block_cols));
     }
 }
 
@@ -73,7 +75,7 @@ BdMatrix BdMatrix::operator+ (const BdMatrix& rhs) const
     BdMatrix result(no_blocks(), m_block_rows, m_block_cols);
 
     for (int i = 0; i < no_blocks(); ++i) {
-        result.block(i) = block(i) + rhs.block(i);
+        result.set_block(i, block(i) + rhs.block(i));
     }
 
     return result;
@@ -88,7 +90,7 @@ BdMatrix BdMatrix::operator* (const BdMatrix& rhs) const
     BdMatrix result(no_blocks(), m_block_rows, rhs.m_block_cols);
 
     for (int i = 0; i < no_blocks(); ++i) {
-        result.block(i) = block(i) * rhs.block(i);
+        result.set_block(i, block(i) * rhs.block(i));
     }
 
     return result;
@@ -99,7 +101,7 @@ BdMatrix operator* (complex<double> scalar, const BdMatrix& mat)
     BdMatrix result(mat.no_blocks(), mat.m_block_rows, mat.m_block_cols);
 
     for (int i = 0; i < mat.no_blocks(); ++i) {
-        result.block(i) = scalar * mat.block(i);
+        result.set_block(i, scalar * mat.block(i));
     }
 
     return result;
@@ -135,7 +137,7 @@ BdMatrix BdMatrix::inverse() const
             throw runtime_error(msg.str());
         }
 
-        result.block(i) = lu.inverse();
+        result.set_block(i, lu.inverse());
     }
 
     return result;
@@ -146,7 +148,7 @@ BdMatrix BdMatrix::adjoint() const
     BdMatrix result(no_blocks(), m_block_cols, m_block_rows);
 
     for (int i = 0; i < no_blocks(); ++i) {
-        result.block(i) = block(i).adjoint();
+        result.set_block(i, block(i).adjoint());
     }
 
     return result;

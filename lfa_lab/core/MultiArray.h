@@ -72,7 +72,7 @@ namespace lfa {
       template <typename Iter>
         void assign(Iter begin, Iter end) {
 #ifndef NDEBUG
-          vector<double>::iterator it =
+          vector<complex<double> >::iterator it =
 #endif
             copy(begin, end, m_elements.begin());
 

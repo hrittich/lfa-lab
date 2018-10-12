@@ -36,6 +36,7 @@
 %feature("autodoc", "The spectral radius of the symbol.") Symbol::spectral_radius;
 %feature("autodoc", "The eigenvalues of the symbol as a vector.") Symbol::eigenvalues;
 %feature("autodoc", "The dimension of the symbol.") Symbol::dimension;
+%feature("autodoc", "The matrix representation of the symbol.") Symbol::matrix;
 class Symbol {
     public:
         static Symbol Identity(Grid grid, SamplingProperties conf);
@@ -48,6 +49,8 @@ class Symbol {
         VectorXcd col_norms_1d() const;
         MatrixXcd row_norms_2d() const;
         MatrixXcd col_norms_2d() const;
+
+        BdMatrix matrix();
 
         Symbol expand(ArrayFi factor) const;
 

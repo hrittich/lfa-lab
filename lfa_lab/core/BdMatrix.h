@@ -34,8 +34,18 @@ class BdMatrix {
     void resize(int no_diag_blocks = 0, int block_rows = 0, int block_cols = 0);
     void setZero();
 
-    MatrixXcd& block(int i) { return m_diag_matrices[i]; }
+    /** Acesse the entry (i, j) of the b-th block. */
+    complex<double>& operator() (int b, int i, int j) {
+      return m_diag_matrices[b](i, j);
+    }
+
     const MatrixXcd& block(int i) const { return m_diag_matrices[i]; }
+    void set_block(int i, const MatrixXcd& v) {
+      assert(v.rows() == m_block_rows);
+      assert(v.cols() == m_block_cols);
+
+      m_diag_matrices[i] = v;
+    }
 
     MatrixXcd full() const;
 

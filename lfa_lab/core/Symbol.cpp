@@ -215,7 +215,7 @@ namespace lfa {
         assert( (m_input_clusters.clusterShape() == sym.colShape()).all() );
 
         int b = baseIndices().indexOf(base);
-        m_store.block(b) = sym.toMatrix();
+        m_store.set_block(b, sym.toMatrix());
     }
 
     ClusterSymbol Symbol::getCluster(ArrayFi base) const
@@ -350,7 +350,7 @@ namespace lfa {
         int irc = m_symbol.m_output_clusters.clusterIndices().indexOf(cluster_row);
         int icc = m_symbol.m_input_clusters.clusterIndices().indexOf(cluster_col);
 
-        return m_symbol.m_store.block(m_diag_index)(irc, icc);
+        return m_symbol.m_store(m_diag_index, irc, icc);
     }
 
 }

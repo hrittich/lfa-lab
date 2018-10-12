@@ -70,6 +70,7 @@ using namespace lfa;
 %include "BlockStencil.i"
 %include "HpFilterSb.i"
 %include "SystemSymbolProperties.i"
+%include "BdMatrix.i"
 
 // =========================================================
 

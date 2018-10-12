@@ -46,9 +46,9 @@ TEST(BdMatrix, Full)
          0, 0, 0, 0,11,12;
 
     BdMatrix M(3, 2,2);
-    M.block(0) = A;
-    M.block(1) = B;
-    M.block(2) = C;
+    M.set_block(0, A);
+    M.set_block(1, B);
+    M.set_block(2, C);
 
     EXPECT_LE((M.full() - D).norm(), 1e-10);
 }
@@ -74,9 +74,9 @@ TEST(BdMatrix, eigenvalues)
          0, 7;
 
     BdMatrix M(3, 2,2);
-    M.block(0) = A;
-    M.block(1) = B;
-    M.block(2) = C;
+    M.set_block(0, A);
+    M.set_block(1, B);
+    M.set_block(2, C);
 
     VectorXcd ews = M.eigenvalues();
 

@@ -73,6 +73,10 @@ namespace lfa {
       double system_norm() const;
 
       SystemClusterSymbol at(ArrayFi base_index) const;
+
+      /** Ensure that the system consists of consistent symbols. Throws and
+       * exception otherwise. */
+      void ensureConsistency() const;
     private:
       int m_rows;
       int m_cols;

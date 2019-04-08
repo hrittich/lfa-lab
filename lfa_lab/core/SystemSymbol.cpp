@@ -61,7 +61,10 @@ void SystemSymbol::resize(int rows, int cols)
   m_rows = rows;
   m_cols = cols;
 
-  vector<Symbol> default_row(cols, Symbol(m_output_clusters, m_input_clusters));
+  vector<Symbol> default_row(cols);
+  std::fill(default_row.begin(),
+            default_row.end(),
+            Symbol(m_output_clusters, m_input_clusters));
   m_store.resize(rows);
   std::fill(m_store.begin(), m_store.end(), default_row);
 }
@@ -69,14 +72,33 @@ void SystemSymbol::resize(int rows, int cols)
 SystemSymbol SystemSymbol::operator* (const SystemSymbol& other) const
 {
   assert( cols() == other.rows() );
+
+  #ifndef NDEBUG
+  ensureConsistency();
+  other.ensureConsistency();
+  #endif
+
+  // find the common cluster for the output of the first and the input of the
+  // second
+  HarmonicClusters common
+    = m_input_clusters.minContainer(other.m_output_clusters);
+
+  ArrayFi self_factor = m_input_clusters.expansionFactor(common);
+  ArrayFi other_factor = other.m_output_clusters.expansionFactor(common);
+
+  HarmonicClusters output_clusters
+    = m_output_clusters.mergeCluster(self_factor);
+  HarmonicClusters input_clusters
+    = other.m_input_clusters.mergeCluster(other_factor);
+
   SystemSymbol result(m_rows,
                       other.m_cols,
-                      m_output_clusters,
-                      other.m_input_clusters);
+                      output_clusters,
+                      input_clusters);
 
   for (int i = 0; i < result.rows(); ++i) {
     for (int j = 0; j < result.cols(); ++j) {
-      Symbol aux = Symbol::Zero(m_output_clusters, m_input_clusters);
+      Symbol aux = Symbol::Zero(output_clusters, input_clusters);
 
       for (int k = 0; k < cols(); ++k) {
         aux = aux + (*this)(i, k) * other(k, j);
@@ -91,7 +113,14 @@ SystemSymbol SystemSymbol::operator* (const SystemSymbol& other) const
 
 SystemSymbol SystemSymbol::operator+ (const SystemSymbol& other) const
 {
-  SystemSymbol result(m_rows, m_cols, m_output_clusters, m_input_clusters);
+  HarmonicClusters common_input =
+    m_input_clusters.minContainer(other.m_input_clusters);
+
+  ArrayFi factor = m_input_clusters.expansionFactor(common_input);
+  HarmonicClusters common_output = m_output_clusters.mergeCluster(factor);
+
+
+  SystemSymbol result(m_rows, m_cols, common_output, common_input);
 
   for (int i = 0; i < m_rows; ++i) {
     for (int j = 0; j < m_cols; ++j) {
@@ -119,6 +148,8 @@ SystemSymbol operator* (double scalar, const SystemSymbol& other)
 
 SystemClusterSymbol SystemSymbol::at(ArrayFi base_index) const
 {
+  ensureConsistency();
+
   SystemClusterSymbol aux(m_rows,
         m_cols,
         m_output_clusters.clusterShape(),
@@ -209,6 +240,23 @@ double SystemSymbol::system_norm() const
   return sqrt(norm_sq);
 }
 
+void SystemSymbol::ensureConsistency() const
+{
+  HarmonicClusters output_clusters = (*this)(0,0).outputClusters();
+  HarmonicClusters input_clusters = (*this)(0,0).inputClusters();
+
+  // ensure that the input and output clusters are all identical
+  for (int i=0; i < rows(); ++i) {
+    for (int j=0; j < cols(); ++j) {
+      if ((*this)(i,j).inputClusters() != input_clusters ||
+          (*this)(i,j).outputClusters() != output_clusters)
+      {
+        throw std::runtime_error("Symbol need to have the same clusters");
+      }
+    }
+  }
+}
+
 SystemSymbol combine_symbols_into_system(
   const SystemSymbolProperties& properties,
   const MatrixContainer<Symbol>& symbols)
@@ -239,8 +287,11 @@ SystemSymbol combine_symbols_into_system(
     }
   }
 
+  symbol.ensureConsistency();
+
   return symbol;
 }
+
 
 
 }

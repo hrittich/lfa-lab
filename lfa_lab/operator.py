@@ -81,7 +81,7 @@ def injection_restriction(fine_grid, coarse_grid):
     :param Grid fine_grid: The domain of the operator.
     :param Grid coarse_grid: The codomain of the operator.
     """
-    return FlatRestritionNode(coarse_grid, fine_grid)
+    return FlatRestrictionNode(coarse_grid, fine_grid)
 
 def from_periodic_stencil(stencils, grid):
     """Create an operator from a periodic stencil.

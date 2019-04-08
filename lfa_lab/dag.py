@@ -27,7 +27,7 @@ __all__ = [
     'BlockNode',
     'PeriodicStencilNode',
     'FlatInterpolationNode',
-    'FlatRestritionNode',
+    'FlatRestrictionNode',
     'ZeroNode',
     'HpFilterNode',
     'SystemNode'
@@ -315,19 +315,41 @@ class StencilNode(GeneratorNode):
         return StencilNode(self.stencil.lower(), self.grid)
 
 
-class FlatRestritionNode(GeneratorNode):
+class FlatRestrictionNode(GeneratorNode):
+    __slots__ = 'output_grid'
 
     def __init__(self, output_grid, input_grid):
         gen = flat_restriction_sb(output_grid, input_grid)
+        self.output_grid = output_grid
 
-        super(FlatRestritionNode, self).__init__(gen)
+        super(FlatRestrictionNode, self).__init__(gen)
+
+    def matching_identity(self):
+        # the restriction is essentially the matching identity in the sense
+        # that it is the identity for all coarse points
+        return self
+
+    def matching_zero(self):
+        # ToDo: Create a proper ZeroNode between two grids
+        return ZeroNode(self.output_grid) * self
 
 class FlatInterpolationNode(GeneratorNode):
+    __slots__ = 'output_grid'
 
     def __init__(self, output_grid, input_grid):
         gen = flat_interpolation_sb(output_grid, input_grid)
+        self.output_grid = output_grid
 
         super(FlatInterpolationNode, self).__init__(gen)
+
+    def matching_identity(self):
+        # the interpolation is essentially the matching identity in the sence
+        # that it is the identity for all coarse points
+        return self
+
+    def matching_zero(self):
+        # ToDo: Create a proper ZeroNode between two grids 
+        return ZeroNode(self.output_grid) * self
 
 class NodeAdd(Node):
 
@@ -354,6 +376,12 @@ class NodeMul(Node):
 
     def compute_symbol(self):
         self._symbol = self._a._symbol * self._b._symbol
+
+    def matching_identity(self):
+        return self._a.matching_identity() * self._b.matching_identity()
+
+    def matching_zero(self):
+        return self._a.matching_zero() * self._b.matching_zero()
 
 class NodeScalarMul(Node):
 

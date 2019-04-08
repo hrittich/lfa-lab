@@ -39,8 +39,8 @@ def coarse_grid_correction( \
     """
     grid = operator.output_grid
     coarse_grid = coarse_operator.output_grid
-    I  = IdentityNode(grid)
-    Ic = IdentityNode(coarse_grid)
+    I  = operator.matching_identity()
+    Ic = coarse_operator.matching_identity()
     P = interpolation
     R = restriction
     L = operator
@@ -48,7 +48,7 @@ def coarse_grid_correction( \
     Ec = coarse_error
 
     if coarse_error is None:
-        Ec = ZeroNode(coarse_grid)
+        Ec = Ic.matching_zero()
 
     return (I - P * (Ic - Ec) * Lc.inverse() * R * L)
 

@@ -325,9 +325,7 @@ class FlatRestrictionNode(GeneratorNode):
         super(FlatRestrictionNode, self).__init__(gen)
 
     def matching_identity(self):
-        # the restriction is essentially the matching identity in the sense
-        # that it is the identity for all coarse points
-        return self
+        raise Exception('No matching identity available.')
 
     def matching_zero(self):
         # ToDo: Create a proper ZeroNode between two grids
@@ -343,9 +341,7 @@ class FlatInterpolationNode(GeneratorNode):
         super(FlatInterpolationNode, self).__init__(gen)
 
     def matching_identity(self):
-        # the interpolation is essentially the matching identity in the sence
-        # that it is the identity for all coarse points
-        return self
+        raise Exception('No matching identity available.')
 
     def matching_zero(self):
         # ToDo: Create a proper ZeroNode between two grids 
@@ -378,7 +374,15 @@ class NodeMul(Node):
         self._symbol = self._a._symbol * self._b._symbol
 
     def matching_identity(self):
-        return self._a.matching_identity() * self._b.matching_identity()
+        # ToDo: matching_identitys can be constructed from the properties.
+        # Hence a single implementation is sufficient. The same is true for
+        # matching_zero.
+        if isinstance(self.properties, SystemSymbolProperties):
+            return SystemNode.make_identity(self.properties.outputGrid(),
+                                            self.properties.rows(),
+                                            self.properties.cols())
+        else:
+            return IdentityNode(self.properties.outputGrid())
 
     def matching_zero(self):
         return self._a.matching_zero() * self._b.matching_zero()
@@ -533,11 +537,10 @@ class SystemNode(Node,Splitable):
     def grid(self):
         return self._entries[0][0].grid
 
-    def matching_identity(self):
-        I = self._entries[0][0].matching_identity()
-        Z = self._entries[0][0].matching_zero()
-        assert(I is not None)
-        assert(Z is not None)
+    @staticmethod
+    def make_identity(grid, rows, cols):
+        I = IdentityNode(grid)
+        Z = ZeroNode(grid)
 
         def entry(i,j):
             if i == j:
@@ -546,10 +549,16 @@ class SystemNode(Node,Splitable):
                 return Z
 
         def row(i):
-            return [ entry(i,j) for j in range(self.properties.cols()) ]
+            return [ entry(i,j) for j in range(cols) ]
 
-        new_entries = [ row(i) for i in range(self.properties.rows()) ]
+        new_entries = [ row(i) for i in range(rows) ]
         return SystemNode(new_entries)
+
+    def matching_identity(self):
+        # ToDo: assert equal input and output
+        return SystemNode.make_identity(self.properties.inputGrid(),
+                                        self.properties.rows(),
+                                        self.properties.cols())
 
     def matching_zero(self):
         Z = self._entries[0][0].matching_zero()

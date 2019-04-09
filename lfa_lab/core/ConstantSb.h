@@ -45,6 +45,13 @@ namespace lfa {
 
   ClusterSymbol flat_interpolation_cluster_symbol(Grid output_grid, Grid input_grid);
   ConstantSb flat_interpolation_sb(Grid output_grid, Grid input_grid);
+
+  ClusterSymbol zero_restriction_cluster_symbol(Grid output_grid, Grid input_grid);
+  ConstantSb zero_restriction_sb(Grid output_grid, Grid input_grid);
+
+  ClusterSymbol zero_interpolation_cluster_symbol(Grid output_grid, Grid input_grid);
+  ConstantSb zero_interpolation_sb(Grid output_grid, Grid input_grid);
+
 }
 
 #endif

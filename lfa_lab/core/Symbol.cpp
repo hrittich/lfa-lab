@@ -76,7 +76,6 @@ namespace lfa {
         return Zero(domain.harmonics(), domain.harmonics());
     }
 
-
     Symbol Symbol::addCompatible(const Symbol& other) const
     {
         if ( m_input_clusters != other.m_input_clusters

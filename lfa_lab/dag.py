@@ -176,14 +176,29 @@ class Node(object):
 
         return symbol
 
+    def matching_identity(self):
+        """An identity operator that has the same output and input grid as the
+           current one."""
+
+        if self.properties.outputGrid() \
+                != self.properties.inputGrid():
+            raise Exception("An identity cannot be constructed between two"
+                            "different grids.")
+
+        if isinstance(self.properties, SystemSymbolProperties):
+            return SystemNode.make_identity(self.properties.outputGrid(),
+                                            self.properties.rows(),
+                                            self.properties.cols())
+        else:
+            return IdentityNode(self.properties.outputGrid())
+
+
 class Splitable(with_metaclass(ABCMeta)):
 
     @abstractmethod
-    def matching_identity(self):
-        pass
-
-    @abstractmethod
     def matching_zero(self):
+        """A zero operator that has the same output and input grid as the
+           current one."""
         pass
 
     @abstractmethod
@@ -227,7 +242,7 @@ class IdentityNode(Node, Splitable):
     def lower(self):
         return ZeroNode(self.grid)
 
-class ZeroNode(Node):
+class ZeroNode(Node, Splitable):
 
     def __init__(self, grid):
         super(ZeroNode, self).__init__()
@@ -240,11 +255,8 @@ class ZeroNode(Node):
     def compute_symbol(self):
         self._symbol = Symbol.Zero(self.grid, self.configuration)
 
-    def matching_identity(self):
-        return IdentityNode(self.grid)
-
     def matching_zero(self):
-        self
+        return self
 
     def diag(self):
         return self
@@ -289,14 +301,9 @@ class StencilNode(GeneratorNode):
 
         super(StencilNode, self).__init__(gen)
 
-    def matching_identity(self):
-        """An identity operator that has the same output and input grid as the
-        current one."""
-        return IdentityNode(self.grid)
-
     def matching_zero(self):
         """A zero operator that has the same output and input grid as the
-        current one."""
+           current one."""
         return ZeroNode(self.grid)
 
     def diag(self):
@@ -316,36 +323,41 @@ class StencilNode(GeneratorNode):
 
 
 class FlatRestrictionNode(GeneratorNode):
-    __slots__ = 'output_grid'
-
     def __init__(self, output_grid, input_grid):
         gen = flat_restriction_sb(output_grid, input_grid)
-        self.output_grid = output_grid
-
         super(FlatRestrictionNode, self).__init__(gen)
 
-    def matching_identity(self):
-        raise Exception('No matching identity available.')
+    def matching_zero(self):
+        return ZeroRestrictionNode(self.properties.outputGrid(),
+                                   self.properties.inputGrid())
+
+class ZeroRestrictionNode(GeneratorNode):
+
+    def __init__(self, output_grid, input_grid):
+        gen = zero_restriction_sb(output_grid, input_grid)
+        super(ZeroRestrictionNode, self).__init__(gen)
 
     def matching_zero(self):
-        # ToDo: Create a proper ZeroNode between two grids
-        return ZeroNode(self.output_grid) * self
+        return self
 
 class FlatInterpolationNode(GeneratorNode):
-    __slots__ = 'output_grid'
 
     def __init__(self, output_grid, input_grid):
         gen = flat_interpolation_sb(output_grid, input_grid)
-        self.output_grid = output_grid
-
         super(FlatInterpolationNode, self).__init__(gen)
 
-    def matching_identity(self):
-        raise Exception('No matching identity available.')
+    def matching_zero(self):
+        return ZeroInterpolationNode(self.properties.outputGrid(),
+                                     self.properties.inputGrid())
+
+class ZeroInterpolationNode(GeneratorNode):
+
+    def __init__(self, output_grid, input_grid):
+        gen = zero_interpolation_sb(output_grid, input_grid)
+        super(ZeroInterpolationNode, self).__init__(gen)
 
     def matching_zero(self):
-        # ToDo: Create a proper ZeroNode between two grids 
-        return ZeroNode(self.output_grid) * self
+        return self
 
 class NodeAdd(Node):
 
@@ -360,6 +372,9 @@ class NodeAdd(Node):
     def compute_symbol(self):
         self._symbol = self._a._symbol + self._b._symbol
 
+    def matching_zero(self):
+        return self._a.matching_zero()
+
 class NodeMul(Node):
 
     def __init__(self, a, b):
@@ -372,17 +387,6 @@ class NodeMul(Node):
 
     def compute_symbol(self):
         self._symbol = self._a._symbol * self._b._symbol
-
-    def matching_identity(self):
-        # ToDo: matching_identitys can be constructed from the properties.
-        # Hence a single implementation is sufficient. The same is true for
-        # matching_zero.
-        if isinstance(self.properties, SystemSymbolProperties):
-            return SystemNode.make_identity(self.properties.outputGrid(),
-                                            self.properties.rows(),
-                                            self.properties.cols())
-        else:
-            return IdentityNode(self.properties.outputGrid())
 
     def matching_zero(self):
         return self._a.matching_zero() * self._b.matching_zero()
@@ -400,6 +404,8 @@ class NodeScalarMul(Node):
     def compute_symbol(self):
         self._symbol = self._a * self._b._symbol
 
+    def matching_zero(self):
+        return self._b.matching_zero()
 
 class NodeInverse(Node):
 
@@ -413,6 +419,9 @@ class NodeInverse(Node):
     def compute_symbol(self):
         self._symbol = self._other._symbol.inverse()
 
+    def matching_zero(self):
+        return self._other.matching_zero()
+
 class NodeAdjoint(Node):
     def __init__(self, other):
         super(NodeAdjoint, self).__init__()
@@ -423,6 +432,9 @@ class NodeAdjoint(Node):
 
     def compute_symbol(self):
         self._symbol = self._other._symbol.adjoint()
+
+    def matching_zero(self):
+        return NodeAdjoint(self._other.matching_zero())
 
 class NodeSubscript(Node):
     def __init__(self, container_node, index):
@@ -478,9 +490,6 @@ class PeriodicStencilNode(BlockNode, Splitable):
         ops = stencils.entries.map(lambda s: StencilNode(s, grid))
 
         super(PeriodicStencilNode, self).__init__(ops)
-
-    def matching_identity(self):
-        return IdentityNode(self.grid)
 
     def matching_zero(self):
         return ZeroNode(self.grid)
@@ -553,12 +562,6 @@ class SystemNode(Node,Splitable):
 
         new_entries = [ row(i) for i in range(rows) ]
         return SystemNode(new_entries)
-
-    def matching_identity(self):
-        # ToDo: assert equal input and output
-        return SystemNode.make_identity(self.properties.inputGrid(),
-                                        self.properties.rows(),
-                                        self.properties.cols())
 
     def matching_zero(self):
         Z = self._entries[0][0].matching_zero()

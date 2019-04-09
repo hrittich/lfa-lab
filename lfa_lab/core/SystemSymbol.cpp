@@ -211,7 +211,7 @@ double SystemSymbol::spectral_radius() const
   return *max_element(max_evs.begin(), max_evs.end());
 }
 
-double SystemSymbol::spectral_norm() const
+double SystemSymbol::squared_spectral_norm() const
 {
   vector<double> max_evs;
 
@@ -226,6 +226,11 @@ double SystemSymbol::spectral_norm() const
   }
 
   return *max_element(max_evs.begin(), max_evs.end());
+}
+
+double SystemSymbol::spectral_norm() const
+{
+  return sqrt(squared_spectral_norm());
 }
 
 double SystemSymbol::system_norm() const

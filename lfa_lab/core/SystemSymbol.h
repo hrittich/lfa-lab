@@ -66,6 +66,7 @@ namespace lfa {
       int cols() const { return m_cols; }
 
       double spectral_radius() const;
+      double squared_spectral_norm() const;
       double spectral_norm() const;
 
       /** Square root of the sum of the squares of the norms of the system

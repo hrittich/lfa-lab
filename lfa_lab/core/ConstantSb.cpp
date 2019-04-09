@@ -108,6 +108,55 @@ ConstantSb flat_interpolation_sb(Grid output_grid, Grid input_grid)
             output_grid, input_grid);
 }
 
+ClusterSymbol zero_restriction_cluster_symbol(Grid output_grid, Grid input_grid)
+{
+    ArrayFi factor = input_grid.coarsening_factor(output_grid);
+    int d = factor.rows();
+
+    ClusterSymbol sym(ArrayFi::Ones(d), factor);
+
+    NdRange indices(factor);
+    for (NdRange::iterator p = indices.begin();
+            p != indices.end(); ++p)
+    {
+        sym(ArrayFi::Zero(d), *p) = 0;
+    }
+
+    return sym;
+}
+
+ConstantSb zero_restriction_sb(Grid output_grid, Grid input_grid)
+{
+    return ConstantSb(
+            zero_restriction_cluster_symbol(output_grid, input_grid),
+            output_grid, input_grid);
+}
+
+ClusterSymbol zero_interpolation_cluster_symbol(Grid output_grid, Grid input_grid)
+{
+    ArrayFi factor = output_grid.coarsening_factor(input_grid);
+    int d = factor.rows();
+
+    ClusterSymbol sym(factor, ArrayFi::Ones(d));
+
+    NdRange indices(factor);
+    for (NdRange::iterator p = indices.begin();
+            p != indices.end(); ++p)
+    {
+        sym(*p, ArrayFi::Zero(d)) = 0;
+    }
+
+    return sym;
+}
+
+ConstantSb zero_interpolation_sb(Grid output_grid, Grid input_grid)
+{
+    return ConstantSb(
+            zero_interpolation_cluster_symbol(output_grid, input_grid),
+            output_grid, input_grid);
+}
+
+
 
 }
 

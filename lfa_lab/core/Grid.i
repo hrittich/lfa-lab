@@ -48,6 +48,10 @@ class Grid {
         ss << *$self;
         return ss.str();
     }
+
+    bool __eq__(const Grid& other) {
+      return (*$self) == other;
+    }
 }
 
 

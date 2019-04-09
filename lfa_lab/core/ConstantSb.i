@@ -27,4 +27,6 @@ class ConstantSb : public SymbolBuilder
 
 ConstantSb flat_restriction_sb(Grid output_grid, Grid input_grid);
 ConstantSb flat_interpolation_sb(Grid output_grid, Grid input_grid);
+ConstantSb zero_restriction_sb(Grid output_grid, Grid input_grid);
+ConstantSb zero_interpolation_sb(Grid output_grid, Grid input_grid);
 

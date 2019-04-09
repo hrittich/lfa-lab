@@ -33,7 +33,7 @@ namespace lfa {
 
   SamplingProperties::SamplingProperties(ArrayFi finest_resolution, ArrayFd base_frequency)
     : m_finest_resolution(finest_resolution),
-    m_base_frequency(base_frequency)
+      m_base_frequency(base_frequency)
   {
 
   }

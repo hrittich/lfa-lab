@@ -182,7 +182,7 @@ class Node(object):
 
         if self.properties.outputGrid() \
                 != self.properties.inputGrid():
-            raise Exception("An identity cannot be constructed between two"
+            raise Exception("An identity cannot be constructed between two "
                             "different grids.")
 
         if isinstance(self.properties, SystemSymbolProperties):

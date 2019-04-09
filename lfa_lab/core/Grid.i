@@ -52,6 +52,10 @@ class Grid {
     bool __eq__(const Grid& other) {
       return (*$self) == other;
     }
+
+    bool __ne__(const Grid& other) {
+      return (*$self) != other;
+    }
 }
 
 

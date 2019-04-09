@@ -53,6 +53,10 @@ namespace lfa {
         return (m_spacing == other.m_spacing).all();
       }
 
+      bool operator!= (const Grid& other) const {
+        return !(*this == other);
+      }
+
       ArrayFd finestStepSize() const;
 
       shared_ptr<FoContext> context() { return m_ctx; }

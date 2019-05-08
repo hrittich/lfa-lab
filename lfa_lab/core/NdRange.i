@@ -35,7 +35,7 @@ class stop_iteration : public std::exception { };
 
 %pythoncode %{
   import six
-  # derive the following class from six.Iterator
+  # derive the following class from six.Iterator for Python 2 compatibility
   _object = six.Iterator
 %}
 
@@ -63,6 +63,7 @@ class stop_iteration : public std::exception { };
 }
 
 %pythoncode %{
+  # switch back to deriving from object
   _object = object
 %}
 

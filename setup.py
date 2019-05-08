@@ -85,6 +85,7 @@ setup(
         install=custom_install,
         ),
     install_requires=[
-        'numpy'
+        'numpy',
+        'six'
     ]
     )

@@ -47,5 +47,8 @@ matrix:
       - (cd build && cmake -DCMAKE_CXX_COMPILER=g++-6 -DWITH_TESTS=ON -DPYTHON_EXECUTABLE=`which python3` ../ )
       - make -C build
       - make -C build check
-
+    # Python3: Pip user install
+    - script:
+        - CXX=g++-6 CC=gcc-6 pip install -v --user .
+        - (cd demo && python -mlfa_lab)
 

@@ -18,29 +18,32 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 from setuptools import setup
-from distutils.core import Command
+from setuptools import Command
 from setuptools.command.install import install
 from distutils.command.build import build
 from subprocess import check_call
+import os
 
 class install_cmake(Command):
 
     user_options = [
-        ('install-dir=', 'd', "directory to install to"),
+        ('install-dir=', 'd', "directory to install to")
     ]
 
-    def initialize_options (self):
-        self.install_dir = None
+    def initialize_options(self):
+        self.install_lib = None
 
-    def finalize_options (self):
+    def finalize_options(self):
         # get attibute install_lib from install command and store into
-        # install_dir variable
+        # install_lib variable
         self.set_undefined_options('install',
-                                   ('install_lib', 'install_dir'))
+                                   ('install_lib', 'install_lib'))
+
+        self.install_lib = os.path.abspath(self.install_lib)
 
     def run(self):
         check_call(['cmake',
-            '-DPYTHON_INSTALL_DIR={}'.format(self.install_dir),
+            '-DPYTHON_INSTALL_DIR={}'.format(self.install_lib),
             ])
         check_call(['make', 'install'])
 
@@ -68,12 +71,13 @@ class build_cmake(Command):
         check_call(['make'])
 
 class custom_build(build):
-    sub_commands = [ ('build_cmake', lambda self: True) ] + \
-        build.sub_commands
+    sub_commands = [ ('build_cmake', lambda self: True) ] \
+        + build.sub_commands
 
 class custom_install(install):
-    sub_commands = [ ('install_cmake', lambda self: True) ] + \
-        install.sub_commands
+    sub_commands = [ ('install_cmake', lambda self: True) ] \
+        + install.sub_commands
+
 
 setup(
     name='lfa-lab',

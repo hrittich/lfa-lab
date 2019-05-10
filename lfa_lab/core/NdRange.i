@@ -19,70 +19,47 @@
 
 // vim: set filetype=cpp:
 
-%exception PyNdRangeIterator::__next__ {
-    try {
-        $action
-    }
-    catch (stop_iteration) {
-        PyErr_SetNone(PyExc_StopIteration);
-        SWIG_fail;
-    }
-}
-
-%{
-class stop_iteration : public std::exception { };
-%}
-
-%pythoncode %{
-  import six
-  # derive the following class from six.Iterator for Python 2 compatibility
-  _object = six.Iterator
-%}
-
-%inline{
-    class PyNdRangeIterator {
-        public:
-            PyNdRangeIterator(NdRange grid)
-              : m_grid(grid),
-                m_pos(grid.begin())
-            { }
-
-            ArrayFi __next__() {
-                if (m_pos == m_grid.end())
-                    throw stop_iteration();
-
-                ArrayFi value = *m_pos;
-                ++m_pos;
-                return value;
-            }
-
-        private:
-            NdRange m_grid;
-            NdRange::iterator m_pos;
-    };
-}
-
-%pythoncode %{
-  # switch back to deriving from object
-  _object = object
-%}
-
 class NdRange {
-    public:
-        NdRange(ArrayFi shape = ArrayFi::Zero(0));
+  public:
+    NdRange(ArrayFi shape = ArrayFi::Zero(0));
 
-        ArrayFi shape() const;
-        int size() const;
+    ArrayFi shape() const;
+    int size() const;
 
-        int dimension() const;
+    int dimension() const;
 
-        bool inRange(ArrayFi coord);
+    bool inRange(ArrayFi coord);
+
+    NdRangeIterator begin();
+    NdRangeIterator end();
 };
 
-%extend NdRange {
-    PyNdRangeIterator __iter__() {
-        return PyNdRangeIterator(*$self);
-    }
+class NdRangeIterator : public std::iterator<std::input_iterator_tag, ArrayFi>
+{
+  public:
+    bool operator== (const NdRangeIterator& rhs) const;
+    bool operator!= (const NdRangeIterator& rhs) const;
+};
+
+%extend NdRangeIterator {
+  void advance() {
+    ++(*$self);
+  }
+  ArrayFi value() {
+    return **$self;
+  }
 }
+
+%pythoncode %{
+
+def NdRange__iter__(self):
+  iter = self.begin()
+  while iter != self.end():
+    yield iter.value()
+    iter.advance()
+
+setattr(NdRange, r'__iter__', NdRange__iter__)
+
+%}
 
 

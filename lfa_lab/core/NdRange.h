@@ -27,6 +27,8 @@
 
 namespace lfa {
 
+class NdRangeIterator;
+
 /** Cartesian grid graph.
  *
  * Represents a set of elements of the cartesian product
@@ -34,7 +36,7 @@ namespace lfa {
  * */
 class NdRange {
     public:
-        class iterator;
+        typedef NdRangeIterator iterator;
 
         NdRange(ArrayFi shape = ArrayFi::Zero(0))
          :  m_shape(shape)
@@ -93,14 +95,14 @@ class NdRange {
         ArrayFi m_shape;
 };
 
-class NdRange::iterator : public std::iterator<std::input_iterator_tag, ArrayFi>
+class NdRangeIterator : public std::iterator<std::input_iterator_tag, ArrayFi>
 {
     public:
-        iterator()
+        NdRangeIterator()
          :  m_out_of_range(true)
         {}
 
-        iterator(const iterator& rhs)
+        NdRangeIterator(const NdRangeIterator& rhs)
          :  m_out_of_range(rhs.m_out_of_range),
             m_pos(rhs.m_pos),
             m_grid(rhs.m_grid)
@@ -108,18 +110,18 @@ class NdRange::iterator : public std::iterator<std::input_iterator_tag, ArrayFi>
         }
 
         /** Start at position 0. */
-        iterator(const NdRange& grid)
+        NdRangeIterator(const NdRange& grid)
          :  m_out_of_range(false),
             m_pos(ArrayFi::Zero(grid.dimension())),
             m_grid(grid)
         {
         }
 
-        iterator& operator++ ()
+        NdRangeIterator& operator++ ()
         {
             int d = 0;
             m_pos(d)++;
-            while (m_pos(d) >= m_grid.m_shape(d) && d+1 < dimension())
+            while (m_pos(d) >= m_grid.shape()(d) && d+1 < dimension())
             {
                 m_pos(d) = 0;
                 d+=1;
@@ -127,14 +129,14 @@ class NdRange::iterator : public std::iterator<std::input_iterator_tag, ArrayFi>
             }
 
             // if m_pos(d) is still >= m_grid->m_shape(d) we are out of range
-            if (m_pos(d) >= m_grid.m_shape(d)) {
+            if (m_pos(d) >= m_grid.shape()(d)) {
                 m_out_of_range = true;
             }
 
             return *this;
         }
 
-        bool operator== (const iterator& rhs) const {
+        bool operator== (const NdRangeIterator& rhs) const {
 
             if (m_out_of_range != rhs.m_out_of_range) {
                 return false;
@@ -149,7 +151,7 @@ class NdRange::iterator : public std::iterator<std::input_iterator_tag, ArrayFi>
             return (m_pos == rhs.m_pos).all();
         }
 
-        bool operator!= (const iterator& rhs) const {
+        bool operator!= (const NdRangeIterator& rhs) const {
             return !(*this == rhs);
         }
 
@@ -169,14 +171,14 @@ class NdRange::iterator : public std::iterator<std::input_iterator_tag, ArrayFi>
         NdRange m_grid;
 };
 
-inline NdRange::iterator NdRange::begin()
+inline NdRangeIterator NdRange::begin()
 {
-    return iterator(*this);
+    return NdRangeIterator(*this);
 }
 
-inline NdRange::iterator NdRange::end()
+inline NdRangeIterator NdRange::end()
 {
-    return iterator();
+    return NdRangeIterator();
 }
 
 }

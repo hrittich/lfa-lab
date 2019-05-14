@@ -135,7 +135,7 @@ class Node(object):
         visit(self)
         self._unmark_all()
 
-    def symbol(self, desired_resolution = None):
+    def symbol(self, desired_resolution = None, base_frequency = None):
         """The symbol of the operator.
 
         :rtype: Symbol
@@ -151,8 +151,15 @@ class Node(object):
 
         # compute the resolution
         resolution = self.properties.adjustResolution(desired_resolution)
-        conf = SamplingProperties(resolution, self.properties.inputGrid())
 
+        if base_frequency is None:
+            # compute default base_frequency
+            conf = SamplingProperties(resolution, self.properties.inputGrid())
+        else:
+            base_frequency = tuple(base_frequency)
+            conf = SamplingProperties(resolution, base_frequency)
+
+        # set the configuration for all nodes in the DAG
         def set_configuration(n):
             n.configuration = conf
 

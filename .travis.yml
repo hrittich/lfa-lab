@@ -18,17 +18,15 @@ addons:
     - python3-numpy-dev
     - python3-matplotlib
     - python3-six
+    - python3-pip
+    - python3-venv
+    - python3-setuptools
     - swig
     - libeigen3-dev
     - liblapack-dev
 
 matrix:
   include:
-    # Python2: In source build
-    - script:
-      - cmake -DCMAKE_CXX_COMPILER=g++-6 -DWITH_TESTS=ON .
-      - make
-      - make check
     # Python2: Out of source build
     - script:
       - mkdir build
@@ -49,6 +47,11 @@ matrix:
       - make -C build check
     # Python3: Pip user install
     - script:
-        - CXX=g++-6 CC=gcc-6 pip install -v --user .
-        - (cd demo && python -mlfa_lab)
+      - CXX=g++-6 CC=gcc-6 pip3 install -v --user .
+      - (cd demo && python3 -mlfa_lab)
+    # Python3: venv install
+    - script:
+      - python3 -mvenv myenv
+      - (source myenv/bin/activate; CXX=g++-6 CC=gcc-6 pip -v install .)
+      - (source myenv/bin/activate; cd demo; python -mlfa_lab)
 

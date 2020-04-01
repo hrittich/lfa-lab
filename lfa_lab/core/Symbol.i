@@ -2,7 +2,7 @@
   vim: set filetype=cpp:
 
   LFA Lab - Library to simplify local Fourier analysis.
-  Copyright (C) 2018  Hannah Rittich
+  Copyright (C) 2018-2020  Hannah Rittich
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
   51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
-%feature("autodoc", "Approximation of a matrix symbols.") Symbol;
+%feature("autodoc", "Approximation of a matrix symbol.") Symbol;
 %feature("autodoc",
 "The norms of the rows of the symbol as an :math:`n`-D array.") Symbol::row_norms;
 %feature("autodoc",

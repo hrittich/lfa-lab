@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #
 # LFA Lab - Library to simplify local Fourier analysis.
-# Copyright (C) 2018  Hannah Rittich
+# Copyright (C) 2018-2020  Hannah Rittich
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,8 +21,9 @@ from setuptools import setup
 from setuptools import Command
 from setuptools.command.install import install
 from distutils.command.build import build
-from subprocess import check_call
+from subprocess import check_call, CalledProcessError
 import os
+import sys
 
 class install_cmake(Command):
 
@@ -67,8 +68,12 @@ class build_cmake(Command):
 
     def run(self):
         # run cmake
-        check_call(['cmake', '.'])
-        check_call(['make'])
+        try:
+            check_call(['cmake', '-DPYTHON_EXECUTABLE='+sys.executable, '.'])
+        except CalledProcessError:
+            # if cmake fails, try to run with a clean cache
+            os.remove('CMakeCache.txt')
+            check_call(['cmake', '-DPYTHON_EXECUTABLE='+sys.executable, '.'])
 
 class custom_build(build):
     sub_commands = [ ('build_cmake', lambda self: True) ] \

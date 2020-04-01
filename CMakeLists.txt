@@ -182,7 +182,6 @@ endif()
 
 option(USER_INSTALL "Install into per user directory")
 if(NOT USER_INSTALL STREQUAL USER_INSTALL_OLD)
-  message("USER INSTALL SETTING CHANGED")
   if(USER_INSTALL)
     set(NEW_PYTHON_INSTALL_DIR ${PYTHON_USER_INSTALL_DIR})
   else()
@@ -215,8 +214,6 @@ endif()
 # Display Summary
 message("
 ----------------------------------------
- Feature    Status
-----------------------------------------
  Version    ${PROJECT_NAME} ${PROJECT_VERSION}
  Build      ${CMAKE_BUILD_TYPE}
  Eigen      ${EIGEN_VERSION}
@@ -225,9 +222,8 @@ message("
  OpenMP     ${WITH_OPENMP}
  Python     ${PYTHON_VERSION}
  Tests      ${WITH_TESTS}
+ Inst. Dir  ${PYTHON_INSTALL_DIR}
 ----------------------------------------
-
-Install to ${PYTHON_INSTALL_DIR}
 ")
 
 

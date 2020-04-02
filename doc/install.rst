@@ -18,7 +18,7 @@ LFA Lab depends on the following packages:
 - C++ compiler
 - `CMake <http://www.cmake.org/>`_
 - `Eigen3 <http://eigen.tuxfamily.org/>`_
-- `Python2 <http://www.python.org/>`_
+- `Python3 <http://www.python.org/>`_
 - `Swig <http://swig.org/>`_
 - `NumPy <http://www.numpy.org/>`_
 - `six <https://pypi.org/project/six/>`_
@@ -43,7 +43,7 @@ Debian
 To install the dependencies on Debian, run the following command::
 
   sudo apt-get install -y \
-      g++ cmake python-dev python-numpy-dev python-six swig \
+      g++ cmake python3-dev python3-numpy python-six swig \
       libeigen3-dev liblapack-dev python-matplotlib
 
 Fedora
@@ -52,38 +52,48 @@ Fedora
 To install the dependencies on Fedora, run the following command::
 
   sudo dnf install -y \
-      gcc-c++ cmake python2-devel python2-numpy python-six swig \
-      eigen3-devel lapack-devel python2-matplotlib
+      gcc-c++ cmake python3-devel python3-numpy python-six swig \
+      eigen3-devel lapack-devel python3-matplotlib
 
 Mac OS X
 --------
 
-An easy way to install the required (non-python) dependencies of LFA Lab is
+First, you need to install a current version of Python. Visit the
+`Python Website <https://www.python.org/>`_ and download a recent version
+of Python 3, which you then install. Make sure that this Python version
+is your path by running the `Update Shell Profile.command`. After running
+this command, you need to close all terminal windows.
+
+Next, we need to install the C++ dependencies, needed to compile the native
+Python extension of LFA Lab. An easy way to install these dependencies is
 the `Homebrew package manager <http://brew.sh>`_ for Mac. Make sure you have
 Homebrew installed. Then, change into the source directory of LFA Lab and
 execute the following command::
 
   brew bundle
 
-Then, you can use `PIP`_ to install the remaining
-(python) dependencies::
+Then, you can use `PIP`_ to install the remaining (Python) dependencies::
 
-  easy_install --user pip
-  python -mpip install --user --upgrade -r requirements.txt
+  pip3 install --user --upgrade -r requirements.txt
 
 *Warning*: You might have multiple Python versions on your machine. You have
 to make sure that all dependencies and LFA Lab are installed with the same
 version.
 
-Furthermore, ff you want to use Matplotlib you need to make sure that you are
-using a
-`Framework build of Python <https://docs.python.org/2/using/mac.html>`_.
-See also `here <https://matplotlib.org/users/installing.html>`__ and
-`here <https://matplotlib.org/faq/osx_framework.html#osxframework-faq>`__.
+Quick Install
+=============
 
-If you want you can build and install LFA Lab using pip::
+After you have prepared your system, you can build and install LFA Lab using
+pip. Change into the source directory of LFA Lab and execute::
 
-  python -mpip install --user .
+  pip3 -mpip install --user .
+
+To check your installation, open a *new* terminal window and run::
+
+  python3 -mlfa_lab
+
+You should see a message, which tells you that LFA Lab has been installed
+successfully.
 
 If you want to customize the installation of in case the build fails, see the
 manual installation below.

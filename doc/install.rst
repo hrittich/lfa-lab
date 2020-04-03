@@ -86,7 +86,7 @@ Quick Install
 After you have prepared your system, you can build and install LFA Lab using
 pip. Change into the source directory of LFA Lab and execute::
 
-  pip3 -mpip install --user .
+  pip3 install --user .
 
 To check your installation, open a *new* terminal window and run::
 

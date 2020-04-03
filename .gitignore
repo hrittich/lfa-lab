@@ -1,18 +1,33 @@
-
+# build-system-generated files
 Doxyfile
 Makefile
 cmake_install.cmake
 CMakeFiles/
 CMakeCache.txt
-html/
-latex/
 tags
+install_manifest.txt
 
-# binaries
+CMakeDoxyfile.in
+CMakeDoxygenDefaults.cmake
+
+# generated configurations
+Config.h
+python_config.cmake
+setup-env.sh
+doc/conf.py
+doc/html/
+
+# targets
 build
+lfa_lab/core/_extension.so
+lfa_lab/core/extension.cpp
+lfa_lab/core/extension.py
+lfa_lab/core/liblfa.a
+doc/core-html/
 
 # VIM swap files
 *.swp
+
 # callgrind output
 callgrind.out.*
 

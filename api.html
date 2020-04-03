@@ -1,32 +1,22 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>API &#8212; LFA Lab 0.4.0-alpha documentation</title>
-    
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.4.0-alpha',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="top" title="LFA Lab 0.4.0-alpha documentation" href="index.html" />
     <link rel="next" title="Publications &amp; Citations" href="citation.html" />
     <link rel="prev" title="Tutorial" href="tutorial.html" />
    
@@ -34,8 +24,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
-  </head>
-  <body role="document">
+  </head><body>
   
 
     <div class="document">
@@ -55,7 +44,7 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>stencils</strong> (<a class="reference internal" href="#lfa_lab.util.NdArray" title="lfa_lab.util.NdArray"><em>NdArray</em></a>) &#8211; An <span class="math">\(n\)</span>-D array of stencils.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>stencils</strong> (<a class="reference internal" href="#lfa_lab.util.NdArray" title="lfa_lab.util.NdArray"><em>NdArray</em></a>) – An <span class="math notranslate nohighlight">\(n\)</span>-D array of stencils.</td>
 </tr>
 </tbody>
 </table>
@@ -71,10 +60,10 @@
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>stencil</strong> &#8211; The stencil that should be transformed into an operator.
+<li><strong>stencil</strong> – The stencil that should be transformed into an operator.
 This parameter has to be assigned to either a SparseStencil or a list of
 tuples, where each tuple consists of an offset and a value.</li>
-<li><strong>grid</strong> (<a class="reference internal" href="#lfa_lab.core.extension.Grid" title="lfa_lab.core.extension.Grid"><em>Grid</em></a>) &#8211; The grid where the operator is defined.</li>
+<li><strong>grid</strong> (<a class="reference internal" href="#lfa_lab.core.extension.Grid" title="lfa_lab.core.extension.Grid"><em>Grid</em></a>) – The grid where the operator is defined.</li>
 </ul>
 </td>
 </tr>
@@ -91,8 +80,8 @@ tuples, where each tuple consists of an offset and a value.</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>fine_grid</strong> (<a class="reference internal" href="#lfa_lab.core.extension.Grid" title="lfa_lab.core.extension.Grid"><em>Grid</em></a>) &#8211; The grid corresponding to all frequencies.</li>
-<li><strong>coarse_grid</strong> (<a class="reference internal" href="#lfa_lab.core.extension.Grid" title="lfa_lab.core.extension.Grid"><em>Grid</em></a>) &#8211; The grid of the low modes.</li>
+<li><strong>fine_grid</strong> (<a class="reference internal" href="#lfa_lab.core.extension.Grid" title="lfa_lab.core.extension.Grid"><em>Grid</em></a>) – The grid corresponding to all frequencies.</li>
+<li><strong>coarse_grid</strong> (<a class="reference internal" href="#lfa_lab.core.extension.Grid" title="lfa_lab.core.extension.Grid"><em>Grid</em></a>) – The grid of the low modes.</li>
 </ul>
 </td>
 </tr>
@@ -108,7 +97,7 @@ tuples, where each tuple consists of an offset and a value.</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>grid</strong> (<a class="reference internal" href="#lfa_lab.core.extension.Grid" title="lfa_lab.core.extension.Grid"><em>Grid</em></a>) &#8211; The grid where the operator is defined.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>grid</strong> (<a class="reference internal" href="#lfa_lab.core.extension.Grid" title="lfa_lab.core.extension.Grid"><em>Grid</em></a>) – The grid where the operator is defined.</td>
 </tr>
 </tbody>
 </table>
@@ -123,8 +112,8 @@ tuples, where each tuple consists of an offset and a value.</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>fine_grid</strong> (<a class="reference internal" href="#lfa_lab.core.extension.Grid" title="lfa_lab.core.extension.Grid"><em>Grid</em></a>) &#8211; The codomain of the operator.</li>
-<li><strong>coarse_grid</strong> (<a class="reference internal" href="#lfa_lab.core.extension.Grid" title="lfa_lab.core.extension.Grid"><em>Grid</em></a>) &#8211; The domain of the operator.</li>
+<li><strong>fine_grid</strong> (<a class="reference internal" href="#lfa_lab.core.extension.Grid" title="lfa_lab.core.extension.Grid"><em>Grid</em></a>) – The codomain of the operator.</li>
+<li><strong>coarse_grid</strong> (<a class="reference internal" href="#lfa_lab.core.extension.Grid" title="lfa_lab.core.extension.Grid"><em>Grid</em></a>) – The domain of the operator.</li>
 </ul>
 </td>
 </tr>
@@ -141,8 +130,8 @@ tuples, where each tuple consists of an offset and a value.</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>fine_grid</strong> (<a class="reference internal" href="#lfa_lab.core.extension.Grid" title="lfa_lab.core.extension.Grid"><em>Grid</em></a>) &#8211; The domain of the operator.</li>
-<li><strong>coarse_grid</strong> (<a class="reference internal" href="#lfa_lab.core.extension.Grid" title="lfa_lab.core.extension.Grid"><em>Grid</em></a>) &#8211; The codomain of the operator.</li>
+<li><strong>fine_grid</strong> (<a class="reference internal" href="#lfa_lab.core.extension.Grid" title="lfa_lab.core.extension.Grid"><em>Grid</em></a>) – The domain of the operator.</li>
+<li><strong>coarse_grid</strong> (<a class="reference internal" href="#lfa_lab.core.extension.Grid" title="lfa_lab.core.extension.Grid"><em>Grid</em></a>) – The codomain of the operator.</li>
 </ul>
 </td>
 </tr>
@@ -159,8 +148,8 @@ tuples, where each tuple consists of an offset and a value.</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>fine_grid</strong> (<a class="reference internal" href="#lfa_lab.core.extension.Grid" title="lfa_lab.core.extension.Grid"><em>Grid</em></a>) &#8211; The grid corresponding to all frequencies.</li>
-<li><strong>coarse_grid</strong> (<a class="reference internal" href="#lfa_lab.core.extension.Grid" title="lfa_lab.core.extension.Grid"><em>Grid</em></a>) &#8211; The grid of the low modes.</li>
+<li><strong>fine_grid</strong> (<a class="reference internal" href="#lfa_lab.core.extension.Grid" title="lfa_lab.core.extension.Grid"><em>Grid</em></a>) – The grid corresponding to all frequencies.</li>
+<li><strong>coarse_grid</strong> (<a class="reference internal" href="#lfa_lab.core.extension.Grid" title="lfa_lab.core.extension.Grid"><em>Grid</em></a>) – The grid of the low modes.</li>
 </ul>
 </td>
 </tr>
@@ -182,7 +171,7 @@ tuples, where each tuple consists of an offset and a value.</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>grid</strong> (<a class="reference internal" href="#lfa_lab.core.extension.Grid" title="lfa_lab.core.extension.Grid"><em>Grid</em></a>) &#8211; The grid where the operator is defined.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>grid</strong> (<a class="reference internal" href="#lfa_lab.core.extension.Grid" title="lfa_lab.core.extension.Grid"><em>Grid</em></a>) – The grid where the operator is defined.</td>
 </tr>
 </tbody>
 </table>
@@ -212,6 +201,12 @@ tuples, where each tuple consists of an offset and a value.</li>
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="method">
+<dt id="lfa_lab.dag.Node.__init__">
+<code class="descname">__init__</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lfa_lab.dag.Node.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>x.__init__(…) initializes x; see help(type(x)) for signature</p>
 </dd></dl>
 
 <dl class="method">
@@ -273,8 +268,15 @@ tuples, where each tuple consists of an offset and a value.</li>
 </dd></dl>
 
 <dl class="method">
+<dt id="lfa_lab.dag.Node.matching_identity">
+<code class="descname">matching_identity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lfa_lab.dag.Node.matching_identity" title="Permalink to this definition">¶</a></dt>
+<dd><p>An identity operator that has the same output and input grid as the
+current one.</p>
+</dd></dl>
+
+<dl class="method">
 <dt id="lfa_lab.dag.Node.symbol">
-<code class="descname">symbol</code><span class="sig-paren">(</span><em>desired_resolution=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lfa_lab.dag.Node.symbol" title="Permalink to this definition">¶</a></dt>
+<code class="descname">symbol</code><span class="sig-paren">(</span><em>desired_resolution=None</em>, <em>base_frequency=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lfa_lab.dag.Node.symbol" title="Permalink to this definition">¶</a></dt>
 <dd><p>The symbol of the operator.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -293,20 +295,20 @@ tuples, where each tuple consists of an offset and a value.</li>
 <em class="property">class </em><code class="descclassname">lfa_lab.dag.</code><code class="descname">StencilNode</code><span class="sig-paren">(</span><em>stencil</em>, <em>grid</em><span class="sig-paren">)</span><a class="headerlink" href="#lfa_lab.dag.StencilNode" title="Permalink to this definition">¶</a></dt>
 <dd><p>An Operator given by a stencil.</p>
 <p>To construct a stencil node, use the
-<a class="reference internal" href="#lfa_lab.operator.from_stencil" title="lfa_lab.operator.from_stencil"><code class="xref py py-func docutils literal"><span class="pre">lfa_lab.operator.from_stencil()</span></code></a> method.</p>
+<a class="reference internal" href="#lfa_lab.operator.from_stencil" title="lfa_lab.operator.from_stencil"><code class="xref py py-func docutils literal notranslate"><span class="pre">lfa_lab.operator.from_stencil()</span></code></a> method.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>stencil</strong> (<a class="reference internal" href="#lfa_lab.stencil.SparseStencil" title="lfa_lab.stencil.SparseStencil"><em>SparseStencil</em></a>) &#8211; The stencil that should be turned into an operator.</li>
-<li><strong>grid</strong> (<a class="reference internal" href="#lfa_lab.core.extension.Grid" title="lfa_lab.core.extension.Grid"><em>Grid</em></a>) &#8211; The corresponding grid.</li>
+<li><strong>stencil</strong> (<a class="reference internal" href="#lfa_lab.stencil.SparseStencil" title="lfa_lab.stencil.SparseStencil"><em>SparseStencil</em></a>) – The stencil that should be turned into an operator.</li>
+<li><strong>grid</strong> (<a class="reference internal" href="#lfa_lab.core.extension.Grid" title="lfa_lab.core.extension.Grid"><em>Grid</em></a>) – The corresponding grid.</li>
 </ul>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
-<li><a class="reference internal" href="#module-lfa_lab.stencil" title="lfa_lab.stencil"><strong>stencil</strong></a> &#8211; The stencil of the operator.</li>
-<li><strong>grid</strong> &#8211; The grid of the operator.</li>
+<li><a class="reference internal" href="#module-lfa_lab.stencil" title="lfa_lab.stencil"><strong>stencil</strong></a> – The stencil of the operator.</li>
+<li><strong>grid</strong> – The grid of the operator.</li>
 </ul>
 </td>
 </tr>
@@ -324,13 +326,6 @@ of the stencil of this operator.</p>
 <code class="descname">lower</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lfa_lab.dag.StencilNode.lower" title="Permalink to this definition">¶</a></dt>
 <dd><p>A stencil operator that was constructed using the strictly lower
 triangular part of the stencil of this operator.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="lfa_lab.dag.StencilNode.matching_identity">
-<code class="descname">matching_identity</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lfa_lab.dag.StencilNode.matching_identity" title="Permalink to this definition">¶</a></dt>
-<dd><p>An identity operator that has the same output and input grid as the
-current one.</p>
 </dd></dl>
 
 <dl class="method">
@@ -357,16 +352,16 @@ triangular part of the stencil of this operator.</p>
 <code class="descclassname">lfa_lab.smoother.</code><code class="descname">jacobi</code><span class="sig-paren">(</span><em>op</em>, <em>weight=1.0</em><span class="sig-paren">)</span><a class="headerlink" href="#lfa_lab.smoother.jacobi" title="Permalink to this definition">¶</a></dt>
 <dd><p>The Jacobi smoother.</p>
 <p>Given by</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[I - \omega D^{-1} A \,.\]</div>
-<p>where <span class="math">\(D\)</span> is the diagonal part of <span class="math">\(A\)</span>.</p>
+<p>where <span class="math notranslate nohighlight">\(D\)</span> is the diagonal part of <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>op</strong> (<a class="reference internal" href="#lfa_lab.dag.StencilNode" title="lfa_lab.dag.StencilNode"><em>StencilNode</em></a>) &#8211; The original operator <span class="math">\(A\)</span>.</li>
-<li><strong>weight</strong> &#8211; The weight <span class="math">\(\omega\)</span>.</li>
+<li><strong>op</strong> (<a class="reference internal" href="#lfa_lab.dag.StencilNode" title="lfa_lab.dag.StencilNode"><em>StencilNode</em></a>) – The original operator <span class="math notranslate nohighlight">\(A\)</span>.</li>
+<li><strong>weight</strong> – The weight <span class="math notranslate nohighlight">\(\omega\)</span>.</li>
 </ul>
 </td>
 </tr>
@@ -379,16 +374,16 @@ triangular part of the stencil of this operator.</p>
 <code class="descclassname">lfa_lab.smoother.</code><code class="descname">gs_lex</code><span class="sig-paren">(</span><em>op</em><span class="sig-paren">)</span><a class="headerlink" href="#lfa_lab.smoother.gs_lex" title="Permalink to this definition">¶</a></dt>
 <dd><p>The Gauss-Seidel lexicographic smoother.</p>
 <p>Given by</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[I - (D + L)^{-1} A\]</div>
-<p>where <span class="math">\(D\)</span> is the diagonal part and
-<span class="math">\(L\)</span> the strictly lower triangular part of
-<span class="math">\(A\)</span>.</p>
+<p>where <span class="math notranslate nohighlight">\(D\)</span> is the diagonal part and
+<span class="math notranslate nohighlight">\(L\)</span> the strictly lower triangular part of
+<span class="math notranslate nohighlight">\(A\)</span>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>op</strong> (<a class="reference internal" href="#lfa_lab.dag.StencilNode" title="lfa_lab.dag.StencilNode"><em>StencilNode</em></a>) &#8211; The original operator <span class="math">\(A\)</span>.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>op</strong> (<a class="reference internal" href="#lfa_lab.dag.StencilNode" title="lfa_lab.dag.StencilNode"><em>StencilNode</em></a>) – The original operator <span class="math notranslate nohighlight">\(A\)</span>.</td>
 </tr>
 </tbody>
 </table>
@@ -403,9 +398,9 @@ triangular part of the stencil of this operator.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>stencil</strong> (<a class="reference internal" href="#lfa_lab.dag.StencilNode" title="lfa_lab.dag.StencilNode"><em>StencilNode</em></a>) &#8211; The original operator.</li>
-<li><strong>weight</strong> (<em>double</em>) &#8211; The weight of the Jacobi methods, see
-<a class="reference internal" href="#lfa_lab.smoother.jacobi" title="lfa_lab.smoother.jacobi"><code class="xref py py-func docutils literal"><span class="pre">lfa_lab.smoother.jacobi()</span></code></a>.</li>
+<li><strong>stencil</strong> (<a class="reference internal" href="#lfa_lab.dag.StencilNode" title="lfa_lab.dag.StencilNode"><em>StencilNode</em></a>) – The original operator.</li>
+<li><strong>weight</strong> (<em>double</em>) – The weight of the Jacobi methods, see
+<a class="reference internal" href="#lfa_lab.smoother.jacobi" title="lfa_lab.smoother.jacobi"><code class="xref py py-func docutils literal notranslate"><span class="pre">lfa_lab.smoother.jacobi()</span></code></a>.</li>
 </ul>
 </td>
 </tr>
@@ -423,9 +418,9 @@ triangular part of the stencil of this operator.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>op</strong> (<a class="reference internal" href="#lfa_lab.dag.StencilNode" title="lfa_lab.dag.StencilNode"><em>StencilNode</em></a>) &#8211; The original operator.</li>
-<li><strong>block_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.7)"><em>tuple</em></a>) &#8211; A tuple containing the block size per dimension.</li>
-<li><strong>weight</strong> &#8211; The weight applied to the correction.</li>
+<li><strong>op</strong> (<a class="reference internal" href="#lfa_lab.dag.StencilNode" title="lfa_lab.dag.StencilNode"><em>StencilNode</em></a>) – The original operator.</li>
+<li><strong>block_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><em>tuple</em></a>) – A tuple containing the block size per dimension.</li>
+<li><strong>weight</strong> – The weight applied to the correction.</li>
 </ul>
 </td>
 </tr>
@@ -442,9 +437,9 @@ triangular part of the stencil of this operator.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>op</strong> (<a class="reference internal" href="#lfa_lab.dag.StencilNode" title="lfa_lab.dag.StencilNode"><em>StencilNode</em></a>) &#8211; The original operator.</li>
-<li><strong>block_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.7)"><em>tuple</em></a>) &#8211; A tuple containing the block size per dimension.</li>
-<li><strong>weight</strong> &#8211; The weight applied to the correction.</li>
+<li><strong>op</strong> (<a class="reference internal" href="#lfa_lab.dag.StencilNode" title="lfa_lab.dag.StencilNode"><em>StencilNode</em></a>) – The original operator.</li>
+<li><strong>block_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><em>tuple</em></a>) – A tuple containing the block size per dimension.</li>
+<li><strong>weight</strong> – The weight applied to the correction.</li>
 </ul>
 </td>
 </tr>
@@ -471,11 +466,11 @@ triangular part of the stencil of this operator.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>operator</strong> (<a class="reference internal" href="#lfa_lab.dag.Node" title="lfa_lab.dag.Node"><em>Node</em></a>) &#8211; The operator of the linear system.</li>
-<li><strong>coarse_operator</strong> (<a class="reference internal" href="#lfa_lab.dag.Node" title="lfa_lab.dag.Node"><em>Node</em></a>) &#8211; The operator of the coarse linear system.</li>
-<li><strong>interpolation</strong> (<a class="reference internal" href="#lfa_lab.dag.Node" title="lfa_lab.dag.Node"><em>Node</em></a>) &#8211; The interpolation operator.</li>
-<li><strong>restriction</strong> (<a class="reference internal" href="#lfa_lab.dag.Node" title="lfa_lab.dag.Node"><em>Node</em></a>) &#8211; The restriction operator.</li>
-<li><strong>coarse_error</strong> (<a class="reference internal" href="#lfa_lab.dag.Node" title="lfa_lab.dag.Node"><em>Node</em></a>) &#8211; The coarse error propagation operation. This entry is optional. It can
+<li><strong>operator</strong> (<a class="reference internal" href="#lfa_lab.dag.Node" title="lfa_lab.dag.Node"><em>Node</em></a>) – The operator of the linear system.</li>
+<li><strong>coarse_operator</strong> (<a class="reference internal" href="#lfa_lab.dag.Node" title="lfa_lab.dag.Node"><em>Node</em></a>) – The operator of the coarse linear system.</li>
+<li><strong>interpolation</strong> (<a class="reference internal" href="#lfa_lab.dag.Node" title="lfa_lab.dag.Node"><em>Node</em></a>) – The interpolation operator.</li>
+<li><strong>restriction</strong> (<a class="reference internal" href="#lfa_lab.dag.Node" title="lfa_lab.dag.Node"><em>Node</em></a>) – The restriction operator.</li>
+<li><strong>coarse_error</strong> (<a class="reference internal" href="#lfa_lab.dag.Node" title="lfa_lab.dag.Node"><em>Node</em></a>) – The coarse error propagation operation. This entry is optional. It can
 be specified when the coarse grid system is solved inexactly.</li>
 </ul>
 </td>
@@ -495,16 +490,16 @@ be specified when the coarse grid system is solved inexactly.</li>
 <code class="descclassname">lfa_lab.two_grid.</code><code class="descname">galerkin_coarsening</code><span class="sig-paren">(</span><em>operator</em>, <em>interpolation</em>, <em>restriction</em><span class="sig-paren">)</span><a class="headerlink" href="#lfa_lab.two_grid.galerkin_coarsening" title="Permalink to this definition">¶</a></dt>
 <dd><p>The error propagator of the Galerkin coarse grid approximation (GCA).</p>
 <p>The GCA is defined as</p>
-<div class="math">
+<div class="math notranslate nohighlight">
 \[L_c = R L P \,.\]</div>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>operator</strong> (<a class="reference internal" href="#lfa_lab.dag.Node" title="lfa_lab.dag.Node"><em>Node</em></a>) &#8211; The fine grid operator <span class="math">\(L\)</span>.</li>
-<li><strong>interpolation</strong> (<a class="reference internal" href="#lfa_lab.dag.Node" title="lfa_lab.dag.Node"><em>Node</em></a>) &#8211; The interpolation operator <span class="math">\(P\)</span>.</li>
-<li><strong>restriction</strong> (<a class="reference internal" href="#lfa_lab.dag.Node" title="lfa_lab.dag.Node"><em>Node</em></a>) &#8211; The restriction operator <span class="math">\(R\)</span>.</li>
+<li><strong>operator</strong> (<a class="reference internal" href="#lfa_lab.dag.Node" title="lfa_lab.dag.Node"><em>Node</em></a>) – The fine grid operator <span class="math notranslate nohighlight">\(L\)</span>.</li>
+<li><strong>interpolation</strong> (<a class="reference internal" href="#lfa_lab.dag.Node" title="lfa_lab.dag.Node"><em>Node</em></a>) – The interpolation operator <span class="math notranslate nohighlight">\(P\)</span>.</li>
+<li><strong>restriction</strong> (<a class="reference internal" href="#lfa_lab.dag.Node" title="lfa_lab.dag.Node"><em>Node</em></a>) – The restriction operator <span class="math notranslate nohighlight">\(R\)</span>.</li>
 </ul>
 </td>
 </tr>
@@ -587,14 +582,14 @@ be specified when the coarse grid system is solved inexactly.</li>
 <dt id="lfa_lab.gallery.poisson_2d">
 <code class="descclassname">lfa_lab.gallery.</code><code class="descname">poisson_2d</code><span class="sig-paren">(</span><em>grid</em>, <em>eps=1.0</em><span class="sig-paren">)</span><a class="headerlink" href="#lfa_lab.gallery.poisson_2d" title="Permalink to this definition">¶</a></dt>
 <dd><p>The stencil of the discrete Poisson equation in 2D.</p>
-<p>This operator is the discrete version of the operator <span class="math">\(L\)</span> given by</p>
-<div class="math">
+<p>This operator is the discrete version of the operator <span class="math notranslate nohighlight">\(L\)</span> given by</p>
+<div class="math notranslate nohighlight">
 \[L u = -\left(
       \epsilon \frac{\partial^2 u}{\partial x^2} +
       \frac{\partial^2 u}{\partial y^2}
       \right)
       \,.\]</div>
-<p>Using finite differences leads to the discrete operator <span class="math">\(L_h\)</span>, which
+<p>Using finite differences leads to the discrete operator <span class="math notranslate nohighlight">\(L_h\)</span>, which
 is computed by this function (see <a class="reference internal" href="glossary.html#poisson-equation"><span class="std std-ref">Poisson Equation</span></a>).</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -614,7 +609,7 @@ is computed by this function (see <a class="reference internal" href="glossary.h
 <em class="property">class </em><code class="descclassname">lfa_lab.stencil.</code><code class="descname">SparseStencil</code><span class="sig-paren">(</span><em>entries=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lfa_lab.stencil.SparseStencil" title="Permalink to this definition">¶</a></dt>
 <dd><p>Storage for a stencil.</p>
 <p>A (constant) stencil is a map
-<span class="math">\(s: \mathbb{Z}^d \to \mathbb{C}\)</span>. We assume that only finitely many
+<span class="math notranslate nohighlight">\(s: \mathbb{Z}^d \to \mathbb{C}\)</span>. We assume that only finitely many
 function values are non-zero. Therefore, we can represent the stencil by a
 list containing of pairs consisting of the function argument and the
 corresponding value.</p>
@@ -622,7 +617,7 @@ corresponding value.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entries</strong> (<em>list of (tuple of (tuple, double))</em>) &#8211; The entries of the stencil. This argument is supposed to
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entries</strong> (<em>list of</em><em> (</em><em>tuple of</em><em> (</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><em>tuple</em></a><em>, </em><em>double</em><em>)</em><em>)</em>) – The entries of the stencil. This argument is supposed to
 be a list of entries. Each entry is a tuple consisting of the offset
 (a tuple) and the corresponding scalar.</td>
 </tr>
@@ -635,19 +630,19 @@ be a list of entries. Each entry is a tuple consisting of the offset
 <em class="property">class </em><code class="descclassname">lfa_lab.stencil.</code><code class="descname">PeriodicStencil</code><span class="sig-paren">(</span><em>entries</em><span class="sig-paren">)</span><a class="headerlink" href="#lfa_lab.stencil.PeriodicStencil" title="Permalink to this definition">¶</a></dt>
 <dd><p>Storage for a periodic stencil.</p>
 <p>A periodic stencil is a family of stencils
-<span class="math">\(\{ s_\mathbf{x} \}_\mathbf{x \in \mathbb{Z}^d}\)</span> such that
-<span class="math">\(s_\mathbf{x} = s_{\mathbf{x}'}\)</span> for
-<span class="math">\((\mathbf{x} - \mathbf{x}') \in \mathbf{p} \mathbb{Z}^d\)</span>.
-We call <span class="math">\(\mathbf{p}\)</span> the period of the stencil.
+<span class="math notranslate nohighlight">\(\{ s_\mathbf{x} \}_\mathbf{x \in \mathbb{Z}^d}\)</span> such that
+<span class="math notranslate nohighlight">\(s_\mathbf{x} = s_{\mathbf{x}'}\)</span> for
+<span class="math notranslate nohighlight">\((\mathbf{x} - \mathbf{x}') \in \mathbf{p} \mathbb{Z}^d\)</span>.
+We call <span class="math notranslate nohighlight">\(\mathbf{p}\)</span> the period of the stencil.
 We store a periodic stencil by storing the stencils for
-<span class="math">\(0 \le \mathbf{x} &lt; \mathbf{p}\)</span> in an instance of
-<code class="xref py py-class docutils literal"><span class="pre">lfa_tool.util.NdArray</span></code>.</p>
+<span class="math notranslate nohighlight">\(0 \le \mathbf{x} &lt; \mathbf{p}\)</span> in an instance of
+<code class="xref py py-class docutils literal notranslate"><span class="pre">lfa_tool.util.NdArray</span></code>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entries</strong> &#8211; The entries as an <code class="xref py py-class docutils literal"><span class="pre">lfa_tool.util.NdArray</span></code> or as a proper
-argument to the constructor of <code class="xref py py-class docutils literal"><span class="pre">lfa_tool.util.NdArray</span></code>.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>entries</strong> – The entries as an <code class="xref py py-class docutils literal notranslate"><span class="pre">lfa_tool.util.NdArray</span></code> or as a proper
+argument to the constructor of <code class="xref py py-class docutils literal notranslate"><span class="pre">lfa_tool.util.NdArray</span></code>.</td>
 </tr>
 </tbody>
 </table>
@@ -666,11 +661,11 @@ argument to the constructor of <code class="xref py py-class docutils literal"><
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>sym</strong> (<a class="reference internal" href="#lfa_lab.core.extension.Symbol" title="lfa_lab.core.extension.Symbol"><em>Symbol</em></a>) &#8211; The symbol that should be plotted.</li>
-<li><strong>norm_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) &#8211; The type of the norm. Possible values: &#8216;rows&#8217;,
-&#8216;output&#8217;, &#8216;columns&#8217;, and &#8216;input&#8217;.</li>
-<li><strong>style_2d</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) &#8211; The plotting style for 2D symbols. It can be set to
-&#8216;mesh&#8217;, &#8216;image&#8217;, or &#8216;contour&#8217;.</li>
+<li><strong>sym</strong> (<a class="reference internal" href="#lfa_lab.core.extension.Symbol" title="lfa_lab.core.extension.Symbol"><em>Symbol</em></a>) – The symbol that should be plotted.</li>
+<li><strong>norm_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The type of the norm. Possible values: ‘rows’,
+‘output’, ‘columns’, and ‘input’.</li>
+<li><strong>style_2d</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The plotting style for 2D symbols. It can be set to
+‘mesh’, ‘image’, or ‘contour’.</li>
 </ul>
 </td>
 </tr>
@@ -686,8 +681,8 @@ argument to the constructor of <code class="xref py py-class docutils literal"><
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>norm_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) &#8211; The type of the norm. Possible values: &#8216;rows&#8217;,
-&#8216;output&#8217;, &#8216;columns&#8217;, and &#8216;input&#8217;.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>norm_type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The type of the norm. Possible values: ‘rows’,
+‘output’, ‘columns’, and ‘input’.</td>
 </tr>
 </tbody>
 </table>
@@ -721,9 +716,9 @@ matplotlib.pyplot.show() to show it.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>file_name_prefix</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) &#8211; The file name without file extension.</li>
-<li><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) &#8211; A short description of the operator.</li>
-<li><strong>standalone</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) &#8211; Whether the TeX file contains the preamble or is suitable for
+<li><strong>file_name_prefix</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – The file name without file extension.</li>
+<li><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – A short description of the operator.</li>
+<li><strong>standalone</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – Whether the TeX file contains the preamble or is suitable for
 embedding into another document.</li>
 </ul>
 </td>
@@ -738,11 +733,11 @@ embedding into another document.</li>
 <dl class="class">
 <dt id="lfa_lab.util.NdArray">
 <em class="property">class </em><code class="descclassname">lfa_lab.util.</code><code class="descname">NdArray</code><span class="sig-paren">(</span><em>entries=None</em>, <em>dim=None</em>, <em>bottom_p=None</em>, <em>shape=None</em><span class="sig-paren">)</span><a class="headerlink" href="#lfa_lab.util.NdArray" title="Permalink to this definition">¶</a></dt>
-<dd><p>An <span class="math">\(n\)</span>-D array.</p>
+<dd><p>An <span class="math notranslate nohighlight">\(n\)</span>-D array.</p>
 <p>When constructing an NdArray either <cite>entires</cite> or <cite>shape</cite> must be given.
 When <cite>entries</cite> is given, either <cite>dim</cite> of <cite>bottom_p</cite> must be defined.</p>
 <p>Here is a simple example for the usage of this class:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">lfa_lab</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">NdArray</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">lfa_lab</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">NdArray</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]],</span> <span class="n">dim</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span> <span class="c1"># prints 6</span>
 <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">7</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>      <span class="c1"># prints NdArray: [[1, 2, 3], [4, 5, 7]]</span>
@@ -753,10 +748,10 @@ When <cite>entries</cite> is given, either <cite>dim</cite> of <cite>bottom_p</c
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>entries</strong> (<em>list of (list of ... (list of object) ... )</em>) &#8211; The entries of the n-D array as a nested list.</li>
-<li><strong>dim</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) &#8211; The dimension <span class="math">\(n\)</span> of the array.</li>
-<li><strong>bottom_p</strong> (<em>object -&gt; bool</em>) &#8211; A predicate to determine the dimension of the array.</li>
-<li><strong>shape</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.7)"><em>tuple</em></a>) &#8211; The number of entries per dimension.</li>
+<li><strong>entries</strong> (<em>list of</em><em> (</em><em>list of ...</em><em> (</em><em>list of object</em><em>) </em><em>..</em><em> )</em>) – The entries of the n-D array as a nested list.</li>
+<li><strong>dim</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a>) – The dimension <span class="math notranslate nohighlight">\(n\)</span> of the array.</li>
+<li><strong>bottom_p</strong> (<em>object -&gt; bool</em>) – A predicate to determine the dimension of the array.</li>
+<li><strong>shape</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><em>tuple</em></a>) – The number of entries per dimension.</li>
 </ul>
 </td>
 </tr>
@@ -770,7 +765,7 @@ When <cite>entries</cite> is given, either <cite>dim</cite> of <cite>bottom_p</c
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pos</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.7)"><em>tuple</em></a>) &#8211; The index of the entry.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>pos</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><em>tuple</em></a>) – The index of the entry.</td>
 </tr>
 </tbody>
 </table>
@@ -814,8 +809,8 @@ When <cite>entries</cite> is given, either <cite>dim</cite> of <cite>bottom_p</c
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>arg1</strong> (<em>int or tuple</em>) &#8211; The number of dimensions or a tuple with spacings per dimension.</li>
-<li><strong>arg2</strong> &#8211; The step-sizes per dimension, given as a tuple. (optional)</li>
+<li><strong>arg1</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.8)"><em>tuple</em></a>) – The number of dimensions or a tuple with spacings per dimension.</li>
+<li><strong>arg2</strong> – The step-sizes per dimension, given as a tuple. (optional)</li>
 </ul>
 </td>
 </tr>
@@ -838,11 +833,11 @@ When <cite>entries</cite> is given, either <cite>dim</cite> of <cite>bottom_p</c
 <dl class="class">
 <dt id="lfa_lab.core.extension.Symbol">
 <em class="property">class </em><code class="descclassname">lfa_lab.core.extension.</code><code class="descname">Symbol</code><a class="headerlink" href="#lfa_lab.core.extension.Symbol" title="Permalink to this definition">¶</a></dt>
-<dd><p>Approximation of a matrix symbols.</p>
+<dd><p>Approximation of a matrix symbol.</p>
 <dl class="method">
 <dt id="lfa_lab.core.extension.Symbol.col_norms">
 <code class="descname">col_norms</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lfa_lab.core.extension.Symbol.col_norms" title="Permalink to this definition">¶</a></dt>
-<dd><p>The norms of the columns of the symbol as <span class="math">\(n\)</span>-D array.</p>
+<dd><p>The norms of the columns of the symbol as <span class="math notranslate nohighlight">\(n\)</span>-D array.</p>
 </dd></dl>
 
 <dl class="method">
@@ -878,7 +873,7 @@ When <cite>entries</cite> is given, either <cite>dim</cite> of <cite>bottom_p</c
 <dl class="method">
 <dt id="lfa_lab.core.extension.Symbol.row_norms">
 <code class="descname">row_norms</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lfa_lab.core.extension.Symbol.row_norms" title="Permalink to this definition">¶</a></dt>
-<dd><p>The norms of the rows of the symbol as an <span class="math">\(n\)</span>-D array.</p>
+<dd><p>The norms of the rows of the symbol as an <span class="math notranslate nohighlight">\(n\)</span>-D array.</p>
 </dd></dl>
 
 <dl class="method">
@@ -919,7 +914,7 @@ When <cite>entries</cite> is given, either <cite>dim</cite> of <cite>bottom_p</c
             <p class="logo"><a href="index.html">
               <img class="logo" src="_static/lfa_lab_logo.png" alt="Logo"/>
             </a></p>
-<h3><a href="index.html">Table Of Contents</a></h3>
+<h3><a href="index.html">Table of Contents</a></h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a></li>
@@ -943,12 +938,14 @@ When <cite>entries</cite> is given, either <cite>dim</cite> of <cite>bottom_p</c
 
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -956,10 +953,10 @@ When <cite>entries</cite> is given, either <cite>dim</cite> of <cite>bottom_p</c
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2018, Hannah Rittich.
+      &copy;2020, Hannah Rittich.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.9</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
     </div>

@@ -1,0 +1,3 @@
+[submodule "lfa_lab"]
+	path = lfa_lab
+	url = https://github.com/hrittich/lfa-lab

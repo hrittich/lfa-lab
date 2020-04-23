@@ -1,13 +1,15 @@
 language: cpp
 os: linux
+dist: bionic
 
 addons:
   apt:
-    sources:
-    - ubuntu-toolchain-r-test
     packages:
-    - g++-6
-    - cmake
+    - g++
+# Do not install cmake. The travis image is shipped with a newer version of
+# cmake. Installing the Ubuntu package might result in using a version which
+# is too old.
+#    - cmake
     - libgtest-dev
     - python-dev
     - python-numpy-dev
@@ -24,34 +26,43 @@ addons:
     - swig
     - libeigen3-dev
     - liblapack-dev
+    update: true
 
 matrix:
   include:
     # Python2: Out of source build
     - script:
       - mkdir build
-      - (cd build && cmake -DCMAKE_CXX_COMPILER=g++-6 -DWITH_TESTS=ON ../ )
+      - (cd build && cmake -DWITH_TESTS=ON -DUSER_INSTALL=ON ../ )
       - make -C build
       - make -C build check
+      - make -C build install
+      - (cd demo; python -mlfa_lab)
     # Python3: In source build
     - script:
-      - cmake -DCMAKE_CXX_COMPILER=g++-6 -DWITH_TESTS=ON -DPYTHON_EXECUTABLE=`which python3` .
+      - cmake -DWITH_TESTS=ON -DUSER_INSTALL=ON -DPYTHON_EXECUTABLE=`which python3` .
       - make
       - make check
+      - make install
+      - (cd demo; python3 -mlfa_lab)
     # Python3: Out of source build
     - script:
       - alias python=python3
       - mkdir build
-      - (cd build && cmake -DCMAKE_CXX_COMPILER=g++-6 -DWITH_TESTS=ON -DPYTHON_EXECUTABLE=`which python3` ../ )
+      - (cd build && cmake -DWITH_TESTS=ON -DPYTHON_EXECUTABLE=`which python3` ../ )
       - make -C build
       - make -C build check
     # Python3: Pip user install
     - script:
-      - CXX=g++-6 CC=gcc-6 pip3 install -v --user .
+      - /usr/bin/cmake -version || true
+      - cmake -version
+      - which cmake
+      - echo $PATH
+      - pip3 install -v --user .
       - (cd demo && python3 -mlfa_lab)
     # Python3: venv install
     - script:
       - python3 -mvenv myenv
-      - (source myenv/bin/activate; CXX=g++-6 CC=gcc-6 pip -v install .)
+      - (source myenv/bin/activate; pip -v install .)
       - (source myenv/bin/activate; cd demo; python -mlfa_lab)
 

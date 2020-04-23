@@ -24,6 +24,15 @@ from distutils.command.build import build
 from subprocess import check_call, CalledProcessError
 import os
 import sys
+import distutils.spawn
+
+if 'CMAKE_EXECUTABLE' in os.environ:
+    CMAKE_EXE = os.environ['CMAKE_EXECUTABLE']
+else:
+    CMAKE_EXE = distutils.spawn.find_executable('cmake')
+
+print('Using cmake executable: {}'.format(CMAKE_EXE))
+check_call([CMAKE_EXE, '--version'])
 
 class install_cmake(Command):
 
@@ -43,7 +52,7 @@ class install_cmake(Command):
         self.install_lib = os.path.abspath(self.install_lib)
 
     def run(self):
-        check_call(['cmake',
+        check_call([CMAKE_EXE,
             '-DPYTHON_INSTALL_DIR={}'.format(self.install_lib),
             ])
         check_call(['make', 'install'])
@@ -69,11 +78,11 @@ class build_cmake(Command):
     def run(self):
         # run cmake
         try:
-            check_call(['cmake', '-DPYTHON_EXECUTABLE='+sys.executable, '.'])
+            check_call([CMAKE_EXE, '-DPYTHON_EXECUTABLE='+sys.executable, '.'])
         except CalledProcessError:
             # if cmake fails, try to run with a clean cache
             os.remove('CMakeCache.txt')
-            check_call(['cmake', '-DPYTHON_EXECUTABLE='+sys.executable, '.'])
+            check_call([CMAKE_EXE, '-DPYTHON_EXECUTABLE='+sys.executable, '.'])
 
 class custom_build(build):
     sub_commands = [ ('build_cmake', lambda self: True) ] \

@@ -15,7 +15,7 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.12)
 project("LFA Lab"
   VERSION 0.4.0
   LANGUAGES CXX)
@@ -165,7 +165,10 @@ endif()
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
 # ====== Python + NumPy ======
-find_package(PythonInterp)
+#find_package(PythonInterp)
+find_package(Python REQUIRED COMPONENTS Interpreter)
+set(PYTHON_EXECUTABLE ${Python_EXECUTABLE}
+    CACHE FILEPATH "Path to the Python interpreter")
 include(python.cmake)
 
 # use python to generate a configuration file

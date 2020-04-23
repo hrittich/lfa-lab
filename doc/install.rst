@@ -16,7 +16,7 @@ Prepare your System
 LFA Lab depends on the following packages:
 
 - C++ compiler
-- `CMake <http://www.cmake.org/>`_
+- `CMake <http://www.cmake.org/>`_ >= 3.12
 - `Eigen3 <http://eigen.tuxfamily.org/>`_
 - `Python3 <http://www.python.org/>`_
 - `Swig <http://swig.org/>`_
@@ -36,6 +36,10 @@ Furthermore, the following packages provide extra functionality, but are
 
 You can find the commands to install the dependencies for different operating
 systems below.
+
+Currently, LFA Lab *should* work with Python 2 and pre C++11 compilers. Using
+those, however, is unsupported. It is recommended to use Python 3 and a
+recent C++ compiler.
 
 Debian
 ------

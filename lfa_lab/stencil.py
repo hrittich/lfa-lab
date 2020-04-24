@@ -62,16 +62,22 @@ class SparseStencil(_SparseStencil):
     def __len__(self):
         return self.nonZeros()
 
-    def __getitem__(self, p):
-        """Return the element at offset p."""
-        return (self._get_offset_at(p),
-                self._get_value_at(p))
+    def __getitem__(self, i):
+        """Return the element at index i."""
+        offset = self._get_offset_at(i)
+        offset = tuple(map(lambda j: int(j), offset))
+
+        value = self._get_value_at(i)
+        if (value.imag == 0):
+            value = value.real
+
+        return (offset, value)
 
     def __str__(self):
         return str(list(self))
 
     def __repr__(self):
-        return 'SparseStencil({})'.format(str(self))
+        return '(stencil {})'.format(str(self))
 
     def _create_empty(self):
         return SparseStencil()

@@ -20,6 +20,7 @@ from .util import NdArray
 import numpy as np
 from abc import ABCMeta, abstractmethod
 from six import with_metaclass
+from .util import indent
 
 __all__ = [
     'StencilNode',
@@ -249,6 +250,9 @@ class IdentityNode(Node, Splitable):
     def lower(self):
         return ZeroNode(self.grid)
 
+    def __repr__(self):
+        return 'id'
+
 class ZeroNode(Node, Splitable):
 
     def __init__(self, grid):
@@ -273,6 +277,9 @@ class ZeroNode(Node, Splitable):
 
     def lower(self):
         return self
+
+    def __repr__(self):
+        return '0'
 
 class GeneratorNode(Node):
     """
@@ -328,6 +335,9 @@ class StencilNode(GeneratorNode):
         triangular part of the stencil of this operator."""
         return StencilNode(self.stencil.lower(), self.grid)
 
+    def __repr__(self):
+        return repr(self.stencil)
+
 
 class FlatRestrictionNode(GeneratorNode):
     def __init__(self, output_grid, input_grid):
@@ -338,6 +348,11 @@ class FlatRestrictionNode(GeneratorNode):
         return ZeroRestrictionNode(self.properties.outputGrid(),
                                    self.properties.inputGrid())
 
+    def __repr__(self):
+        return '(restrict\n{}\n{})' \
+                .format(indent(repr(self.properties.inputGrid()), '  '),
+                        indent(repr(self.properties.outputGrid()), '  '))
+
 class ZeroRestrictionNode(GeneratorNode):
 
     def __init__(self, output_grid, input_grid):
@@ -346,6 +361,9 @@ class ZeroRestrictionNode(GeneratorNode):
 
     def matching_zero(self):
         return self
+
+    def __repr__(self):
+        return '0'
 
 class FlatInterpolationNode(GeneratorNode):
 
@@ -357,6 +375,11 @@ class FlatInterpolationNode(GeneratorNode):
         return ZeroInterpolationNode(self.properties.outputGrid(),
                                      self.properties.inputGrid())
 
+    def __repr__(self):
+        return '(interpolate\n{}\n{})' \
+                .format(indent(repr(self.properties.outputGrid()), '  '),
+                        indent(repr(self.properties.inputGrid()), '  '))
+
 class ZeroInterpolationNode(GeneratorNode):
 
     def __init__(self, output_grid, input_grid):
@@ -365,6 +388,9 @@ class ZeroInterpolationNode(GeneratorNode):
 
     def matching_zero(self):
         return self
+
+    def __repr__(self):
+        return '0'
 
 class NodeAdd(Node):
 
@@ -382,6 +408,12 @@ class NodeAdd(Node):
     def matching_zero(self):
         return self._a.matching_zero()
 
+    def __repr__(self):
+        return '(+\n{}\n{})' \
+                 .format(indent(repr(self._a), '  '),
+                         indent(repr(self._b), '  '))
+
+
 class NodeMul(Node):
 
     def __init__(self, a, b):
@@ -397,6 +429,11 @@ class NodeMul(Node):
 
     def matching_zero(self):
         return self._a.matching_zero() * self._b.matching_zero()
+
+    def __repr__(self):
+        return '(*\n{}\n{})' \
+                 .format(indent(repr(self._a), '  '),
+                         indent(repr(self._b), '  '))
 
 class NodeScalarMul(Node):
 
@@ -414,6 +451,11 @@ class NodeScalarMul(Node):
     def matching_zero(self):
         return self._b.matching_zero()
 
+    def __repr__(self):
+        return '(*\n{}\n{})' \
+                .format(indent(repr(self._a), '  '),
+                        indent(repr(self._b), '  '))
+
 class NodeInverse(Node):
 
     def __init__(self, other):
@@ -429,6 +471,9 @@ class NodeInverse(Node):
     def matching_zero(self):
         return self._other.matching_zero()
 
+    def __repr__(self):
+        return '(inv\n{})'.format(indent(repr(self._other), '  '))
+
 class NodeAdjoint(Node):
     def __init__(self, other):
         super(NodeAdjoint, self).__init__()
@@ -442,6 +487,9 @@ class NodeAdjoint(Node):
 
     def matching_zero(self):
         return NodeAdjoint(self._other.matching_zero())
+
+    def __repr__(self):
+        return '(adjoint\n{})'.format(indent(repr(self._other)), '  ')
 
 class NodeSubscript(Node):
     def __init__(self, container_node, index):
@@ -486,6 +534,10 @@ class BlockNode(Node):
         self._generator.scalarSymbols(symbols)
         self._symbol = self._generator.generate(self.configuration)
 
+    def __repr__(self):
+        return '(block\n{})' \
+                .format(indent(repr(self._scalars), '  '))
+
 
 # ToDo: Remove this class.
 class PeriodicStencilNode(BlockNode, Splitable):
@@ -517,9 +569,16 @@ class HpFilterNode(GeneratorNode):
     """High pass filter symbol."""
 
     def __init__(self, fine_grid, coarse_grid):
+        self.fine_grid = fine_grid
+        self.coarse_grid = coarse_grid
 
         super(HpFilterNode, self).__init__(
                 HpFilterSb(fine_grid, coarse_grid))
+
+    def __repr__(self):
+        return '(hp_filter\n{}\n{})' \
+                .format(indent(repr(self.fine_grid), '  '),
+                        indent(repr(self.coarse_grid), '  '))
 
 class SystemNode(Node,Splitable):
     """System of symbols.
@@ -600,5 +659,8 @@ class SystemNode(Node,Splitable):
 
     def lower(self):
         pass
+
+    def __repr__(self):
+        return '(system\n{})'.format(indent(repr(self._entries), '  '))
 
 

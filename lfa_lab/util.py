@@ -17,6 +17,11 @@
 
 import numpy as np
 from .core import NdRange
+import re
+
+# ToDo: In Python 3 we should use textwrap.indent instead.
+def indent(text, prefix):
+    return re.sub('^', prefix, text, flags=re.MULTILINE)
 
 def is_even(x):
     return (x % 2) == 0
@@ -166,6 +171,9 @@ class NdArray:
             else:
                 return list(map(lambda e: map_tree(d-1, e), entries))
         return map_tree(self.dim, self._entries)
+
+    def __repr__(self):
+        return repr(self._entries)
 
 
 

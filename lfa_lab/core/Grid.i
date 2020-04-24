@@ -49,6 +49,16 @@ class Grid {
         return ss.str();
     }
 
+    std::string __repr__() {
+        std::stringstream ss;
+        ss << "(grid";
+        for(int i = 0; i < $self->spacing().rows(); ++i) {
+          ss << " " << $self->spacing()(i);
+        }
+        ss << ")";
+        return ss.str();
+    }
+
     bool __eq__(const Grid& other) {
       return (*$self) == other;
     }

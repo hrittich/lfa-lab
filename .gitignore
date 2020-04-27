@@ -25,6 +25,8 @@ lfa_lab/core/extension.py
 lfa_lab/core/liblfa.a
 doc/core-html/
 
+docker/repository.git
+
 # VIM swap files
 *.swp
 

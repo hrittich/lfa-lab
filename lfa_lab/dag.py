@@ -23,6 +23,7 @@ from six import with_metaclass
 from .util import indent
 
 __all__ = [
+    'Node',
     'StencilNode',
     'IdentityNode',
     'BlockNode',

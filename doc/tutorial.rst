@@ -111,6 +111,8 @@ The following code performs this computation.
 
 .. literalinclude:: ../demo/tutorial03-smoothing.py
 
+Note, a smoothing analysis can directly be performed by using the convenience
+function :func:`lfa_lab.analysis.smoothing_factor`.
 
 .. _tutorial_two_grids:
 

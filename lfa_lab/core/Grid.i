@@ -25,6 +25,7 @@
 :type arg1: int or tuple
 :param arg2: The step-sizes per dimension, given as a tuple. (optional)
 ") Grid;
+%feature("autodoc", "Coarsen the grid by a given factor.") Grid::coarse;
 %feature("autodoc", "The step size.") Grid::step_size;
 %feature("autodoc", "The number of dimensions of the grid.") Grid::dimension;
 %feature("autodoc", "The coarsening range of `other` with respect to `self`.")

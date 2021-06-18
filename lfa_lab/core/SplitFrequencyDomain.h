@@ -32,7 +32,7 @@ namespace lfa {
        * If cluster_shape is omited then a cluster_shape of one is assumed.
        */
       explicit SplitFrequencyDomain(Grid grid = Grid(),
-          ArrayFi cluster_shape = ArrayFi::Zero(0));
+                                    ArrayFi cluster_shape = ArrayFi::Zero(0));
 
       const Grid& grid() const { return m_grid; }
       const ArrayFi& clusterShape() const { return m_cluster_shape; }

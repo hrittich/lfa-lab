@@ -30,6 +30,12 @@ Multigrid
 .. automodule:: lfa_lab.two_grid
    :members:
 
+Analysis
+========
+
+.. automodule:: lfa_lab.analysis
+   :members:
+
 Gallery
 =======
 

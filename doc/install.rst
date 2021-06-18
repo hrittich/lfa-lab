@@ -99,8 +99,8 @@ To check your installation, open a *new* terminal window and run::
 You should see a message, which tells you that LFA Lab has been installed
 successfully.
 
-If you want to customize the installation of in case the build fails, see the
-manual installation below.
+If you want to customize the installation, e.g., in case the build fails, see
+the manual installation below.
 
 .. _build_lfa_lab:
 

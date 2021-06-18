@@ -22,6 +22,7 @@ from lfa_lab.smoother import *
 from lfa_lab.two_grid import *
 from lfa_lab.block_smoother import *
 from lfa_lab.report import *
+from lfa_lab.analysis import *
 
 from lfa_lab import gallery
 from lfa_lab import operator

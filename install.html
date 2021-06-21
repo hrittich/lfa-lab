@@ -1,20 +1,18 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Installation &#8212; LFA Lab 0.4.0-alpha documentation</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Tutorial" href="tutorial.html" />
@@ -43,24 +41,24 @@ when necessary.</p>
 <h2>Prepare your System<a class="headerlink" href="#prepare-your-system" title="Permalink to this headline">¶</a></h2>
 <p>LFA Lab depends on the following packages:</p>
 <ul class="simple">
-<li>C++ compiler</li>
-<li><a class="reference external" href="http://www.cmake.org/">CMake</a> &gt;= 3.12</li>
-<li><a class="reference external" href="http://eigen.tuxfamily.org/">Eigen3</a></li>
-<li><a class="reference external" href="http://www.python.org/">Python3</a></li>
-<li><a class="reference external" href="http://swig.org/">Swig</a></li>
-<li><a class="reference external" href="http://www.numpy.org/">NumPy</a></li>
-<li><a class="reference external" href="https://pypi.org/project/six/">six</a></li>
-<li>Only for pre C++11 compilers: <a class="reference external" href="http://www.boost.org/">Boost</a></li>
+<li><p>C++ compiler</p></li>
+<li><p><a class="reference external" href="http://www.cmake.org/">CMake</a> &gt;= 3.12</p></li>
+<li><p><a class="reference external" href="http://eigen.tuxfamily.org/">Eigen3</a></p></li>
+<li><p><a class="reference external" href="http://www.python.org/">Python3</a></p></li>
+<li><p><a class="reference external" href="http://swig.org/">Swig</a></p></li>
+<li><p><a class="reference external" href="http://www.numpy.org/">NumPy</a></p></li>
+<li><p><a class="reference external" href="https://pypi.org/project/six/">six</a></p></li>
+<li><p>Only for pre C++11 compilers: <a class="reference external" href="http://www.boost.org/">Boost</a></p></li>
 </ul>
 <p>Furthermore, the following packages provide extra functionality, but are
 <em>optional</em>:</p>
 <ul class="simple">
-<li><a class="reference external" href="http://www.doxygen.org/">Doxygen</a></li>
-<li><a class="reference external" href="http://www.sphinx-doc.org/">Sphinx</a></li>
-<li><a class="reference external" href="http://www.netlib.org/lapack/">LAPACK</a></li>
-<li><a class="reference external" href="http://github.com/opencollab/arpack-ng/">ARPACK</a></li>
-<li><a class="reference external" href="http://code.google.com/p/googletest/">googletest</a></li>
-<li><a class="reference external" href="https://pip.pypa.io/en/stable/">PIP</a></li>
+<li><p><a class="reference external" href="http://www.doxygen.org/">Doxygen</a></p></li>
+<li><p><a class="reference external" href="http://www.sphinx-doc.org/">Sphinx</a></p></li>
+<li><p><a class="reference external" href="http://www.netlib.org/lapack/">LAPACK</a></p></li>
+<li><p><a class="reference external" href="http://github.com/opencollab/arpack-ng/">ARPACK</a></p></li>
+<li><p><a class="reference external" href="http://code.google.com/p/googletest/">googletest</a></p></li>
+<li><p><a class="reference external" href="https://pip.pypa.io/en/stable/">PIP</a></p></li>
 </ul>
 <p>You can find the commands to install the dependencies for different operating
 systems below.</p>
@@ -122,8 +120,8 @@ pip. Change into the source directory of LFA Lab and execute:</p>
 </div>
 <p>You should see a message, which tells you that LFA Lab has been installed
 successfully.</p>
-<p>If you want to customize the installation of in case the build fails, see the
-manual installation below.</p>
+<p>If you want to customize the installation, e.g., in case the build fails, see
+the manual installation below.</p>
 </div>
 <div class="section" id="build-lfa-lab">
 <span id="id2"></span><h2>Build LFA Lab<a class="headerlink" href="#build-lfa-lab" title="Permalink to this headline">¶</a></h2>
@@ -224,17 +222,15 @@ how to use it.</p>
 </ul>
 
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -243,7 +239,7 @@ how to use it.</p>
       &copy;2020, Hannah Rittich.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.4</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.4.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.8</a>
       
     </div>

@@ -5,16 +5,12 @@ run_test_suite () {
   echo "### running test suite: $1 ###"
   set -xe
   case "$1" in
-  shell)
-    bash
-
-    ;;
   python2-out-of-source)
     mkdir build
     (cd build &&
      cmake -DPYTHON_EXECUTABLE=`which python2` -DWITH_TESTS=ON \
        -DUSER_INSTALL=ON ../ )
-    make -C build
+    make -j $(nproc) -C build
     make -C build check
     make -C build install
     (cd demo; python2 -mlfa_lab)
@@ -24,7 +20,7 @@ run_test_suite () {
 
     cmake -DPYTHON_EXECUTABLE=`which python3` -DWITH_TESTS=ON \
       -DUSER_INSTALL=ON .
-    make
+    make -j $(nproc)
     make check
     make install
     (cd demo; python3 -mlfa_lab)
@@ -49,9 +45,8 @@ run_test_suite () {
   esac
 }
 
-git clone repository.git build
-cd build
-git checkout -b testing
+# Change into the source directory
+cd $(dirname $0)/../
 
 # Weird POSIX. See: https://unix.stackexchange.com/questions/65532/
 set +e

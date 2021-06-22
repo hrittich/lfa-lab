@@ -18,7 +18,6 @@
 import numpy as np
 from lfa_lab.dag import *
 import lfa_lab.operator as operator
-from typing import *
 
 __all__ = 'smoothing_factor', 'h_ellipticity'
 

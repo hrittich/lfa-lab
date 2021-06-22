@@ -61,7 +61,7 @@ Symbol BlockSb::generate(const SamplingProperties& conf)
 {
     DiscreteDomain scalar_dd(scalar_domain(), conf);
 
-    // we need to ensure that all symbols habe the same properties
+    // we need to ensure that all symbols have the same properties
     NdRange indices = m_scalars.indices();
     for (NdRange::iterator p = indices.begin(); p != indices.end(); ++p) {
         if (m_scalars(*p).inputClusters() != scalar_dd.harmonics()

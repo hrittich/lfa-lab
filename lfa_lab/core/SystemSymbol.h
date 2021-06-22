@@ -75,7 +75,7 @@ namespace lfa {
 
       SystemClusterSymbol at(ArrayFi base_index) const;
 
-      /** Ensure that the system consists of consistent symbols. Throws and
+      /** Ensure that the system consists of consistent symbols. Throws an
        * exception otherwise. */
       void ensureConsistency() const;
     private:

@@ -1,14 +1,16 @@
 #!/bin/bash
 set -xe
+SCRIPTDIR="$(dirname "$0")"
 
+DOCKER=${DOCKER:-docker}
 SHELL_ON_ERROR=${SHELL_ON_ERROR:-yes}
 
-git bundle create repository.git HEAD
-
-TESTS="python2-out-of-source python3-in-source python3-pip python3-venv"
+ALL_TESTS="python2-out-of-source python3-in-source python3-pip python3-venv"
+TESTS="${1:-$ALL_TESTS}"
 for TEST in $TESTS; do
-  CID=$(docker create -ti --rm -e SHELL_ON_ERROR=$SHELL_ON_ERROR lfa-lab-testing $TEST)
-  docker cp repository.git $CID:/home/tester/repository.git
-  docker start -i $CID
+  $DOCKER run -ti --rm $DOCKER_FLAGS \
+    --env SHELL_ON_ERROR \
+    --volume "$SCRIPTDIR/../":/source \
+    lfa-lab-testing $TEST
 done
 

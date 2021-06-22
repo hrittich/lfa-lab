@@ -26,8 +26,11 @@
 
 namespace lfa {
 
-  /** Block symbol builder. Combines periodic scalar symbols into a matrix
-   * symbol.
+  /** Computes the symbol of an operator that applies different operations
+   * depending on the grid point. Given a rectangular pattern of operators,
+   * the pattern is repeated over the whole domain. In order to compute the
+   * symbol, this class needs to be given the scalar symbols that make up
+   * this pattern.
    */
   class BlockSb : public SymbolBuilder {
     public:

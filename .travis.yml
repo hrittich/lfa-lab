@@ -1,9 +1,0 @@
-language: minimal
-os: linux
-dist: bionic
-
-script:
-  - cd docker
-  - ./build.sh
-  - SHELL_ON_ERROR=no ./run-tests.sh
-
